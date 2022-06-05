@@ -7,9 +7,12 @@
             <h4 class="card-title"><?=$title_page;?></h4>
             <?php if($this->session->flashdata('msg_alert')) { ?>
 
-            <div class="alert alert-info">
-              <label style="font-size: 14px;"><?=$this->session->flashdata('msg_alert');?></label>
-            </div>
+              <div class="col-md-6">
+                <div class="alert alert-info">
+                  <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
+                </div>
+              </div>
+              
             <?php } ?>
             <div class="card-tools">
                 <div class="input-group" style="width: 150px;">

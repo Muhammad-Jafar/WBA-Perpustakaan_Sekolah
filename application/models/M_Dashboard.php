@@ -26,17 +26,6 @@ class M_Dashboard extends CI_Model {
 	}
 
 
-	//===================== CARD DASHBOARD SISWA ==========================
-	
-	public function total_buku() {
-		$q = $this->db->query('SELECT COUNT(*) FROM buku'); // TOTAL BUKU
-		return $q->row_array()['COUNT(*)'];
-	}
-
-	public function status_pinjam_buku() {
-		$q = $this->db->query('SELECT COUNT(*) FROM buku as qtbuku LEFT JOIN transaksi');
-	}
-
 	// public function total_dataizin() {
 	// 	$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_izin ) AS TOTAL");
 	// 	return $q->row_array()['TOTAL'];

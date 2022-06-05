@@ -4,81 +4,101 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title"><?=$title_page;?></h4>
+              <h3 class="card-title"><?=$title_page;?></h3>
               <?php if($this->session->flashdata('msg_alert')) { ?>
 
-              <div class="alert alert-info">
-                <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
+              <div class="col-md-6">
+                <div class="alert alert-info">
+                  <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
+                </div>
               </div>
+
               <?php } ?>
-              <?=form_open_multipart('data_master/add_new/admin', array('method'=>'post'));?>
+              <?=form_open_multipart('manajemen_buku/add_new/data_buku', array('method'=>'post'));?>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Nama Lengkap</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="namalengkap" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Type</label>
-                      <div class="col-sm-9">
-                        <select name="type" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <option value="admin">Admin</option>
-                          <option value="baak">Ka. BAAK</option>
-                        </select>
+                      <label class="col-sm-3 col-form-label">Jenis Buku</label>
+                      <div class="col-sm-5">
+                        <select name="id_jenis_buku" class="form-control">
+                            <option disabled selected>Pilih Jenis Buku</option>
+                              <?php foreach($klasifikasi_buku as $kb) { ?>
+                                <option value="<?=$kb->id_jenis_buku;?>"> <?=$kb->jenis_buku;?></option>
+                              <?php } ?>
+                          </select>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Username</label>
+                      <label class="col-sm-3 col-form-label">Judul Buku</label>
                       <div class="col-sm-9">
-                        <input type="text" name="username" class="form-control" />
+                        <input type="text" name="judul_buku" class="form-control" placeholder="Contoh : Pengantar Fisika Edisi ke 5 Cetakan ke 2 Untuk Kelas XII "/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Email</label>
+                      <label class="col-sm-3 col-form-label">Pengarang</label>
                       <div class="col-sm-9">
-                        <input type="email" name="email" class="form-control" />
+                        <input type="text" name="pengarang" class="form-control" placeholder="Harry Potter"/>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Password</label>
+                      <label class="col-sm-3 col-form-label">Penerbit</label>
                       <div class="col-sm-9">
-                        <input type="password" name="password" class="form-control" />
+                        <input type="text" name="penerbit" class="form-control" placeholder="Gramedia"/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Avatar</label>
+                      <label class="col-sm-3 col-form-label">Tahun terbit</label>
                       <div class="col-sm-9">
-                          <input type="file" name="avatar">
+                        <input type="number" name="tahun_terbit" class="form-control" placeholder="Contoh : 2022" />
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <button type="submit" class="btn btn-success mr-2">Submit</button>
-                      <button class="btn btn-light" type="reset">Reset</button>
+                      <label class="col-sm-3 col-form-label">Jumlah halaman buku</label>
+                      <div class="col-sm-9">
+                        <input type="number" name="jumlah_halaman" class="form-control" placeholder="Contoh : 210, artinya 210 lembar"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Stok buku</label>
+                      <div class="col-sm-9">
+                        <input type="number" name="qt" class="form-control" placeholder="Contoh : 10, artinya ada 10 paket buku"/>
+                      </div>
                     </div>
                   </div>
                 </div>
-              <?=form_close();?>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
+                      <button type="submit" class="btn btn-success mr-2">Tambah data</button>
+                      <button class="btn btn-light" type="reset">Hapus</button>
+                    </div>
+                  </div>
+                </div>
+
+                <?=form_close();?>
             </div>
           </div>
         </div>

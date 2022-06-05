@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Katalog extends CI_Model { 
-
     
 	public function show_katalog() {
 		$q=$this->db->select( 'b.id_buku, b.judul_buku, b.pengarang, b.qt, k.jenis_buku')
@@ -11,5 +10,6 @@ class M_Katalog extends CI_Model {
 			-> get();
 		return $q-> result();
 	}
+
 
 }

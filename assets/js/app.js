@@ -45,8 +45,8 @@ function list_buku_index() {
             if (data['id_buku']) {
                 var id = data['id_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/admin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/admin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/data_buku/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/data_buku/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -56,7 +56,7 @@ function list_buku_index() {
 function klasifikasi_buku_index() {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'manajemen_buku/klasifikasi_buku_ajax',
+            url: base_url + 'manajemen_buku/jenis_buku_ajax',
         },
         columns: [{
                 title: "No.",
@@ -73,11 +73,54 @@ function klasifikasi_buku_index() {
         ],
         createdRow: function(row, data, index) {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_user']) {
-                var id = data['id_user'],
+            if (data['id_jenis_buku']) {
+                var id = data['id_jenis_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/admin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/admin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/jenis_buku/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/jenis_buku/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
+function data_siswa_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'data_siswa/data_siswa_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Nama Siswa",
+                data: 'nama_siswa'
+            },
+            {
+                title: "Nomor Induk Siswa",
+                data: 'nis'
+            },
+            {
+                title: "Kelas",
+                data: 'kelas'
+            },
+            {
+                title: "Jurusan",
+                data: 'jurusan'
+            },
+            {
+                title: "Action",
+                data: 'id_siswa'
+            }
+        ],
+        createdRow: function(row, data, index) {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_siswa']) {
+                var id = data['id_siswa'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_siswa/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_siswa/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -110,48 +153,13 @@ function katalog_buku_index() {
                 data: 'qt'
             },
         ],
-        // createdRow: function(row, data, index) {
-        //     $('td', row).eq(0).html(index + 1);
-        //     if (data['id_buku']) {
-        //         var id = data['id_buku'],
-        //             html = '';
-        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/edit/admin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-        //         html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/delete/admin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
-        //         $('td', row).eq(-1).html(html);
-        //     }
-        // }
-    });
-}
-
-function data_namaizin_index() {
-    $('table.data').DataTable({
-        ajax: {
-            url: base_url + 'data_master/namaizin_ajax',
-        },
-        columns: [{
-                title: "No.",
-                data: 'no'
-            },
-            {
-                title: "Type Izin",
-                data: 'type'
-            },
-            {
-                title: "Nama Izin",
-                data: 'nama_izin'
-            },
-            {
-                title: "Action",
-                data: 'id_namaizin'
-            }
-        ],
         createdRow: function(row, data, index) {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_namaizin']) {
-                var id = data['id_namaizin'],
+            if (data['id_buku']) {
+                var id = data['id_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/nama_izin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/nama_izin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/edit/admin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/delete/admin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -375,15 +383,17 @@ $(document).ready(function()
         case (window.location.href.indexOf('/manajemen_buku/data_buku') != -1):
             list_buku_index();
             break;
-        case (window.location.href.indexOf('/manajemen_buku/klasifikasi_buku') != -1):
+        case (window.location.href.indexOf('/manajemen_buku/jenis_buku') != -1):
             klasifikasi_buku_index();
             break;
-        case (window.location.href.indexOf('/') != -1):
+        case (window.location.href.indexOf('/katalog') != -1):
             katalog_buku_index();
             break;
-        case (window.location.href.indexOf('/data_master/pegawai') != -1):
-            data_pegawai_index();
+        case (window.location.href.indexOf('/data_siswa') != -1):
+            data_siswa_index();
             break;
+
+            
         case (window.location.href.indexOf('/daftar_izin/ajukan') != -1 || window.location.href.indexOf('/daftar_izin/edit') != -1):
             daftar_izin_ajukan();
             break;
