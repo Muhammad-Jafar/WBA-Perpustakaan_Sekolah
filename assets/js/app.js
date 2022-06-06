@@ -127,6 +127,58 @@ function data_siswa_index() {
     });
 }
 
+function peminjaman_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'peminjaman/data_peminjaman_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Nama Peminjam",
+                data: 'nama_siswa'
+            },
+            {
+                title: "Kelas",
+                data: 'kelas'
+            },
+            {
+                title: "Jurusan",
+                data: 'jurusan'
+            },
+            {
+                title: "Judul Buku",
+                data: 'judul_buku'
+            },
+            {
+                title: "Tanggal Pinjam",
+                data: 'tgl_pinjam'
+            },
+            {
+                title: "Lama Pinjam",
+                data: 'lama_pinjam'
+            },
+            {
+                title: "Action",
+                data: 'id_transaksi'
+            }
+        ],
+        createdRow: function(row, data, index) {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_transaksi']) {
+                var type = data['type'],
+                    id = data['id_transaksi'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/add/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-add-circle-outline"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
 function katalog_buku_index() {
     $('table.data').DataTable({
         ajax: {
@@ -392,7 +444,9 @@ $(document).ready(function()
         case (window.location.href.indexOf('/data_siswa') != -1):
             data_siswa_index();
             break;
-
+        case (window.location.href.indexOf('/peminjaman') != -1):
+            peminjaman_index();
+            break;
             
         case (window.location.href.indexOf('/daftar_izin/ajukan') != -1 || window.location.href.indexOf('/daftar_izin/edit') != -1):
             daftar_izin_ajukan();

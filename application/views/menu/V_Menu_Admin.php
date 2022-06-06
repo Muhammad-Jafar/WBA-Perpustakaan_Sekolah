@@ -41,13 +41,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('data_peminjaman');?>">
+            <a class="nav-link" href="<?=base_url('peminjaman');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
               <span class="menu-title">Data Peminjaman</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('data_pengembalian');?>">
+            <a class="nav-link" href="<?=base_url('pengembalian');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
               <span class="menu-title">Data Pengembalian</span>
             </a>

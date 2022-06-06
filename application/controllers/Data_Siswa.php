@@ -85,9 +85,7 @@ class Data_Siswa extends CI_Controller {
 
 			$this->form_validation->set_rules('id_siswa', 'ID', 'required');
 			$this->form_validation->set_rules('nama_siswa', 'Nama siswa', 'required', array( 'required' => 'Nama siswa harus diisi'));
-			$this->form_validation->set_rules('nis', 'Nis siswa', 'required|is_unique[siswa.nis]', 
-												array('required'  => 'NIS harus diisi',
-													  'is_unique' => 'NIS sudah ada'));
+			$this->form_validation->set_rules('nis', 'Nis siswa', 'required', array('required'  => 'NIS harus diisi'));
 			$this->form_validation->set_rules('kelas', 'Kelas siswa', 'required', array('required' => 'Kelas siswa harus diisi'));
 			$this->form_validation->set_rules('jurusan', 'Jurusan siswa', 'required', array('required' => 'Jurusan siswa harus diisi'));
 
