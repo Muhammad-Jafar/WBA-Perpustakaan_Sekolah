@@ -49,10 +49,11 @@ class M_ManajemenBuku extends CI_Model {
 		return $q->result();
 	}
 
-	public function data_buku_add_new( $id_jenis_buku, $judul_buku, $pengarang, $penerbit,
+	public function data_buku_add_new( $id_jenis_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 									   $tahun_terbit, $jumlah_halaman, $qt ) {
 		$d_t_d = array( 'id_jenis_buku'	=> $id_jenis_buku,
 						'judul_buku' 	=> $judul_buku,
+						'kode_buku'		=> $kode_buku,
 						'pengarang' 	=> $pengarang,
 						'penerbit' 		=> $penerbit,
 						'tahun_terbit' 	=> $tahun_terbit,
@@ -66,10 +67,11 @@ class M_ManajemenBuku extends CI_Model {
 		$this->db->delete('buku', array('id_buku' => $id));
 	}
 
-	public function data_buku_update( $id, $id_jenis_buku, $judul_buku, $pengarang, $penerbit,
+	public function data_buku_update( $id, $id_jenis_buku,$kode_buku, $judul_buku, $pengarang, $penerbit,
 									  $tahun_terbit, $jumlah_halaman, $qt ) {
 		$d_t_d = array( 'id_jenis_buku'	=> $id_jenis_buku,
 						'judul_buku' 	=> $judul_buku,
+						'kode_buku' 	=> $kode_buku,
 						'pengarang' 	=> $pengarang,
 						'penerbit' 		=> $penerbit,
 						'tahun_terbit' 	=> $tahun_terbit,

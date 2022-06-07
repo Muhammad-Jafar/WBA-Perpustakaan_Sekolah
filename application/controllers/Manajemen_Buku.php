@@ -113,6 +113,7 @@ class Manajemen_Buku extends CI_Controller {
 			case 'data_buku' : 
 				if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 					$id_jenis_buku = $this->security->xss_clean( $this->input->post('id_jenis_buku'));
+					$kode_buku = $this->security->xss_clean( $this->input->post('kode_buku'));
 					$judul_buku = $this->security->xss_clean( $this->input->post('judul_buku'));
 					$pengarang = $this->security->xss_clean( $this->input->post('pengarang'));
 					$penerbit = $this->security->xss_clean( $this->input->post('penerbit'));
@@ -121,6 +122,9 @@ class Manajemen_Buku extends CI_Controller {
 					$qt = $this->security->xss_clean( $this->input->post('qt'));
 
 					$this->form_validation->set_rules('id_jenis_buku', 'jenis buku', 'required');
+					$this->form_validation->set_rules('kode_buku', 'kode buku', 'required|max_length[10]', 
+														array('required' => 'Kode buku harus diisi',
+															  'max_length' => 'Penulisan kode buku salah'));
 					$this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|is_unique[jenis_buku.jenis_buku]',
 													 	array( 'required' => 'Data tidak boleh kosong !',
 														 	   'is_unique'=> 'Judul sudah ada' ));
@@ -143,7 +147,7 @@ class Manajemen_Buku extends CI_Controller {
 						redirect(base_url('manajemen_buku/add_new/'. $name));
 					}
 
-					$this->m_manajemenbuku->data_buku_add_new( $id_jenis_buku, $judul_buku, $pengarang, $penerbit,
+					$this->m_manajemenbuku->data_buku_add_new( $id_jenis_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 															   $tahun_terbit, $jumlah_halaman, $qt );
 					redirect(base_url('manajemen_buku/'. $name));
 				}
@@ -231,6 +235,7 @@ class Manajemen_Buku extends CI_Controller {
 				if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 					$id = $this->security->xss_clean( $this->input->post('id_buku'));
 					$id_jenis_buku = $this->security->xss_clean( $this->input->post('id_jenis_buku'));
+					$kode_buku = $this->security->xss_clean( $this->input->post('kode_buku'));
 					$judul_buku = $this->security->xss_clean( $this->input->post('judul_buku'));
 					$pengarang = $this->security->xss_clean( $this->input->post('pengarang'));
 					$penerbit = $this->security->xss_clean( $this->input->post('penerbit'));
@@ -240,6 +245,9 @@ class Manajemen_Buku extends CI_Controller {
 
 					$this->form_validation->set_rules('id_buku', 'ID buku', 'required');
 					$this->form_validation->set_rules('id_jenis_buku', 'jenis buku', 'required');
+					$this->form_validation->set_rules('kode_buku', 'kode buku', 'required|max_length[10]', 
+														array('required' => 'Kode buku harus diisi',
+															  'max_length' => 'Penulisan kode buku salah'));
 					$this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|is_unique[jenis_buku.jenis_buku]',
 													 	array( 'required' => 'Data tidak boleh kosong !',
 														 	   'is_unique'=> 'Judul sudah ada' ));
@@ -262,7 +270,7 @@ class Manajemen_Buku extends CI_Controller {
 						redirect(base_url('manajemen_buku/edit/'. $name . '/' . $id) );
 					}
 
-					$this->m_manajemenbuku->data_buku_update( $id, $id_jenis_buku, $judul_buku, $pengarang, $penerbit,
+					$this->m_manajemenbuku->data_buku_update( $id, $id_jenis_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 															   $tahun_terbit, $jumlah_halaman, $qt );
 					redirect(base_url('manajemen_buku/'. $name));
 				}
