@@ -61,6 +61,24 @@ class Manajemen_Buku extends CI_Controller {
 			return array('data' => $new_arr);
 		});
 	}
+
+	public function cek_jenis_buku() {
+
+		// $this->data['idbo'] = $this->session->userdata('ses_id');
+		$this->data['jenis_buku'] =  $this->db->query("SELECT * FROM jenis_buku ORDER BY id_jenis_buku DESC");
+
+
+		if(!empty($this->input->get('id_jenis_buku'))) {
+			$id = $this->input->get('id_jenis_buku');
+			$count = $this->M_Admin->CountTableId('jenis_buku','id_jenis_buku',$id);
+			if($count > 0)
+			{			
+				$this->data['jenis_buku'] = $this->db->query("SELECT *FROM jenis_buku WHERE id_jenis_buku='$id'")->row();
+			}else{
+				echo '<script>alert("KATEGORI TIDAK DITEMUKAN");window.location="'.base_url('data/kategori').'"</script>';
+			}
+		}
+	}
 	
 	//FUNGSI MENAMBAH DATA
 	public function add_new() {
@@ -79,16 +97,16 @@ class Manajemen_Buku extends CI_Controller {
 
 					if (!$this-> form_validation->run()) {
 						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect(base_url('manajemen_buku/add_new/'. $name));
+						redirect(base_url('manajemen_buku/'. $name));
 					}
 
 					$this->m_manajemenbuku->jenis_buku_add_new( $jenis_buku);
 					redirect(base_url('manajemen_buku/' . $name));
 				}
 
-				$data = generate_page ('Tambah data jenis buku', 'manajemen_buku/add_new/jenis_buku', 'Admin');
+				$data = generate_page ('Tambah data jenis buku', 'manajemen_buku/add_new/' . $name, 'Admin');
 				$data_content['title_page'] = 'Tambah data jenis buku';
-				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Create', $data_content, true);
+				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Read', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 			break;
 
@@ -195,7 +213,7 @@ class Manajemen_Buku extends CI_Controller {
 
 					if (!$this-> form_validation->run()) {
 						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect(base_url('manajemen_buku/edit/'. $name . '/' . $id) );
+						redirect(base_url('manajemen_buku/'. $name . '/' . $id) );
 					}
 
 					$this->m_manajemenbuku->jenis_buku_update( $id, $jenis_buku);
@@ -205,7 +223,7 @@ class Manajemen_Buku extends CI_Controller {
 				$data = generate_page ('Ubah data jenis buku', 'manajemen_buku/edit/'. $name . '/' . $id, 'Admin');
 				$data_content['title_page'] = 'Ubah data jenis buku';
 				$data_content['jenis_buku'] = $this->m_manajemenbuku->get_data_jenis_buku($id);
-				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Edit', $data_content, true);
+				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Read', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 			break;
 

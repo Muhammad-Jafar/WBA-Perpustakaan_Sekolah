@@ -1,23 +1,89 @@
 
   <div class="content-wrapper">
+
     <div class="row">
-      <div class="col-lg-12 grid-margin stretch-card">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+
+              <h4 class="card-title">
+                <?=$title_page;?>
+              </h4>
+
+              <?php if($this->session->flashdata('msg_alert')) : ?>
+              <div class="col-md-12">
+                <div class="alert alert-info">
+                  <label style="font-size: 14px;"><?=$this->session->flashdata('msg_alert');?></label>
+                </div>
+              </div>
+              <?php endif; ?>
+
+                <?=form_open('manajemen_buku/add_new/jenis_buku', array('method'=>'post'));?>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Jenis Buku</label>
+                        <div class="col-sm-9">
+                          <input type="text" name="jenis_buku" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
+                        <button type="submit" class="btn btn-success mr-2">Tambah</button>
+                        <button class="btn btn-light" type="reset">Hapus</button>
+                      </div>
+                    </div>
+                  </div>
+                <?=form_close();?>
+
+
+                <!-- <?=form_open('manajemen_buku/edit/jenis_buku/' . $jenis_buku->id_jenis_buku, array('method'=>'post'));?>
+                  <input type="hidden" name="id_jenis_buku" value="<?=$jenis_buku->id_jenis_buku;?>">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Jenis Buku</label>
+                        <div class="col-sm-9">
+                          <input type="text" value="<?=$jenis_buku->jenis_buku;?>" name="jenis_buku" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
+                        <button type="submit" class="btn btn-success mr-2">Perbarui</button>
+                        <button class="btn btn-light" type="reset">Hapus</button>
+                      </div>
+                    </div>
+                  </div>
+                <?=form_close();?> -->
+
+
+            </div>
+        </div>
+			</div>
+
+      <div class="col-sm-8">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title"><?=$title_page;?></h4>
-            <?php if($this->session->flashdata('msg_alert')) { ?>
 
+            <?php if($this->session->flashdata('msg_alert')) { ?>
               <div class="col-md-6">
                 <div class="alert alert-info">
-                  <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
+                  <label style="font-size: 14px;"><?=$this->session->flashdata('msg_alert');?></label>
                 </div>
               </div>
               
             <?php } ?>
             <div class="card-tools">
-              <div class="input-group input-group-sm" style="width: 200px;">
-                <button type="button" onclick="javascript:top.location.href='<?=base_url("/manajemen_buku/add_new/jenis_buku");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i> Tambah Jenis Buku</button>
-              </div>
             </div>
             <div class="table-responsive">
               <p>
@@ -28,4 +94,5 @@
         </div>
       </div>
     </div>
+
   </div>

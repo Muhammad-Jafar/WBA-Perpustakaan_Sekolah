@@ -12,6 +12,10 @@ function list_buku_index() {
                 data: 'jenis_buku'
             },
             {
+                title: "Kode Buku",
+                data: 'kode_buku'
+            },
+            {
                 title: "Judul",
                 data: 'judul_buku'
             },
@@ -203,18 +207,18 @@ function katalog_buku_index() {
             {
                 title: "Tersedia",
                 data: 'qt'
-            },
-        ],
-        createdRow: function(row, data, index) {
-            $('td', row).eq(0).html(index + 1);
-            if (data['id_buku']) {
-                var id = data['id_buku'],
-                    html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/edit/admin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/delete/admin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
-                $('td', row).eq(-1).html(html);
             }
-        }
+        ],
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id_buku']) {
+        //         var id = data['id_buku'],
+        //             html = '';
+        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/edit/admin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+        //         html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'katalog/delete/admin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
     });
 }
 

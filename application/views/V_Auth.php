@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Sistem Informasi Perpustakaan" />
   <meta name="author" content="Jafar 131" />
-  <title>Login - Sistem Informasi Kepegawaian</title>
+  <title>Login - Sistem Informasi Perpustakaan</title>
   <link rel="stylesheet" href="<?=assets_url('vendors/iconfonts/mdi/css/materialdesignicons.min.css');?>">
   <link rel="stylesheet" href="<?=assets_url('vendors/iconfonts/puse-icons-feather/feather.css');?>">
   <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.base.css');?>">
@@ -26,7 +26,7 @@
                   <p class="text-center">
                     <!-- <img src="<?=assets_url('logo.png', false);?>" width="135"> -->
                   </p>
-                  <h4 class="d-flex justify-content-center mt-4 mb-3 font-weight-semibold text-dark">LAYANAN PERPUSTAKAAN</h4>
+                  <h4 class="d-flex justify-content-center mt-4 mb-3 font-weight-semibold text-dark">ADMIN PERPUSTAKAAN</h4>
                   <?php if($this->session->flashdata('msg_alert')) { ?>
 
                   <div class="alert alert-info">

@@ -14,11 +14,11 @@ class Auth extends CI_Controller {
 	public function index() 
 	{
 		is_login(function() {
-			redirect( base_url('dashboardadmin') );
+			redirect( base_url('dashboard') );
 		});
 		
 		isnt_login(function() {
-			redirect( base_url('dashboard') );
+			redirect( base_url('auth/login') );
 		});
 	}
 
