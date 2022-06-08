@@ -1,3 +1,9 @@
+<?php
+    $tgl_pinjam = date('Y-m-d');
+    // untuk menghitung selisih tanggal pinjam dan tanggal pengembalian
+    $tujuh_hari = mktime(0,0,0,date("n"),date("j") + 7, date("Y"));
+    $tgl_kembali = date('Y-m-d', $tujuh_hari);
+?>
 
     <div class="content-wrapper">
       <div class="row">
@@ -17,14 +23,20 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Kode Pinjam</label>
+                      <div class="col-sm-9">
+                      <input type="text" name="kode_pinjam" value="<?= $buat_kode; ?>" readonly class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Peminjam</label>
                       <div class="col-sm-9">
-                        <select name="id_siswa" class="form-control">
-                          <option disabled selected>Nama Siswa :</option>
-                            <?php foreach($list_siswa as $ls) { ?>
-                              <option value="<?=$ls->id_siswa;?>" <?=( ($ls->id_siswa) ? 'selected' : '');?>> <?=$ls->nama_siswa;?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" class="form-control" id="namasiswa" name="nama_siswa" placeholder="Cari nama siswa">
                       </div>
                     </div>
                   </div>
@@ -32,17 +44,31 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Judul Buku</label>
                       <div class="col-sm-9">
-                      <select name="id_buku" class="form-control">
-                          <option disabled selected>Pilih Buku :</option>
-                          <?php foreach($list_buku as $ls) { ?>
-                            <option value="<?=$ls->id_buku;?>" <?=( ($ls->id_buku) ? 'selected' : '');?>> <?=$ls->judul_buku;?></option>
-                          <?php } ?>
-                        </select>
+                        <input type="text" class="form-control" id="judulbuku" name="judul_buku" placeholder="Cari judul buku">
                       </div>
                     </div>
                   </div>
                 </div>
-   
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Tanggal Pinjam</label>
+                      <div class="col-sm-9">
+                        <input type="date" value="<?= date('Y-m-d');?>" name="tgl_pinjam" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Tanggal Dikembalikan</label>
+                      <div class="col-sm-9">
+                        <input type="date" name="tgl_kembali" value="<?php echo $tgl_kembali ?>" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+                
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">

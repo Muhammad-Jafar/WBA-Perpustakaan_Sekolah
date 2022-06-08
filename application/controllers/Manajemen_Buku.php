@@ -64,18 +64,16 @@ class Manajemen_Buku extends CI_Controller {
 
 	public function cek_jenis_buku() {
 
-		// $this->data['idbo'] = $this->session->userdata('ses_id');
 		$this->data['jenis_buku'] =  $this->db->query("SELECT * FROM jenis_buku ORDER BY id_jenis_buku DESC");
-
 
 		if(!empty($this->input->get('id_jenis_buku'))) {
 			$id = $this->input->get('id_jenis_buku');
-			$count = $this->M_Admin->CountTableId('jenis_buku','id_jenis_buku',$id);
+			$count = $this->M_Admin->cek_id_jenis_buku('jenis_buku','id_jenis_buku',$id);
 			if($count > 0)
 			{			
 				$this->data['jenis_buku'] = $this->db->query("SELECT *FROM jenis_buku WHERE id_jenis_buku='$id'")->row();
 			}else{
-				echo '<script>alert("KATEGORI TIDAK DITEMUKAN");window.location="'.base_url('data/kategori').'"</script>';
+				echo '<script>alert("JENIS BUKU TIDAK DITEMUKAN");window.location="'.base_url('data/kategori').'"</script>';
 			}
 		}
 	}
@@ -227,7 +225,7 @@ class Manajemen_Buku extends CI_Controller {
 				$data = generate_page ('Ubah data jenis buku', 'manajemen_buku/edit/'. $name . '/' . $id, 'Admin');
 				$data_content['title_page'] = 'Ubah data jenis buku';
 				$data_content['jenis_buku'] = $this->m_manajemenbuku->get_data_jenis_buku($id);
-				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Read', $data_content, true);
+				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Edit', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 			break;
 

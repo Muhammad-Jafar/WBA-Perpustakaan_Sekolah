@@ -51,8 +51,23 @@ class M_Peminjaman extends CI_Model {
 		return $new_arr;
 	}
 
-	public function peminjaman_add_new( $id_siswa, $id_buku, $tgl_pinjam) {
-		$d_t_d = array( 'id_siswa' => $id_siswa,
+	function search_nama_siswa($nama_siswa) {
+        $this->db->like('nama_siswa', $nama_siswa , 'both');
+        $this->db->order_by('nama_siswa', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('siswa')->result();
+    }
+
+	function search_judul_buku($judul_buku) {
+        $this->db->like('judul_buku', $judul_buku , 'both');
+        $this->db->order_by('judul_buku', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('buku')->result();
+    }
+
+	public function peminjaman_add_new( $id_siswa, $kode_pinjam, $id_buku, $tgl_pinjam) {
+		$d_t_d = array( 'id_siswa'   => $id_siswa,
+						'kode_pinjam'=> $kode_pinjam,
 						'id_buku' 	 => $id_buku,
 						'tgl_pinjam' => $tgl_pinjam );
 		
@@ -60,4 +75,23 @@ class M_Peminjaman extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Transaksi peminjam baru berhasil ditambahkan');
 	}
 	
+	//buat kode peminjaman otomatis generate
+	public function buatkodepinjam() {
+		$this->db->select('RIGHT(transaksi.kode_pinjam, 4) as kodepinjam', FALSE);
+		$this->db->order_by('kodepinjam','DESC');    
+		$this->db->limit(1);    
+
+		$query = $this->db->get('transaksi');
+			if($query->num_rows() > 0){      
+				 $data = $query->row();
+				 $kode = intval($data->kodepinjam) + 1; 
+			}
+			else{      
+				 $kode = 1;  
+			}
+		$batas = str_pad($kode, 4, "0", STR_PAD_LEFT);    
+		$kodetampil = "PJ-". $batas;
+		return $kodetampil;  
+	}
+  
 }

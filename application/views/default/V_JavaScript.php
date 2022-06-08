@@ -3,6 +3,23 @@
   <script src="<?=assets_url('js/off-canvas.js');?>"></script>
   <script src="<?=assets_url('js/misc.js');?>"></script>  
   <script src="<?=assets_url('vendors/datatables/datatables.min.js');?>"></script>
+
+  <script type="text/javascript"> // pencarian auto complete nama siswa
+        $(document).ready(function() {
+            $( "#namasiswa" ).autocomplete({
+              source: "<?php echo site_url('peminjaman/get_nama_siswa/?');?>"
+            });
+        });
+  </script>
+
+<script type="text/javascript"> // pencarian auto complete judul buku
+        $(document).ready(function() {
+            $( "#judulbuku" ).autocomplete({
+              source: "<?php echo site_url('peminjaman/get_judul_buku/?');?>"
+            });
+        });
+  </script>
+
   <script type="text/javascript"> //show tabel
     base_url='<?=base_url();?>';
     $.ajaxSetup({
@@ -14,4 +31,7 @@
       cache: false
     });
   </script>
-  <script src="<?=assets_url('js/app.js');?>"></script>
+
+<script src="<?=assets_url('js/jquery-ui.js');?>"></script>
+<script src="<?=assets_url('js/app.js', false);?>"></script>
+<script src="<?=assets_url('js/bootstrap.js', false);?>"></script>
