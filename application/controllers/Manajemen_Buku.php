@@ -95,7 +95,7 @@ class Manajemen_Buku extends CI_Controller {
 
 					if (!$this-> form_validation->run()) {
 						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect(base_url('manajemen_buku/'. $name));
+						redirect(base_url('manajemen_buku/add_new/'. $name));
 					}
 
 					$this->m_manajemenbuku->jenis_buku_add_new( $jenis_buku);
@@ -104,7 +104,7 @@ class Manajemen_Buku extends CI_Controller {
 
 				$data = generate_page ('Tambah data jenis buku', 'manajemen_buku/add_new/' . $name, 'Admin');
 				$data_content['title_page'] = 'Tambah data jenis buku';
-				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Read', $data_content, true);
+				$data['content'] = $this->load->view('partial/ManajemenBuku/V_KlasifikasiBuku_Create', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 			break;
 
@@ -152,6 +152,7 @@ class Manajemen_Buku extends CI_Controller {
 
 				$data = generate_page ('Tambah data buku', 'manajemen_buku/add_new/data_buku', 'Admin');
 				$data_content['title_page'] = 'Tambah data buku';
+				$data_content['kode_buku'] = $this->m_manajemenbuku->kodebuku();
 				$data_content['klasifikasi_buku'] = $this->m_manajemenbuku->get_data_klasifikasi_buku();
 				$data['content'] = $this->load->view('partial/ManajemenBuku/V_DataBuku_Create', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
@@ -215,7 +216,7 @@ class Manajemen_Buku extends CI_Controller {
 
 					if (!$this-> form_validation->run()) {
 						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect(base_url('manajemen_buku/'. $name . '/' . $id) );
+						redirect(base_url('manajemen_buku/edit/'. $name . '/' . $id) );
 					}
 
 					$this->m_manajemenbuku->jenis_buku_update( $id, $jenis_buku);

@@ -37,6 +37,13 @@
                       <label class="col-sm-3 col-form-label">Nama Peminjam</label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="namasiswa" name="nama_siswa" placeholder="Cari nama siswa">
+                        <input type="hidden" class="form-control" id="id_siswa" name="id_siswa">
+                        <!-- <div class="input-group">
+                            <input type="text" class="form-control" required autocomplete="off" name="nama_siswa" id="search-box" placeholder="Cari nama siswa" type="text" value="">
+                              <span class="input-group-btn">
+                              <a data-toggle="modal" data-target="#TableSiswa" class="btn btn-primary"><i class="fa fa-search"></i></a>
+                              </span>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -45,10 +52,49 @@
                       <label class="col-sm-3 col-form-label">Judul Buku</label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="judulbuku" name="judul_buku" placeholder="Cari judul buku">
+                        <input type="hidden" class="form-control" id="id_buku" name="id_buku">
+                        <!-- <div class="input-group">
+                              <input type="text" class="form-control" required autocomplete="off" name="judul_buku" id="search-box" placeholder="Cari Judul buku" type="text" value="">
+                              <span class="input-group-btn">
+                                <a data-toggle="modal" data-target="#TableAnggota" class="btn btn-primary"><i class="fa fa-search"></i></a>
+                              </span>
+                        </div> -->
                       </div>
                     </div>
                   </div>
                 </div>
+                <!-- <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Data Peminjam</label>
+                      <div class="col-md-9">
+                        <table class="table table-striped table-bordered">
+                          <tr>
+                            <td>
+                              <div id="result_tunggu"> <p style="color:red">* Belum Ada Hasil</p></div>
+                              <div id="result"></div>
+                            </td>
+                          </tr> 
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Data Buku</label>
+                      <div class="col-md-9">
+                        <table class="table table-striped table-bordered">
+                          <tr>
+                            <td>
+                              <div id="result_tunggu"> <p style="color:red">* Belum Ada Hasil</p></div>
+                              <div id="result"></div>
+                            </td>
+                          </tr> 
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">

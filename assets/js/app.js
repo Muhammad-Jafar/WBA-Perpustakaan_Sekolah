@@ -80,7 +80,7 @@ function klasifikasi_buku_index() {
             if (data['id_jenis_buku']) {
                 var id = data['id_jenis_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/jenis_buku' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/jenis_buku' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-pencil-box-outline"></i></button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/jenis_buku/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
@@ -123,7 +123,7 @@ function data_siswa_index() {
             if (data['id_siswa']) {
                 var id = data['id_siswa'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_siswa/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_siswa/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded "><i class="mdi mdi-pencil-box-outline"></i></button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_siswa/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }

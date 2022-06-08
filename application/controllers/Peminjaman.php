@@ -93,6 +93,7 @@ class Peminjaman extends CI_Controller {
 		$this->load->view('V_Dashboard', $data);
     }
 
+
     public function accept($id_transaksi) {
 		$this->m_ki->accept_izin($id_transaksi);
 		$this->session->set_flashdata('msg_alert', 'Peminjaman telah selesai');

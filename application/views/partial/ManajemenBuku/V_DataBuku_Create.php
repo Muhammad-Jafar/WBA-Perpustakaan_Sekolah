@@ -34,7 +34,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Kode Buku</label>
                       <div class="col-sm-9">
-                        <input type="text" name="kode_buku" class="form-control" placeholder="Contoh : BUKU-00001 "/>
+                        <input type="text" name="kode_buku" value="<?= $kode_buku; ?>" readonly class="form-control" placeholder="Contoh : BUKU-00001 "/>
                       </div>
                     </div>
                   </div>

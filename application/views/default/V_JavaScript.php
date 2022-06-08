@@ -16,6 +16,7 @@
         $(document).ready(function() {
             $( "#judulbuku" ).autocomplete({
               source: "<?php echo site_url('peminjaman/get_judul_buku/?');?>"
+
             });
         });
   </script>
@@ -33,5 +34,5 @@
   </script>
 
 <script src="<?=assets_url('js/jquery-ui.js');?>"></script>
-<script src="<?=assets_url('js/app.js', false);?>"></script>
+<script src="<?=assets_url('js/app.js');?>"></script>
 <script src="<?=assets_url('js/bootstrap.js', false);?>"></script>
