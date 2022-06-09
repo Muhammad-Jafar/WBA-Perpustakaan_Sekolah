@@ -27,9 +27,9 @@ class Laporan extends CI_Controller {
 		$this->load->view('V_Dashboard', $data);
 	}
 
-	public function set_data_laporan() {
+	public function laporan_ajax() {
 		json_dump(function() {
-			$result= $this->m_katalog->show_katalog();
+			$result= $this->m_laporan->tabel_laporan();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) {
 				$value->no=$i;

@@ -141,16 +141,12 @@ function peminjaman_index() {
                 data: 'no'
             },
             {
+                title: "Kode Pinjam",
+                data: 'kode_pinjam'
+            },
+            {
                 title: "Nama Peminjam",
                 data: 'nama_siswa'
-            },
-            {
-                title: "Kelas",
-                data: 'kelas'
-            },
-            {
-                title: "Jurusan",
-                data: 'jurusan'
             },
             {
                 title: "Judul Buku",
@@ -161,11 +157,23 @@ function peminjaman_index() {
                 data: 'tgl_pinjam'
             },
             {
+                title: "Tanggal Kembali",
+                data: 'tgl_kembali'
+            },
+            {
                 title: "Lama Pinjam",
                 data: 'lama_pinjam'
             },
             {
-                title: "Action",
+                title: "Status",
+                data: 'status'
+            },
+            {
+                title: "Denda",
+                data: 'denda'
+            },
+            {
+                title: "Pilihan",
                 data: 'id_transaksi'
             }
         ],
@@ -175,11 +183,131 @@ function peminjaman_index() {
                 var type = data['type'],
                     id = data['id_transaksi'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/add/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-add-circle-outline"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success btn-rounded"> KEMBALIKAN </button>';
+                // html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/perpanjang/' + id + '\';" class="btn btn-rounded btn-warning">Perpanjang</i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
+    });
+}
+
+function pengembalian_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'pengembalian/data_pengembalian_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Kode Pinjam",
+                data: 'kode_pinjam'
+            },
+            {
+                title: "Nama Peminjam",
+                data: 'nama_siswa'
+            },
+            {
+                title: "Judul Buku",
+                data: 'judul_buku'
+            },
+            {
+                title: "Tanggal Pinjam",
+                data: 'tgl_pinjam'
+            },
+            {
+                title: "Tanggal Kembali",
+                data: 'tgl_kembali'
+            },
+            {
+                title: "Tanggal diKembalikan",
+                data: 'tgl_dikembalikan'
+            },
+            {
+                title: "Lama Pinjam",
+                data: 'lama_pinjam'
+            },
+            {
+                title: "Denda",
+                data: 'denda'
+            }
+            // {
+            //     title: "Pilihan",
+            //     data: 'id_transaksi'
+            // }
+        ]
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id_transaksi']) {
+        //         var type = data['type'],
+        //             id = data['id_transaksi'],
+        //             html = '';
+        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success btn-rounded"> KEMBALIKAN </button>';
+        //         // html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/perpanjang/' + id + '\';" class="btn btn-rounded btn-warning">Perpanjang</i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
+    });
+}
+
+function laporan_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/laporan_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Kode Pinjam",
+                data: 'kode_pinjam'
+            },
+            {
+                title: "Nama Peminjam",
+                data: 'nama_siswa'
+            },
+            {
+                title: "Klasifikasi buku",
+                data: 'jenis_buku'
+            },
+            {
+                title: "Judul Buku",
+                data: 'judul_buku'
+            },
+            {
+                title: "Tanggal Pinjam",
+                data: 'tgl_pinjam'
+            },
+            {
+                title: "Tanggal Kembali",
+                data: 'tgl_kembali'
+            },
+            {
+                title: "Tanggal diKembalikan",
+                data: 'tgl_dikembalikan'
+            },
+            {
+                title: "Denda (Rp.)",
+                data: 'denda'
+            }
+            // {
+            //     title: "Pilihan",
+            //     data: 'id_transaksi'
+            // }
+        ]
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id_transaksi']) {
+        //         var type = data['type'],
+        //             id = data['id_transaksi'],
+        //             html = '';
+        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success btn-rounded"> KEMBALIKAN </button>';
+        //         // html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/perpanjang/' + id + '\';" class="btn btn-rounded btn-warning">Perpanjang</i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
     });
 }
 
@@ -451,7 +579,12 @@ $(document).ready(function()
         case (window.location.href.indexOf('/peminjaman') != -1):
             peminjaman_index();
             break;
-            
+        case (window.location.href.indexOf('/pengembalian') != -1):
+            pengembalian_index()
+            break;
+        case (window.location.href.indexOf('/laporan') != -1):
+            laporan_index()
+            break;
         case (window.location.href.indexOf('/daftar_izin/ajukan') != -1 || window.location.href.indexOf('/daftar_izin/edit') != -1):
             daftar_izin_ajukan();
             break;

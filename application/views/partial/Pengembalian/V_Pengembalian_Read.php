@@ -5,20 +5,19 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title"><?=$title_page;?></h4>
+            
             <?php if($this->session->flashdata('msg_alert')) : ?>
-
               <div class="col-md-6">
                 <div class="alert alert-info">
                   <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
                 </div>
               </div>
-          
             <?php endif; ?>
 
             <div class="card-tools">
-              <div class="input-group input-group-sm" style="width:250px;">
+              <!-- <div class="input-group input-group-sm" style="width:250px;">
                 <button type="button" onclick="javascript:top.location.href='<?=base_url("/pengembalian/add_new");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i>Tambah Data Pengembalian</button>
-              </div>
+              </div> -->
             </div>
 
             <div class="table-responsive">

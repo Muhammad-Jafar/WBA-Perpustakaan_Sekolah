@@ -6,8 +6,12 @@
 
   <script type="text/javascript"> // pencarian auto complete nama siswa
         $(document).ready(function() {
-            $( "#namasiswa" ).autocomplete({
-              source: "<?php echo site_url('peminjaman/get_nama_siswa/?');?>"
+            $( "#nama_siswa" ).autocomplete({
+              source: "<?php echo site_url('peminjaman/get_nama_siswa/?');?>",
+              select: function(event, ui) {
+                $('[name="nama_siswa"]').val(ui.item.label);
+                $('[name="id_siswa"]').val(ui.item.value);
+              }
             });
         });
   </script>
@@ -15,8 +19,11 @@
 <script type="text/javascript"> // pencarian auto complete judul buku
         $(document).ready(function() {
             $( "#judulbuku" ).autocomplete({
-              source: "<?php echo site_url('peminjaman/get_judul_buku/?');?>"
-
+              source: "<?php echo site_url('peminjaman/get_judul_buku/?');?>",
+              select: function(event, ui) {
+                $('[name="judul_buku"]').val(ui.item.label);
+                $('[name="id_buku"]').val(ui.item.value);
+              }
             });
         });
   </script>
@@ -34,5 +41,5 @@
   </script>
 
 <script src="<?=assets_url('js/jquery-ui.js');?>"></script>
-<script src="<?=assets_url('js/app.js');?>"></script>
-<script src="<?=assets_url('js/bootstrap.js', false);?>"></script>
+<script src="<?=assets_url('js/app.js', false);?>"></script>
+<!-- <script src="<?=assets_url('js/jquery-3.31.js', false);?>"></script> -->

@@ -21,9 +21,24 @@ class Pengembalian extends CI_Controller {
     public function index() {
         $data = generate_page('Data Pengembalian', 'pengembalian', 'Admin');
 		$data_content['title_page'] = 'Data Pengembalian Buku';
-		$data['content'] = $this->load->view('partial/Peminjaman/V_Peminjaman_Read', $data_content, true);
+		$data['content'] = $this->load->view('partial/Pengembalian/V_Pengembalian_Read', $data_content, true);
 		$this->load->view('V_Dashboard', $data);
         
     }
 
+	public function data_pengembalian_ajax() {
+		json_dump(function() {
+			$result= $this->m_pengembalian->data_kembalikan_list_ajax ( $this->m_pengembalian->data_pengembalian() );
+			return array('data' => $result);
+		});
+	}
+
+    public function pengembalian_ajax($type) 
+	{
+		$this->c_type=$type;
+		json_dump(function() {
+			$result=$this->m_datakeluhan->get_keluhan($this->c_type);
+			return $result;
+		});
+	}
 }
