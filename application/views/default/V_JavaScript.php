@@ -6,11 +6,11 @@
 
   <script type="text/javascript"> // pencarian auto complete nama siswa
         $(document).ready(function() {
-            $( "#nama_siswa" ).autocomplete({
+            $( "#namasiswa" ).autocomplete({
               source: "<?php echo site_url('peminjaman/get_nama_siswa/?');?>",
               select: function(event, ui) {
-                $('[name="nama_siswa"]').val(ui.item.label);
-                $('[name="id_siswa"]').val(ui.item.value);
+                $('[name="nama_siswa"]').val(ui.item.value);
+                $('[name="id_siswa"]').val(ui.item.nama_siswa);
               }
             });
         });
@@ -21,8 +21,8 @@
             $( "#judulbuku" ).autocomplete({
               source: "<?php echo site_url('peminjaman/get_judul_buku/?');?>",
               select: function(event, ui) {
-                $('[name="judul_buku"]').val(ui.item.label);
-                $('[name="id_buku"]').val(ui.item.value);
+                $('[name="judul_buku"]').val(ui.item.value);
+                $('[name="id_buku"]').val(ui.item.judul_buku);
               }
             });
         });

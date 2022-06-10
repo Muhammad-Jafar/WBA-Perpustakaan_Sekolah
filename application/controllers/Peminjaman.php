@@ -32,43 +32,23 @@ class Peminjaman extends CI_Controller {
 		});
 	}
 
-    public function peminjam_ajax($type) 
-	{
-		$this->c_type=$type;
-		json_dump(function() {
-			$result=$this->m_datakeluhan->get_keluhan($this->c_type);
-			return $result;
-		});
-	}
-
 	function get_nama_siswa(){
         if (isset($_GET['term'])) {
             $result = $this->m_peminjaman->search_nama_siswa($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-				$arr_result[] = array ( 'label' => $row->nama_siswa, 'value' => $row->id_siswa);
+				$arr_result[] = array ( 'nama_siswa' => $row->id_siswa, 'label' => $row->nama_siswa );
                 echo json_encode($arr_result);
             }
         }
     }
-
-	// function get_nama_siswa(){
-    //     if (isset($_GET['term'])) {
-    //         $result = $this->m_peminjaman->search_nama_siswa($_GET['term']);
-    //         if (count($result) > 0) {
-    //         foreach ($result as $row)
-	// 			$arr_result[] = $row->nama_siswa;
-    //             echo json_encode($arr_result);
-    //         }
-    //     }
-    // }
 
 	function get_judul_buku(){
         if (isset($_GET['term'])) {
             $result = $this->m_peminjaman->search_judul_buku($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-                $arr_result[] = array ( 'label' => $row->judul_buku, 'value' => $row->id_buku );
+                $arr_result[] = array ( 'judul_buku' => $row->id_buku, 'label' => $row->judul_buku );
                 echo json_encode($arr_result);
             }
         }
@@ -108,16 +88,10 @@ class Peminjaman extends CI_Controller {
 		$this->load->view('V_Dashboard', $data);
     }
 
-    public function accept($id_transaksi) {
-		$this->m_ki->accept_izin($id_transaksi);
+    public function kembalikan($id_transaksi) {
+		
+		$this->m_peminjaman->kembalikan_buku($id_transaksi);
 		$this->session->set_flashdata('msg_alert', 'Peminjaman telah selesai');
 		redirect( base_url('peminjaman') );
 	}
-
-	public function add($id_transaksi) {
-		$this->m_ki->reject_izin($id_transaksi);
-		$this->session->set_flashdata('msg_alert', 'Peminjaman ditambah');
-		redirect( base_url('peminjaman') );
-	}
-
 }

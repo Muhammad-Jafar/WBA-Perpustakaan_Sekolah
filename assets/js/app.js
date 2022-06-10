@@ -183,7 +183,7 @@ function peminjaman_index() {
                 var type = data['type'],
                     id = data['id_transaksi'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success btn-rounded"> KEMBALIKAN </button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success"> KEMBALIKAN </button>';
                 // html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/perpanjang/' + id + '\';" class="btn btn-rounded btn-warning">Perpanjang</i></button>';
                 $('td', row).eq(-1).html(html);
             }
@@ -269,10 +269,6 @@ function laporan_index() {
                 data: 'nama_siswa'
             },
             {
-                title: "Klasifikasi buku",
-                data: 'jenis_buku'
-            },
-            {
                 title: "Judul Buku",
                 data: 'judul_buku'
             },
@@ -287,6 +283,10 @@ function laporan_index() {
             {
                 title: "Tanggal diKembalikan",
                 data: 'tgl_dikembalikan'
+            },
+            {
+                title: "Status Pinjam",
+                data: 'status'
             },
             {
                 title: "Denda (Rp.)",

@@ -33,12 +33,4 @@ class Pengembalian extends CI_Controller {
 		});
 	}
 
-    public function pengembalian_ajax($type) 
-	{
-		$this->c_type=$type;
-		json_dump(function() {
-			$result=$this->m_datakeluhan->get_keluhan($this->c_type);
-			return $result;
-		});
-	}
 }

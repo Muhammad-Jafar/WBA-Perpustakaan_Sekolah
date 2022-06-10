@@ -29,14 +29,9 @@ class Laporan extends CI_Controller {
 
 	public function laporan_ajax() {
 		json_dump(function() {
-			$result= $this->m_laporan->tabel_laporan();
-			$new_arr=array();$i=1;
-			foreach ($result as $key => $value) {
-				$value->no=$i;
-				$new_arr[]=$value;
-				$i++;
-			}
-			return array('data' => $new_arr);
+			$result= $this->m_laporan->laporan_list_ajax ( $this->m_laporan->tabel_laporan() );
+			return array('data' => $result);
 		});
 	}
+
 }

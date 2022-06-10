@@ -38,7 +38,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Peminjam</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id='nama_siswa' name="nama_siswa" placeholder="Cari nama siswa">
+                        <input type="text" class="form-control" id='namasiswa' name="nama_siswa" placeholder="Cari nama siswa">
                         <input type="hidden" class="form-control" id='idsiswa' name="id_siswa">
                       </div>
                     </div>

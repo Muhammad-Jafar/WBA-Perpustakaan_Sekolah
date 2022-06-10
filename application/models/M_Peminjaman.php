@@ -3,20 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Peminjaman extends CI_Model {
 
-    public function list_peminjam() {
-        $q = $this->db->select('*')->get('siswa');
-        return $q->result();
-    }
-
-    public function list_buku() {
-        $q = $this->db->select('*')->get('buku');
-        return $q->result();
-    }
-
-	public function list_transaksi() {
-		$q = $this->db->select('*')->get('transaksi');
-	}
-
     public function data_peminjaman() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
 								 t.id_siswa, t.id_buku, t.status, t.denda,
@@ -25,7 +11,7 @@ class M_Peminjaman extends CI_Model {
                       ->from ('transaksi as t')
                       ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
-					  ->where('status !=', 'dikembalikan')
+					  ->where('status', 'dipinjam')
                       ->get();
         return $q->result();
     }
@@ -38,12 +24,9 @@ class M_Peminjaman extends CI_Model {
 				case 'dipinjam':
 					$label = 'warning';
 				break;
-				case 'dikembalikan':
-					$label = 'success';
-				break;
-				case 'telat':
-					$label = 'danger';
-				break;
+				// case 'telat':
+				// 	$label = 'danger';
+				// break;
 			};
 
 			$diff  = date_diff( date_create($value->tgl_pinjam), date_create($value->tgl_kembali) );
@@ -53,17 +36,20 @@ class M_Peminjaman extends CI_Model {
 			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
 			$tgl_sekarang = new DateTime();
 			$selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
+			$hargadenda = 500;
+			$total_denda = $selisih * $hargadenda;
 
 			if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
-				$value->denda = "<span class='badge badge-success'>Tidak kena denda</span>";
+				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
 			} else {
-				$value->denda ="Telat <b style = 'color: red;'>".$selisih."</b> Hari <br>
-				<span class='badge badge-danger'> Denda perhari = Rp.500</span>";
+				$value->denda ="Telat <b style = 'color: red;font-size:13px;' >".$selisih."</b> Hari <br>
+				<span class='badge badge-danger' style=font-size:13px; > Denda perhari = Rp.500</span>";
+				// $value->denda = $total_denda;
 			}
 
 			$value->tgl_pinjam = date_format( date_create($value->tgl_pinjam), 'd-m-Y');
 			$value->tgl_kembali = date_format( date_create($value->tgl_kembali), 'd-m-Y');
-			$value->status = '<label class="badge badge-'.$label.' text-uppercase">'.$value->status.'</label>';
+			$value->status = '<label class="badge badge-'.$label.' text-uppercase" style=font-size:13px;>'.$value->status.'</label>';
 			$new_arr[]=$value;
 			$i++;
 		}
@@ -116,5 +102,12 @@ class M_Peminjaman extends CI_Model {
 		$kodetampil = "PJ-". $batas;
 		return $kodetampil;  
 	}
-  
+	
+	public function kembalikan_buku($id_transaksi) {
+		$q = array ( 'status' => 'dikembalikan',
+					 'denda' => 'denda',
+					 'tgl_dikembalikan' => date('Y-m-d') //set tanggal sekarang saat dikembalikan buku
+					);
+		$this->db->where('id_transaksi', $id_transaksi)->update('transaksi', $q);
+	}
 }
