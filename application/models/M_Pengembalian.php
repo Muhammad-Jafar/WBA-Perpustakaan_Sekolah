@@ -49,7 +49,6 @@ class M_Pengembalian extends CI_Model {
 			$value->tgl_pinjam = date_format( date_create($value->tgl_pinjam), 'd-m-Y');
 			$value->tgl_kembali = date_format( date_create($value->tgl_kembali), 'd-m-Y');
 			$value->tgl_dikembalikan = date_format( date_create($value->tgl_dikembalikan), 'd-m-Y');
-			// $value->status = '<label class="badge badge-'.$label.' text-uppercase">'.$value->status.'</label>';
 			$new_arr[]=$value;
 			$i++;
 		}

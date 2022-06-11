@@ -8,7 +8,7 @@
 
     <li class="nav-item">
       <a class="nav-link" href="<?=base_url('katalog');?>">
-        <!-- <i class="menu-icon mdi mdi-television"></i> -->
+        <i class="menu-icon mdi mdi-book-open"></i>
           <span class="menu-title">Katalog buku</span>
       </a>
     </li>

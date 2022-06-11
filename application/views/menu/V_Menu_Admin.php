@@ -17,13 +17,13 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('dashboard');?>">
-              <i class="menu-icon mdi mdi-television"></i>
+              <i class="menu-icon mdi mdi-view-dashboard"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-dm" aria-expanded="false" aria-controls="ui-dm">
-              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <i class="menu-icon mdi mdi-library-books"></i>
               <span class="menu-title">Manajemen Data Buku</span>
               <i class="menu-arrow"></i>
             </a>
@@ -36,19 +36,19 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('data_siswa');?>">
-              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <i class="menu-icon mdi mdi-account"></i>
               <span class="menu-title">Manajemen Data Siswa</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('peminjaman');?>">
-              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <i class="menu-icon mdi mdi-book-plus"></i>
               <span class="menu-title">Data Peminjaman</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('pengembalian');?>">
-              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <i class="menu-icon mdi mdi-book-minus"></i>
               <span class="menu-title">Data Pengembalian</span>
             </a>
           </li>

@@ -13,8 +13,8 @@
               
             <?php } ?>
             <div class="card-tools">
-            <div class="input-group" style="width: 190px;">
-                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/manajemen_buku/add_new/jenis_buku");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i> Tambah jenis buku</button>
+            <div class="input-group" style="width: 200px;">
+                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/manajemen_buku/add_new/jenis_buku");?>';" class="btn btn-block btn-success"><i class="mdi mdi-library-plus"></i> Tambah jenis buku</button>
                 </div>
             </div>
             <div class="table-responsive">

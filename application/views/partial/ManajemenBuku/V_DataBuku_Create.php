@@ -100,6 +100,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
+                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left"> Kembali</button>
                       <button type="submit" class="btn btn-success mr-2">Tambah data</button>
                       <button class="btn btn-light" type="reset">Hapus</button>
                     </div>

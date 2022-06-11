@@ -183,7 +183,7 @@ function peminjaman_index() {
                 var type = data['type'],
                     id = data['id_transaksi'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success"> KEMBALIKAN </button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success mdi mdi-arrow-right-thick"> KEMBALIKAN</button>';
                 // html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/perpanjang/' + id + '\';" class="btn btn-rounded btn-warning">Perpanjang</i></button>';
                 $('td', row).eq(-1).html(html);
             }

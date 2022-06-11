@@ -23,8 +23,7 @@ class M_Laporan extends CI_Model {
 			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
 			$tgl_sekarang = new DateTime();
 			$selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-			$hargadenda = 500;
-			$total_denda = $selisih * $hargadenda;
+			$total_denda = $selisih * 500;
 
 			if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
 				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
@@ -49,8 +48,11 @@ class M_Laporan extends CI_Model {
 			$value->tgl_kembali = date_format( date_create($value->tgl_kembali), 'd-m-Y');
 			$value->tgl_dikembalikan = date_format( date_create($value->tgl_dikembalikan), 'd-m-Y');
 			
-            if ($value->tgl_dikembalikan > $value->tgl_kembali && $value->status == 'dipinjam') {
-                $value->tgl_dikembalikan = "<span class='badge badge-warning' style=font-size:13px; >Belum dikembalikan</span>";
+            if ($value->tgl_kembali > $tgl_sekarang && $value->status == 'dipinjam') {
+                $value->tgl_dikembalikan = "<span class='badge badge-danger' style=font-size:13px; >Belum dikembalikan</span>";
+            } 
+            else if ($value->tgl_kembali <= $tgl_sekarang && $value->status == 'dipinjam') {
+                    $value->tgl_dikembalikan = "<span class='badge badge-warning' style=font-size:13px; >Masih dipinjam</span>";
             }
 
 			$new_arr[]=$value;

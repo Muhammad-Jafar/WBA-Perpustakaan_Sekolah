@@ -14,11 +14,11 @@
               </div>
             <?php endif; ?>
 
-            <div class="card-tools">
-              <!-- <div class="input-group input-group-sm" style="width:250px;">
+            <!-- <div class="card-tools">
+              <div class="input-group input-group-sm" style="width:250px;">
                 <button type="button" onclick="javascript:top.location.href='<?=base_url("/pengembalian/add_new");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i>Tambah Data Pengembalian</button>
-              </div> -->
-            </div>
+              </div>
+            </div> -->
 
             <div class="table-responsive">
               <p>

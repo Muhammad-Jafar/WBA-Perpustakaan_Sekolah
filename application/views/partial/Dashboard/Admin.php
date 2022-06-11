@@ -8,7 +8,7 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="mdi mdi-account-star text-danger icon-lg"></i>
+                  <i class="mdi mdi-book-open-variant text-danger icon-lg"></i>
                 </div>
                 <div class="float-right">
                   <p class="mb-0 text-right">Buku Perpustakaan</p>
@@ -30,7 +30,7 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="mdi mdi-treasure-chest text-warning icon-lg"></i>
+                  <i class="mdi mdi-book-plus text-warning icon-lg"></i>
                 </div>
                 <div class="float-right">
                   <p class="mb-0 text-right">Total Buku dipinjam</p>
@@ -53,7 +53,7 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="mdi mdi-checkbox-multiple-marked-outline text-success icon-lg"></i>
+                  <i class="mdi mdi-book-minus text-success icon-lg"></i>
                 </div>
                 <div class="float-right">
                   <p class="mb-0 text-right">Total Buku dikembalikan</p>

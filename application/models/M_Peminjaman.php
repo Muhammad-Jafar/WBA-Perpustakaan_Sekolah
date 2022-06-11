@@ -3,6 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Peminjaman extends CI_Model {
 
+	public function list_peminjam() {
+		$q = $this->db->select('*')->get('siswa');
+		return $q->result();
+	}
+
+	public function list_buku() {
+		$q = $this->db->select('*')->get('buku');
+		return $q->result();
+	}
+
     public function data_peminjaman() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
 								 t.id_siswa, t.id_buku, t.status, t.denda,
@@ -36,8 +46,8 @@ class M_Peminjaman extends CI_Model {
 			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
 			$tgl_sekarang = new DateTime();
 			$selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-			$hargadenda = 500;
-			$total_denda = $selisih * $hargadenda;
+			// $hargadenda = 500;
+			// $total_denda = $selisih * $hargadenda;
 
 			if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
 				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
