@@ -6,11 +6,16 @@ class M_ManajemenBuku extends CI_Model {
 	public function list_buku() {
 		$q=$this->db->select('*')-> from ('buku as b')
 								 -> join ('jenis_buku as k', 'k.id_jenis_buku = b.id_jenis_buku', 'LEFT')
+								 -> join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
 								 -> get();
 						return $q-> result();
 	}
-
 	
+	public function kategori_buku() {
+		$q=$this->db->select('*')->get('kategori_buku');
+		return $q->result();
+	}
+
 	public function klasifikasi_buku() {
 		$q=$this->db->select('*')->get('jenis_buku');
 		return $q->result();
@@ -74,16 +79,17 @@ class M_ManajemenBuku extends CI_Model {
 		return $q->result();
 	}
 
-	public function data_buku_add_new( $id_jenis_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
+	public function data_buku_add_new( $id_jenis_buku, $id_kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 									   $tahun_terbit, $jumlah_halaman, $qt ) {
-		$d_t_d = array( 'id_jenis_buku'	=> $id_jenis_buku,
-						'judul_buku' 	=> $judul_buku,
-						'kode_buku'		=> $kode_buku,
-						'pengarang' 	=> $pengarang,
-						'penerbit' 		=> $penerbit,
-						'tahun_terbit' 	=> $tahun_terbit,
-						'jumlah_halaman'=> $jumlah_halaman,
-						'qt' 			=> $qt );
+		$d_t_d = array( 'id_jenis_buku'		=> $id_jenis_buku,
+						'id_kategori_buku'	=> $id_kategori_buku,
+						'judul_buku' 		=> $judul_buku,
+						'kode_buku'			=> $kode_buku,
+						'pengarang' 		=> $pengarang,
+						'penerbit' 			=> $penerbit,
+						'tahun_terbit' 		=> $tahun_terbit,
+						'jumlah_halaman'	=> $jumlah_halaman,
+						'qt' 				=> $qt );
 		$this->db->insert('buku', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Buku baru berhasil ditambahkan');
 	}
@@ -92,16 +98,17 @@ class M_ManajemenBuku extends CI_Model {
 		$this->db->delete('buku', array('id_buku' => $id));
 	}
 
-	public function data_buku_update( $id, $id_jenis_buku,$kode_buku, $judul_buku, $pengarang, $penerbit,
+	public function data_buku_update( $id, $id_jenis_buku, $id_kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 									  $tahun_terbit, $jumlah_halaman, $qt ) {
-		$d_t_d = array( 'id_jenis_buku'	=> $id_jenis_buku,
-						'judul_buku' 	=> $judul_buku,
-						'kode_buku' 	=> $kode_buku,
-						'pengarang' 	=> $pengarang,
-						'penerbit' 		=> $penerbit,
-						'tahun_terbit' 	=> $tahun_terbit,
-						'jumlah_halaman'=> $jumlah_halaman,
-						'qt' 			=> $qt );
+		$d_t_d = array( 'id_jenis_buku'		=> $id_jenis_buku,
+						'id_kategori_buku'	=> $id_kategori_buku,
+						'judul_buku' 		=> $judul_buku,
+						'kode_buku' 		=> $kode_buku,
+						'pengarang' 		=> $pengarang,
+						'penerbit' 			=> $penerbit,
+						'tahun_terbit' 		=> $tahun_terbit,
+						'jumlah_halaman'	=> $jumlah_halaman,
+						'qt' 				=> $qt );
 
 		$this->db->where('id_buku', $id )->update('buku', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Data buku berhasil diperbarui');

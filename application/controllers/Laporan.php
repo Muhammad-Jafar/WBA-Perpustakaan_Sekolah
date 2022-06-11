@@ -10,18 +10,20 @@ class Laporan extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_Laporan');
 		$this->m_laporan = $this->M_Laporan;
-		if ( $this->session->userdata('user_type') != 'admin' ) {
+		if ( $this->session->userdata('user_type') == 'admin' ) {
 			$this->user_type = 'Admin';
 
 			isnt_admin(function() {
 				redirect( base_url('auth/login') );
 			});
+		} elseif ( $this->session->userdata('user_type') == 'kepsek') {
+			$this->user_type = 'Kepsek';
 		}
 	}
 
-	public function index() 
-	{
-		$data = generate_page('Data Laporan', 'laporan', 'Admin');
+	public function index() {
+
+		$data = generate_page('Data Laporan', 'laporan', $this->user_type);
 		$data_content['title_page'] = 'Laporan Perpustakaan';
 		$data['content'] = $this->load->view('V_Laporan', $data_content, true);
 		$this->load->view('V_Dashboard', $data);

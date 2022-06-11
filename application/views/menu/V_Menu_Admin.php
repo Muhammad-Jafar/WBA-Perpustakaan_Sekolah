@@ -58,6 +58,12 @@
               <span class="menu-title">Laporan</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('administrator');?>">
+              <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
+              <span class="menu-title">Administrator</span>
+            </a>
+          </li>
         </ul>
       </nav>
 <div class="main-panel">

@@ -8,7 +8,7 @@
           <a class="navbar-brand brand-logo-mini" href="<?=base_url('katalog');?>">
             <img src="<?=assets_url('avatar-logo.PNG', false);?>" alt="logo" style="width: 27px;" />
           </a>
-        <?php else :?>
+        <?php elseif  ( $this->session->userdata('user_type') == 'admin' || $this->session->userdata('user_type') == 'kepsek') :?>
           <a class="navbar-brand brand-logo" href="<?=base_url('dashboard');?>">
             <img src="<?=assets_url('avatar-logo.PNG', false);?>" alt="logo" style="width: 33px;" />
           </a>
@@ -21,14 +21,14 @@
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <ul class="navbar-nav navbar-nav-right">
 
-        <?php if ( $this->session->userdata('user_type') != 'admin') : ?>
+        <?php if ( $this->session->userdata('user_type') == 'siswa') : ?>
             <span class="profile-text">PERPUSTAKAAN SMA NEGERI 1 UTAN </span>
-        <?php else :?>
+        <?php elseif ($this->session->userdata('user_type') == 'admin' || $this->session->userdata('user_type') == 'kepsek') :?>
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="javascript:;" data-toggle="dropdown" aria-expanded="false">
                 <span class="profile-text"><?=$user_name;?></span>
                 <img class="img-xs rounded-circle" src="<?=$user_avatar;?>" alt="<?=$user_name;?>">
-                <?php endif; ?>
+        <?php endif; ?>
             </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <!-- <a href="<?=base_url('change_password');?>" class="dropdown-item">

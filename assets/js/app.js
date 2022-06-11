@@ -8,6 +8,10 @@ function list_buku_index() {
                 data: 'no'
             },
             {
+                title: "Kategori Buku",
+                data: 'kategori_buku'
+            },
+            {
                 title: "Jenis Buku",
                 data: 'jenis_buku'
             },
@@ -325,6 +329,10 @@ function katalog_buku_index() {
                 data: 'jenis_buku'
             },
             {
+                title: "Kategori Buku",
+                data: 'kategori_buku'
+            },
+            {
                 title: "Judul Buku",
                 data: 'judul_buku'
             },
@@ -585,6 +593,7 @@ $(document).ready(function()
         case (window.location.href.indexOf('/laporan') != -1):
             laporan_index()
             break;
+            
         case (window.location.href.indexOf('/daftar_izin/ajukan') != -1 || window.location.href.indexOf('/daftar_izin/edit') != -1):
             daftar_izin_ajukan();
             break;

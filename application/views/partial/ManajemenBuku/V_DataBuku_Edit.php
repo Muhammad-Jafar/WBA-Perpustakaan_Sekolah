@@ -15,27 +15,43 @@
 
               <?php } ?>
               <?=form_open_multipart('manajemen_buku/edit/data_buku' . $data_buku->id_buku , array('method'=>'post'));?>
-              <input type="hidden" name="id_buku" value="<?=$data_buku->id_buku; ?>">
+                <input type="hidden" name="id_buku" value="<?=$data_buku->id_buku; ?>">
+                
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Kode Buku</label>
+                        <div class="col-sm-9">
+                          <input type="text" name="kode_buku" value="<?= $data_buku->kode_buku; ?>" readonly class="form-control"/>
+                        </div>
+                      </div>
+                    </div>
+                </div>
 
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Buku</label>
+                      <label class="col-sm-3 col-form-label">Kategori Buku</label>
                       <div class="col-sm-5">
-                        <select name="id_jenis_buku" class="form-control">
-                          <option disabled selected>Pilih jenis buku</option>
-                            <?php foreach($jenis_buku as $jb) { ?>
-                          <option value="<?=$jb->id_jenis_buku;?>" <?=( ($data_buku->id_jenis_buku == $jb->id_jenis_buku) ? 'selected' : '');?>> <?=$jb->jenis_buku;?> </option>
+                        <select name="id_kategori_buku" class="form-control">
+                            <option disabled selected>Pilih kategori Buku</option>
+                              <?php foreach($kategori_buku as $jb) { ?>
+                                <option value="<?=$jb->id_kategori_buku;?>" <?=( ($data_buku->id_kategori_buku == $jb->id_kategori_buku) ? 'selected' : '');?>> <?=$jb->kategori_buku;?> </option>
                               <?php } ?>
-                        </select>
+                          </select>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Kode Buku</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="judul_buku" value="<?=$data_buku->kode_buku;?>" class="form-control"/>
+                      <label class="col-sm-3 col-form-label">Jenis Buku</label>
+                      <div class="col-sm-5">
+                        <select name="id_jenis_buku" class="form-control">
+                            <option disabled selected>Pilih Jenis Buku</option>
+                              <?php foreach($klasifikasi_buku as $jb) { ?>
+                                <option value="<?=$jb->id_jenis_buku;?>" <?=( ($data_buku->id_jenis_buku == $jb->id_jenis_buku) ? 'selected' : '');?>> <?=$jb->jenis_buku;?> </option>
+                              <?php } ?>
+                          </select>
                       </div>
                     </div>
                   </div>
