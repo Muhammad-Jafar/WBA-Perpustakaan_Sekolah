@@ -13,9 +13,9 @@ if( !function_exists('isnt_admin') ) {
 
 }
 
-if( !function_exists('is_siswa') ) {
+if( !function_exists('isnt_siswa') ) {
 	
-	function is_siswa($callback) {
+	function isnt_siswa($callback) {
 		$ci =& get_instance();
 		if ( $ci->session->userdata('user_type') !== 'siswa')
 		{
@@ -25,9 +25,9 @@ if( !function_exists('is_siswa') ) {
 
 }
 
-if( !function_exists('is_kepsek') ) {
+if( !function_exists('isnt_kepsek') ) {
 	
-	function is_kepsek($callback) {
+	function isnt_kepsek($callback) {
 		$ci =& get_instance();
 		if ( $ci->session->userdata('user_type') !== 'kepsek')
 		{

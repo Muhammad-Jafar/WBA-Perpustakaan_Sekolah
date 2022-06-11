@@ -22,11 +22,6 @@ class M_ManajemenBuku extends CI_Model {
 	}
 
 	// JENIS BUKU =================================================================
-	public function cek_id_jenis_buku() {
-		$q = $this->db->query('SELECT COUNT(*) FROM jenis_buku');
-		return $q->row_array()['COUNT(*)'];
-	}
-
 	public function jenis_buku_add_new( $jenis_buku ) {
 		$d_t_d = array( 'jenis_buku' => $jenis_buku);
 		$this->db->insert('jenis_buku', $d_t_d);
@@ -46,7 +41,7 @@ class M_ManajemenBuku extends CI_Model {
 	public function get_data_jenis_buku($id){
 		$q=$this->db->select('*')->from('jenis_buku')->where('id_jenis_buku', $id)->limit(1)->get();
 		if( $q->num_rows() < 1 ) {
-			redirect( base_url('/manajemen_buku/klasifikasi_buku') );
+			redirect( base_url('/manajemen_buku/jenis_buku') );
 		}
 		return $q->row();
 	}
@@ -54,7 +49,6 @@ class M_ManajemenBuku extends CI_Model {
 
 	
 	// DATA BUKU =================================================================
-
 	//buat kode buku otomatis
 	public function kodebuku() {
 		$this->db->select('RIGHT(buku.kode_buku, 5) as kodebuku', FALSE);
@@ -72,11 +66,6 @@ class M_ManajemenBuku extends CI_Model {
 		$batas = str_pad($kode, 5, "0", STR_PAD_LEFT);    
 		$kodetampil = "BUKU-". $batas;
 		return $kodetampil;  
-	}
-
-	public function get_data_klasifikasi_buku() {
-		$q=$this->db->select('*')->get('jenis_buku');
-		return $q->result();
 	}
 
 	public function data_buku_add_new( $id_jenis_buku, $id_kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
@@ -98,6 +87,14 @@ class M_ManajemenBuku extends CI_Model {
 		$this->db->delete('buku', array('id_buku' => $id));
 	}
 
+	public function get_data_buku($id){
+		$q=$this->db->select('*')->from('buku')->where('id_buku', $id)->limit(1)->get();
+		if( $q->num_rows() < 1 ) {
+			redirect( base_url('/manajemen_buku/data_buku') );
+		}
+		return $q->row();
+	}
+
 	public function data_buku_update( $id, $id_jenis_buku, $id_kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 									  $tahun_terbit, $jumlah_halaman, $qt ) {
 		$d_t_d = array( 'id_jenis_buku'		=> $id_jenis_buku,
@@ -112,14 +109,6 @@ class M_ManajemenBuku extends CI_Model {
 
 		$this->db->where('id_buku', $id )->update('buku', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Data buku berhasil diperbarui');
-	}
-
-	public function get_data__buku($id){
-		$q=$this->db->select('*')->from('buku')->where('id_buku', $id)->limit(1)->get();
-		if( $q->num_rows() < 1 ) {
-			redirect( base_url('/manajemen_buku/data_buku') );
-		}
-		return $q->row();
 	}
 	// DATA BUKU =================================================================
 

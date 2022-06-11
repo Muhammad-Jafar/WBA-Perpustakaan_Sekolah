@@ -14,7 +14,7 @@
               </div>
 
               <?php } ?>
-              <?=form_open_multipart('manajemen_buku/edit/data_buku' . $data_buku->id_buku , array('method'=>'post'));?>
+              <?=form_open_multipart('manajemen_buku/edit/data_buku/' . $data_buku->id_buku , array('method'=>'post'));?>
                 <input type="hidden" name="id_buku" value="<?=$data_buku->id_buku; ?>">
                 
                 <div class="row">
@@ -48,7 +48,7 @@
                       <div class="col-sm-5">
                         <select name="id_jenis_buku" class="form-control">
                             <option disabled selected>Pilih Jenis Buku</option>
-                              <?php foreach($klasifikasi_buku as $jb) { ?>
+                              <?php foreach($jenis_buku as $jb) { ?>
                                 <option value="<?=$jb->id_jenis_buku;?>" <?=( ($data_buku->id_jenis_buku == $jb->id_jenis_buku) ? 'selected' : '');?>> <?=$jb->jenis_buku;?> </option>
                               <?php } ?>
                           </select>

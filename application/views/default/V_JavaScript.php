@@ -1,7 +1,7 @@
   <script src="<?=assets_url('vendors/js/vendor.bundle.base.js');?>"></script>
   <script src="<?=assets_url('vendors/js/vendor.bundle.addons.js');?>"></script>
   <script src="<?=assets_url('js/off-canvas.js');?>"></script>
-  <!-- <script src="<?=assets_url('js/misc.js');?>"></script>   -->
+  <script src="<?=assets_url('js/misc.js');?>"></script>  
   <script src="<?=assets_url('vendors/datatables/datatables.min.js');?>"></script>
 
   <script type="text/javascript"> // pencarian auto complete nama siswa
