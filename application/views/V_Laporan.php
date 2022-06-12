@@ -17,12 +17,12 @@
             <div class="row col-md-6">
                 <div class="card-tools pr-3">
                   <div class="input-group">
-                      <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/cetaklaporan");?>';" class="btn btn-block btn-success"><i class="mdi mdi-printer"></i>Cetak Laporan</button>
+                      <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/sk_laporan");?>';" class="btn btn-block btn-success"><i class="mdi mdi-printer"></i>Cetak Laporan</button>
                   </div>
                 </div>
                 <div class="card-tools">
                   <div class="input-group">
-                    <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/buatsk");?>';" class="btn btn-block btn-warning"><i class="mdi mdi-file"></i>Buat SK Bebas Pustaka</button>
+                    <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/sk_bebas_pustaka");?>';" class="btn btn-block btn-warning"><i class="mdi mdi-file"></i>Buat SK Bebas Pustaka</button>
                   </div>
                 </div>
             </div>

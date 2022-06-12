@@ -1,9 +1,10 @@
 <?php
     $tgl_pinjam = date('Y-m-d');
-
     // untuk menghitung selisih tanggal pinjam dan tanggal pengembalian
+    $satu_semester = mktime(0,0,0,date("n"),date("j") + 180, date("Y"));
     $lima_hari = mktime(0,0,0,date("n"),date("j") + 5, date("Y"));
-    $tgl_kembali = date('Y-m-d', $lima_hari);
+    $tgl_kembali_ntp = date('Y-m-d', $lima_hari);
+    $tgl_kembali_tp = date('Y-m-d', $satu_semester);
 ?>
 
     <div class="content-wrapper">
@@ -45,10 +46,9 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Judul Buku</label>
+                      <label class="col-sm-3 col-form-label">Tanggal Pinjam</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="judulbuku" name="judul_buku" placeholder="Cari judul buku">
-                        <input type="hidden" class="form-control" id="idbuku" name="id_buku">
+                        <input type="date" value="<?= date('Y-m-d');?>" name="tgl_pinjam" class="form-control" />
                       </div>
                     </div>
                   </div>
@@ -56,17 +56,21 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Tanggal Pinjam</label>
+                      <label class="col-sm-3 col-form-label">Judul Buku</label>
                       <div class="col-sm-9">
-                        <input type="date" value="<?= date('Y-m-d');?>" name="tgl_pinjam" class="form-control" />
+                        <input type="text" class="form-control" id="judulbuku" name="judul_buku" placeholder="Cari judul buku">
+                        <input type="hidden" class="form-control" id="idbuku" name="id_buku">
+                        <input type="hidden" class="form-control" id="idkategoribuku" name="id_kategori_buku" value="id_kategori_buku">
                       </div>
                     </div>
                   </div>
+                  
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Tanggal Dikembalikan</label>
                       <div class="col-sm-9">
-                        <input type="date" name="tgl_kembali" value="<?php echo $tgl_kembali; ?>" class="form-control" />
+                          <input type="date" id="tanggal" name="tgl_kembali" value="<?php echo $tgl_kembali_ntp; ?>" class="form-control" />
+                          <!-- <input type="date" id="ntp" name="tgl_kembali" value="<?php echo $tgl_kembali_ntp; ?>" class="form-control" /> -->
                       </div>
                     </div>
                   </div>
@@ -76,7 +80,7 @@
                   <div class="col-md-12">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
                       <button class="btn btn-warning mr-2 mdi mdi-arrow-left"> Kembali</button>
-                      <button type="submit" class="btn btn-success mr-2">Tambah</button>
+                      <button type="submit" class="btn btn-success mr-2" onclick="tampilkan_tanggal()">Tambah</button>
                       <button class="btn btn-light" type="reset">Hapus</button>
                     </div>
                   </div>
@@ -87,3 +91,19 @@
         </div>
     </div>
   </div>
+  <script>
+
+function tampilkan_tanggal() {
+  var kategoribuku=document.getElementById("idkategoribuku").value;
+  var buku=document.getElementById("tanggal");
+  // var nonteksp=document.getElementById("ntp");
+ 
+  if (kategoribuku == 1) {
+        buku.innerHTML= $tgl_kembali_tp;
+    }
+  else if (kategoribuku == 2)
+    {
+      buku.innerHTML= $tgl_kembali_ntp;
+    }
+}
+</script>

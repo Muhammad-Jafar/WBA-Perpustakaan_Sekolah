@@ -13,14 +13,20 @@ class M_Peminjaman extends CI_Model {
 		return $q->result();
 	}
 
+	public function list_kategori_buku() {
+		$q = $this->db->select('*')->get('kategori_buku');
+		return $q->result();
+	}
+
     public function data_peminjaman() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
 								 t.id_siswa, t.id_buku, t.status, t.denda,
                                  s.nama_siswa,
-                                 b.judul_buku')
+                                 b.judul_buku, b.id_kategori_buku')
                       ->from ('transaksi as t')
                       ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
+					  ->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
 					  ->where('status', 'dipinjam')
                       ->get();
         return $q->result();
@@ -34,27 +40,19 @@ class M_Peminjaman extends CI_Model {
 				case 'dipinjam':
 					$label = 'warning';
 				break;
-				// case 'telat':
-				// 	$label = 'danger';
-				// break;
 			};
 
-			$diff  = date_diff( date_create($value->tgl_pinjam), date_create($value->tgl_kembali) );
-			$value->lama_pinjam = $diff->format('%d hari'); // hitung hari di tabel
-
-			
 			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
 			$tgl_sekarang = new DateTime();
 			$selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-			// $hargadenda = 500;
-			// $total_denda = $selisih * $hargadenda;
+			$diff  = date_diff( date_create($value->tgl_pinjam), $tgl_sekarang );
+			$value->lama_pinjam = $diff->format('%d hari'); // hitung hari di tabel
 
 			if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
 				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
 			} else {
 				$value->denda ="Telat <b style = 'color: red;font-size:13px;' >".$selisih."</b> Hari <br>
 				<span class='badge badge-danger' style=font-size:13px; > Denda perhari = Rp.500</span>";
-				// $value->denda = $total_denda;
 			}
 
 			$value->tgl_pinjam = date_format( date_create($value->tgl_pinjam), 'd-m-Y');
@@ -82,13 +80,14 @@ class M_Peminjaman extends CI_Model {
         return $this->db->get('buku')->result();
     }
 
-	public function peminjaman_add_new( $id_siswa, $kode_pinjam, $status, $id_buku, $tgl_pinjam, $tgl_kembali) {
-		$d_t_d = array( 'id_siswa'   => $id_siswa,
-						'kode_pinjam'=> $kode_pinjam,
-						'status'	 => $status,
-						'id_buku' 	 => $id_buku,
-						'tgl_pinjam' => $tgl_pinjam,
-						'tgl_kembali' => $tgl_kembali );
+	public function peminjaman_add_new( $id_siswa, $kode_pinjam, $id_kategori_buku, $status, $id_buku, $tgl_pinjam, $tgl_kembali) {
+		$d_t_d = array( 'id_siswa'   	=> $id_siswa,
+						'kode_pinjam'	=> $kode_pinjam,
+						'id_kategori_buku'=>$id_kategori_buku,
+						'status'	 	=> $status,
+						'id_buku' 	 	=> $id_buku,
+						'tgl_pinjam' 	=> $tgl_pinjam,
+						'tgl_kembali' 	=> $tgl_kembali );
 		
 		$this->db->insert('transaksi', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Transaksi peminjam baru berhasil ditambahkan');

@@ -37,7 +37,7 @@
                               <?php foreach($kategori_buku as $kb) { ?>
                                 <option value="<?=$kb->id_kategori_buku;?>"> <?=$kb->kategori_buku;?></option>
                               <?php } ?>
-                          </select>
+                        </select>
                       </div>
                     </div>
                   </div>

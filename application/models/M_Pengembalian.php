@@ -23,15 +23,17 @@ class M_Pengembalian extends CI_Model {
 
 			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
 			$tgl_sekarang = new DateTime();
-			$selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-			$hargadenda = 500;
-			$total_denda = $selisih * $hargadenda;
+			$tgl_dikembalikan = new DateTime( $value->tgl_dikembalikan);
+			$kembalikan = $tgl_dikembalikan->diff($tgl_kembali)->format("%a");
+			$total_denda = $kembalikan * 500;
 
-			if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
-				$value->denda = "<span class='badge badge-success' style=font-size:13px;>Tidak kena denda</span>";
-			} else {
-				$value->denda ="Telat <b style = 'color: red;font-size:13px;'>".$selisih."</b> Hari <br>
-				<span class='badge badge-danger' style=font-size:13px; > Denda Rp.".$total_denda;
+			if ( $value->status == 'dikembalikan' && $tgl_kembali >= $tgl_sekarang && $tgl_dikembalikan <= $tgl_kembali ) {
+				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
+			} elseif ($value->status == 'dikembalikan') {
+				$value->denda ="Telat <b style = 'color: red;font-size:15px;'>".$kembalikan."</b> Hari <br>
+				<span class='badge badge-danger'style=font-size:13px;> Denda Rp.".$total_denda;
+			} elseif ($value->status == 'dipinjam') {
+				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
 			}
 
 			switch ($value->denda) {
@@ -43,7 +45,7 @@ class M_Pengembalian extends CI_Model {
 				break;
 			};
 
-			$diff  = date_diff( date_create($value->tgl_pinjam), date_create($value->tgl_kembali) );
+			$diff  = date_diff( date_create($value->tgl_pinjam), $tgl_sekarang );
 			$value->lama_pinjam = $diff->format('%d hari'); // hitung hari di tabel
 
 			$value->tgl_pinjam = date_format( date_create($value->tgl_pinjam), 'd-m-Y');

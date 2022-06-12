@@ -48,7 +48,7 @@ class Peminjaman extends CI_Controller {
             $result = $this->m_peminjaman->search_judul_buku($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-                $arr_result[] = array ( 'judul_buku' => $row->id_buku, 'label' => $row->judul_buku );
+                $arr_result[] = array ( 'judul_buku' => $row->id_buku, 'label' => $row->judul_buku, 'kategori_buku'=> $row->id_kategori_buku);
                 echo json_encode($arr_result);
             }
         }
@@ -58,6 +58,7 @@ class Peminjaman extends CI_Controller {
         if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 			$id_siswa = $this->security->xss_clean( $this->input->post('id_siswa'));
 			$kode_pinjam = $this->security->xss_clean( $this->input->post('kode_pinjam'));
+			$id_kategori_buku = $this->security->xss_clean( $this->input->post('id_kategori_buku'));
 			$status = $this->security->xss_clean( $this->input->post('status'));
 			$id_buku = $this->security->xss_clean( $this->input->post('id_buku'));
 			$tgl_pinjam = $this->security->xss_clean( $this->input->post('tgl_pinjam'));
@@ -65,6 +66,7 @@ class Peminjaman extends CI_Controller {
 
 			$this->form_validation->set_rules('id_siswa', 'ID siswa', 'required', array( 'required' => 'Nama siswa harus diisi'));
 			$this->form_validation->set_rules('kode_pinjam', 'Kode pinjam', 'required', array( 'required' => 'Kode pinjam harus diisi'));
+			$this->form_validation->set_rules('id_kategori_buku', 'Kode pinjam', 'required', array( 'required' => 'Kode pinjam harus diisi'));
 			$this->form_validation->set_rules('status', 'status pinjam', 'required', array( 'required' => 'status pinjam harus diisi'));
 			$this->form_validation->set_rules('id_buku', 'judul buku', 'required', array('required' => 'Judul buku tidak boleh kosong !'));
 			$this->form_validation->set_rules('tgl_pinjam', 'tanggal pinjam', 'required', array('required' => 'Tanggal pinjam buku tidak boleh kosong !'));
@@ -75,7 +77,7 @@ class Peminjaman extends CI_Controller {
 				redirect(base_url('peminjaman/add_new'));
 			}
 
-			$this->m_peminjaman->peminjaman_add_new( $id_siswa, $kode_pinjam, $status, $id_buku, $tgl_pinjam, $tgl_kembali);
+			$this->m_peminjaman->peminjaman_add_new( $id_siswa, $kode_pinjam, $id_kategori_buku, $status, $id_buku, $tgl_pinjam, $tgl_kembali);
 			redirect(base_url('peminjaman'));
 		}
 
@@ -83,6 +85,7 @@ class Peminjaman extends CI_Controller {
 		$data_content['title_page'] = 'Tambah peminjaman buku';
         $data_content['list_siswa'] = $this->m_peminjaman->list_peminjam();
         $data_content['list_buku'] = $this->m_peminjaman->list_buku();
+		$data_content['kategori_buku'] = $this->m_peminjaman->list_kategori_buku();
 		$data_content['buat_kode'] = $this->m_peminjaman->buatkodepinjam();
 		$data['content'] = $this->load->view('partial/Peminjaman/V_Peminjaman_Create', $data_content, true);
 		$this->load->view('V_Dashboard', $data);

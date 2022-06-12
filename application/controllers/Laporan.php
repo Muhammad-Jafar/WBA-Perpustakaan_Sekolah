@@ -36,4 +36,54 @@ class Laporan extends CI_Controller {
 		});
 	}
 
+
+	public function sk_laporan(){
+		$data = array('title' 		=> 'Data Laporan Perpustakaan',
+					'teks_pelajaran'=> $this->m_laporan-> pinjam_buku_tp(),
+					'non_teks_pelajaran'=> $this->m_laporan-> pinjam_buku_ntp() );
+
+		$this->load->view('SK_Laporan', $data);
+	}
+
+	public function sk_bebas_pustaka() {
+		if( empty($this->uri->segment('3'))) {
+			redirect( base_url('/dashboard') );
+		}
+
+		$id=$this->uri->segment('3');
+		$data['dl'] = false;
+		$data['id'] = $id;
+		$data['user_name'] = $this->session->userdata('user_name');
+		$data['data'] = $this->m_datasiswa->get_data_izin($id);
+
+		$data['nama_izin'] = $data['data']->nama_izin;
+		$data['type'] = $data['data']->type;
+		switch ($data['type']) {
+			case 'cuti':
+					$data['type_id'] = '001';
+				break;
+			case 'sekolah':
+					$data['type_id'] = '002';
+				break;
+			case 'seminar':
+					$data['type_id'] = '003';
+				break;
+		}
+		if( $_SERVER['REQUEST_METHOD'] == 'GET') {
+			if( isset($_GET['dl']) ) {
+				$data['dl'] = true;
+				header("Content-type: application/vnd.ms-word");
+				header("Content-Disposition: attachment; filename=SkBAAK-{$data['type_id']}-{$id}.doc");
+			}
+		}
+		$data['tempat_lahir'] = strtoupper($data['data']->tempat_lahir);
+		$data['tanggal_lahir'] = date_format( date_create($data['data']->tanggal_lahir), 'd M Y');
+		$data['alamat'] = $data['data']->alamat;
+		$data['nama'] = explode(' ', $data['data']->nama)[0];
+		$diff  = date_diff( date_create($data['data']->tglawal), date_create($data['data']->tglakhir) );
+		$data['selama'] = $diff->format('%d hari');
+		$data['tglawal'] = date_format( date_create($data['data']->tglawal), 'd M Y');
+		$data['tglakhir'] = date_format( date_create($data['data']->tglakhir), 'd M Y');
+		$this->load->view('Surat_Keterangan_New', $data);
+	}
 }

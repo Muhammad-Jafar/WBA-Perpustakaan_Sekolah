@@ -22,14 +22,17 @@ class M_Laporan extends CI_Model {
 
 			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
 			$tgl_sekarang = new DateTime();
-			$selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-			$total_denda = $selisih * 500;
+			$tgl_dikembalikan = new DateTime( $value->tgl_dikembalikan);
+			$kembalikan = $tgl_dikembalikan->diff($tgl_kembali)->format("%a");
+			$total_denda = $kembalikan * 500;
 
-			if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
+			if ( $value->status == 'dikembalikan' && $tgl_kembali >= $tgl_sekarang && $tgl_dikembalikan <= $tgl_kembali ) {
 				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
-			} else {
-				$value->denda ="Telat <b style = 'color: red;font-size:15px;'>".$selisih."</b> Hari <br>
+			} elseif ($value->status == 'dikembalikan') {
+				$value->denda ="Telat <b style = 'color: red;font-size:15px;'>".$kembalikan."</b> Hari <br>
 				<span class='badge badge-danger'style=font-size:13px;> Denda Rp.".$total_denda;
+			} elseif ($value->status == 'dipinjam') {
+				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
 			}
 
 			switch ($value->denda) {
@@ -60,4 +63,37 @@ class M_Laporan extends CI_Model {
 		}
 		return $new_arr;
 	}
+
+	// BAGIAN CETAK LAPORAN DAN EKSPOR KE EXCEL
+	public function pinjam_buku_tp() {
+        $q = $this->db->select('t.tgl_pinjam, t.tgl_kembali, t.id_siswa, t.id_buku, t.status,
+                                s.nama_siswa, s.nis, s.kelas, s.jurusan,
+								b.judul_buku,
+                                jb.jenis_buku,
+								kb.kategori_buku')
+        ->from ('transaksi as t')
+        ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
+        ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
+		->join ('jenis_buku as jb', 'jb.id_jenis_buku = b.id_jenis_buku', 'LEFT')
+		->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
+		->where ('kb.kategori_buku', 'Teks-pelajaran')
+        ->get();
+        return $q->result();
+    }
+
+	public function pinjam_buku_ntp() {
+        $q = $this->db->select('t.tgl_pinjam, t.tgl_kembali, t.id_siswa, t.id_buku, t.status,
+                                s.nama_siswa, s.nis, s.kelas, s.jurusan,
+								b.judul_buku,
+                                jb.jenis_buku,
+								kb.kategori_buku')
+        ->from ('transaksi as t')
+        ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
+        ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
+		->join ('jenis_buku as jb', 'jb.id_jenis_buku = b.id_jenis_buku', 'LEFT')
+		->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
+		->where ('kb.kategori_buku', 'Non Teks-pelajaran')
+        ->get();
+        return $q->result();
+    }
 }

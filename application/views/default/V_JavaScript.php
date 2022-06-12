@@ -23,6 +23,7 @@
               select: function(event, ui) {
                 $('[name="judul_buku"]').val(ui.item.value);
                 $('[name="id_buku"]').val(ui.item.judul_buku);
+                $('[name="id_kategori_buku"]').val(ui.item.kategori_buku);
               }
             });
         });
