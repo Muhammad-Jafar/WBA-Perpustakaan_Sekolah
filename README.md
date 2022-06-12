@@ -1,22 +1,21 @@
-# Sistem Informasi Kepegawaian
-Sistem Informasi Kepegawaian based on CodeIgniter
+# Sistem Informasi Perpustakaan
+Sistem Informasi Perpustakaan based on CodeIgniter 3 with RDBMS MySQL
 
 ## Overview
-This work is belongs to my homework task
+No overview
 
 ## Usage
-You can see the full of website on http://localhost/simpeg
-- Admin
+You can see the full of website on http://localhost/perpustakaan/
+- for Admin
 
-  - E-mail : admin@gmail.com
-  - Password : admin
+  - Username : admin
+  - Password : 12345
 
-- Ka. BAAK
+- for kepsek
 
-  - E-mail : baak@gmail.com
-  - Password : baak
+  - Username : kepsek
+  - Password : 54321
 
-- Employee
-
-  - E-mail : pegawai@gmail.com
-  - Password : pegawai
+- for siswa
+	- you dont need to login, just going to localhost/perpustakaan.
+	- you can chose see the books katalog
