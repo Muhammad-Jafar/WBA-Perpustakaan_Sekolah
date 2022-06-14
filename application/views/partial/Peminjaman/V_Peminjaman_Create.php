@@ -28,7 +28,7 @@
                       <label class="col-sm-3 col-form-label">Kode Pinjam</label>
                       <div class="col-sm-9">
                       <input type="text" name="kode_pinjam" value="<?= $buat_kode; ?>" readonly class="form-control">
-                      <input type="hidden" name="status" value="dipinjam" class="form-control">
+                      <input type="hidden" name="qt_pinjam" value="1" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -64,13 +64,11 @@
                       </div>
                     </div>
                   </div>
-                  
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Tanggal Dikembalikan</label>
                       <div class="col-sm-9">
                           <input type="date" id="tanggal" name="tgl_kembali" value="<?php echo $tgl_kembali_ntp; ?>" class="form-control" />
-                          <!-- <input type="date" id="ntp" name="tgl_kembali" value="<?php echo $tgl_kembali_ntp; ?>" class="form-control" /> -->
                       </div>
                     </div>
                   </div>
@@ -80,7 +78,7 @@
                   <div class="col-md-12">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
                       <button class="btn btn-warning mr-2 mdi mdi-arrow-left"> Kembali</button>
-                      <button type="submit" class="btn btn-success mr-2" onclick="tampilkan_tanggal()">Tambah</button>
+                      <button type="submit" class="btn btn-success mr-2">Tambah</button>
                       <button class="btn btn-light" type="reset">Hapus</button>
                     </div>
                   </div>
@@ -91,19 +89,3 @@
         </div>
     </div>
   </div>
-  <script>
-
-function tampilkan_tanggal() {
-  var kategoribuku=document.getElementById("idkategoribuku").value;
-  var buku=document.getElementById("tanggal");
-  // var nonteksp=document.getElementById("ntp");
- 
-  if (kategoribuku == 1) {
-        buku.innerHTML= $tgl_kembali_tp;
-    }
-  else if (kategoribuku == 2)
-    {
-      buku.innerHTML= $tgl_kembali_ntp;
-    }
-}
-</script>

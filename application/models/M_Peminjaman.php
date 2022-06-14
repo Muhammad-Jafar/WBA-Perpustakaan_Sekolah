@@ -22,11 +22,10 @@ class M_Peminjaman extends CI_Model {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
 								 t.id_siswa, t.id_buku, t.status, t.denda,
                                  s.nama_siswa,
-                                 b.judul_buku, b.id_kategori_buku')
+                                 b.judul_buku')
                       ->from ('transaksi as t')
                       ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
-					  ->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
 					  ->where('status', 'dipinjam')
                       ->get();
         return $q->result();
@@ -80,19 +79,26 @@ class M_Peminjaman extends CI_Model {
         return $this->db->get('buku')->result();
     }
 
-	public function peminjaman_add_new( $id_siswa, $kode_pinjam, $id_kategori_buku, $status, $id_buku, $tgl_pinjam, $tgl_kembali) {
+	public function peminjaman_add_new( $id_siswa, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali) {
 		$d_t_d = array( 'id_siswa'   	=> $id_siswa,
-						'kode_pinjam'	=> $kode_pinjam,
-						'id_kategori_buku'=>$id_kategori_buku,
-						'status'	 	=> $status,
 						'id_buku' 	 	=> $id_buku,
+						'kode_pinjam'	=> $kode_pinjam,
+						'qt_pinjam'		=> $qt_pinjam,
 						'tgl_pinjam' 	=> $tgl_pinjam,
 						'tgl_kembali' 	=> $tgl_kembali );
 		
 		$this->db->insert('transaksi', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Transaksi peminjam baru berhasil ditambahkan');
 	}
-	
+
+	public function minstok( $id_siswa,  $id_buku, $tgl_kembali ) {
+		$d_t_d = array( 'id_siswa'   	=> $id_siswa,
+						'id_buku' 	 	=> $id_buku,
+						'tgl_kembali'	=> $tgl_kembali );
+		
+		$this->db->insert('denda', $d_t_d);
+	}
+
 	//buat kode peminjaman otomatis generate
 	public function buatkodepinjam() {
 		$this->db->select('RIGHT(transaksi.kode_pinjam, 4) as kodepinjam', FALSE);
@@ -100,22 +106,21 @@ class M_Peminjaman extends CI_Model {
 		$this->db->limit(1);    
 
 		$query = $this->db->get('transaksi');
-			if($query->num_rows() > 0){      
+			if($query->num_rows() > 0) {      
 				 $data = $query->row();
 				 $kode = intval($data->kodepinjam) + 1; 
 			}
-			else{      
-				 $kode = 1;  
-			}
+			else { $kode = 1; }
 		$batas = str_pad($kode, 4, "0", STR_PAD_LEFT);    
 		$kodetampil = "PJ-". $batas;
 		return $kodetampil;  
 	}
 	
 	public function kembalikan_buku($id_transaksi) {
-		$q = array ( 'status' => 'dikembalikan',
-					 'denda' => 'denda',
-					 'tgl_dikembalikan' => date('Y-m-d') //set tanggal sekarang saat dikembalikan buku
+	
+		$q = array ( 'status' 			=> 'dikembalikan',
+					 'tgl_dikembalikan' => date('Y-m-d'),
+					 'qt_pinjam' 		=> '0'
 					);
 		$this->db->where('id_transaksi', $id_transaksi)->update('transaksi', $q);
 	}

@@ -76,6 +76,7 @@ class Laporan extends CI_Controller {
 				header("Content-Disposition: attachment; filename=SkBAAK-{$data['type_id']}-{$id}.doc");
 			}
 		}
+		
 		$data['tempat_lahir'] = strtoupper($data['data']->tempat_lahir);
 		$data['tanggal_lahir'] = date_format( date_create($data['data']->tanggal_lahir), 'd M Y');
 		$data['alamat'] = $data['data']->alamat;

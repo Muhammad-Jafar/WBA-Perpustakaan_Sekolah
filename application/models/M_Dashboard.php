@@ -15,15 +15,15 @@ class M_Dashboard extends CI_Model {
 		return $q->row_array()['COUNT(*)'];
 	}
 
-	public function total_buku_dipinjam() {
-		$q = $this->db->query("SELECT ( SELECT COUNT(*) FROM transaksi WHERE status ='dipinjam') AS PINJAM "); // TOTAL BUKU YANG DI PINJAM
-		return $q->row_array()['PINJAM'];
-	}
+	// public function total_buku_dipinjam() {
+	// 	$q = $this->db->query("SELECT ( SELECT COUNT(*) FROM transaksi WHERE status ='dipinjam') AS PINJAM "); // TOTAL BUKU YANG DI PINJAM
+	// 	return $q->row_array()['PINJAM'];
+	// }
 
-	public function total_buku_dikembalikan() {
-		$q = $this->db->query("SELECT ( SELECT COUNT(*) FROM transaksi WHERE status ='dikembalikan') AS KEMBALIKAN "); // TOTAL BUKU YANG DI KEMBALIKAN
-		return $q->row_array()['KEMBALIKAN'];
-	}
+	// public function total_buku_dikembalikan() {
+	// 	$q = $this->db->query("SELECT ( SELECT COUNT(*) FROM transaksi WHERE status ='dikembalikan') AS KEMBALIKAN "); // TOTAL BUKU YANG DI KEMBALIKAN
+	// 	return $q->row_array()['KEMBALIKAN'];
+	// }
 
 
 	// public function total_dataizin() {

@@ -188,8 +188,8 @@ class Manajemen_Buku extends CI_Controller {
 			redirect( base_url('/manajemen_buku') );
 		}
 
-		$name=$this->uri->segment('3');
-		$id=$this->uri->segment('4');
+		$name = $this->uri->segment('3');
+		$id = $this->uri->segment('4');
 
 		switch ($name) {
 			case 'jenis_buku' :

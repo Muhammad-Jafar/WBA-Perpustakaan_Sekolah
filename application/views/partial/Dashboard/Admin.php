@@ -36,7 +36,7 @@
                   <p class="mb-0 text-right">Total Buku dipinjam</p>
                   <div class="fluid-container">
                     <h3 class="font-weight-medium text-right mb-0">
-                      <?=$buku_dipinjam;?></h3>
+                      <!-- <?=$buku_dipinjam;?></h3> -->
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                   <p class="mb-0 text-right">Total Buku dikembalikan</p>
                   <div class="fluid-container">
                     <h3 class="font-weight-medium text-right mb-0">
-                      <?=$buku_dikembalikan;?></h3>
+                      <!-- <?=$buku_dikembalikan;?></h3> -->
                   </div>
                 </div>
               </div>
