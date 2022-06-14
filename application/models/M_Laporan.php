@@ -70,12 +70,14 @@ class M_Laporan extends CI_Model {
                                 s.nama_siswa, s.nis, s.kelas, s.jurusan,
 								b.judul_buku,
                                 jb.jenis_buku,
-								kb.kategori_buku')
+								kb.kategori_buku,
+								d.telat, d.denda')
         ->from ('transaksi as t')
         ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
         ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 		->join ('jenis_buku as jb', 'jb.id_jenis_buku = b.id_jenis_buku', 'LEFT')
 		->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
+		->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
 		->where ('kb.kategori_buku', 'Teks-pelajaran')
         ->get();
         return $q->result();
@@ -86,12 +88,14 @@ class M_Laporan extends CI_Model {
                                 s.nama_siswa, s.nis, s.kelas, s.jurusan,
 								b.judul_buku,
                                 jb.jenis_buku,
-								kb.kategori_buku')
+								kb.kategori_buku,
+								d.telat, d.denda')
         ->from ('transaksi as t')
         ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
         ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 		->join ('jenis_buku as jb', 'jb.id_jenis_buku = b.id_jenis_buku', 'LEFT')
 		->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
+		->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
 		->where ('kb.kategori_buku', 'Non Teks-pelajaran')
         ->get();
         return $q->result();

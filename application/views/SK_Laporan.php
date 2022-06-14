@@ -23,7 +23,7 @@
   ::-moz-selection { background-color: #E13300; color: white; }
 
   body {
-    width: 11.7in;
+    /* width: 11.7in; */
     /* height: 8.27in; */
     margin: auto;  
     padding: 0;
@@ -54,8 +54,9 @@
 
   .signature {
     font-family: 'Times New Roman';
-    font-style: 'bold';
+    font-weight: bold;
     font-size: 1rem;
+    text-align: left;
   }
 
   main {
@@ -84,10 +85,12 @@
 
 </style>
 </head>
+<div class="no-print" style="margin:0 0 20px;text-align:center; font-size:1rem;"><a href="javascript:history.go(-1);" style="font-weight:bold">&laquo; KEMBALI</a>   | atau |   <a href="javascript:window.print();" style="font-weight:bold">PRINT</a></div>
+
 <body onload="window.print();">
-  <div class="page-landscape-center">
+  <div class="page-portrait-center">
     <div id="header">
-      <table width="60%" border="0" cellspacing="0" cellpadding="0" align="center">
+      <table width="50%" border="1" cellspacing="0" cellpadding="0" align="center">
         <tbody>
           <tr>
             <td width="10%" class="center">
@@ -127,6 +130,8 @@
               <th>Tanggal Pinjam</th>
               <th>Tanggal Kembali</th>
               <th>Status</th>
+              <th>Telat</th>
+              <th>Denda</th>
             </tr>
           </thead>
           <tbody>
@@ -142,6 +147,8 @@
                 <td><?php echo $tp->tgl_pinjam; ?></td>
                 <td><?php echo $tp->tgl_kembali; ?></td>
                 <td><?php echo $tp->status; ?></td>
+                <td><?php echo $tp->telat; ?> hari</td>
+                <td>Rp. <?php echo $tp->denda; ?></td>
               </tr>
             <?php $i++; } ?>
           </tbody>
@@ -161,6 +168,8 @@
               <th>Tanggal Pinjam</th>
               <th>Tanggal Kembali</th>
               <th>Status</th>
+              <th>Telat</th>
+              <th>Denda</th>
             </tr>
           </thead>
           <tbody>
@@ -176,6 +185,8 @@
                 <td><?php echo $ntp->tgl_pinjam; ?></td>
                 <td><?php echo $ntp->tgl_kembali; ?></td>
                 <td><?php echo $ntp->status; ?></td>
+                <td><?php echo $tp->telat; ?> hari</td>
+                <td>Rp. <?php echo $tp->denda; ?></td>
               </tr>
             <?php $i++; } ?>
           </tbody>
@@ -185,21 +196,18 @@
         <br>
         <tr> 
           <td>
-            <table width="30%" border="0" cellspacing="0" cellpadding="0" align="right" >
+            <table width="22%" border="1" cellspacing="0" cellpadding="0" align="right" >
               <tr color="#000000"> 
                 <td>Sumbawa, <?= date("d-m-Y");?> </td>
               </tr>
-              <tr> 
-                <td>Disetujui oleh : Penanggungjawab</td>
+              <tr>
+                <td><p class="signature"> KEPALA PERPUSTAKAAN SMAN 1 UTAN</p></td>
               </tr>
               <tr>
-                <td><p class="signature"> Kepala Perpustakaan SMAN 1 Utan</p></td>
+                <td align="end"><p style="text-align: center; font-size: 1.5rem; font-weight: bold;"> <br><br><br><br><br> Novi, S.Kom </p> </td>
               </tr>
               <tr>
-                <td align="end"><p style="text-align: center;"> <br><br><br><br><br> Novi, S.Kom </p> </td>
-              </tr>
-              <tr>
-              <td align="top"><p style="text-align: center;">NIP.69084353 </p> </td>
+              <td align="top"><p style="text-align: center; font-size: 1.2rem;">NIP.69084353 </p> </td>
               </tr>
             </table>
           </td>
@@ -207,4 +215,5 @@
     </div>
   </div>  
 </body>
+
 </html>

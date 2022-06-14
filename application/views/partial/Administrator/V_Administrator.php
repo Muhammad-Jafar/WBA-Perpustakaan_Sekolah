@@ -15,7 +15,7 @@
             <?php endif; ?>
 
             <div class="card-tools">
-              <div class="input-group" style="width:150px;">
+              <div class="input-group" style="width:170px;">
                 <button type="button" onclick="javascript:top.location.href='<?=base_url("/administrator/add_new");?>';" class="btn btn-block btn-success"><i class="mdi mdi-plus"></i>Tambah Admin</button>
               </div>
             </div>
