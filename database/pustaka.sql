@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 02:25 PM
+-- Generation Time: Jun 14, 2022 at 04:43 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -69,7 +69,7 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `id_jenis_buku`, `id_kategori_buku`, `kode_buku`, `judul_buku`, `pengarang`, `penerbit`, `tahun_terbit`, `jumlah_halaman`, `qt`) VALUES
-(1, 10, 1, 'BUKU-00001', 'Pengantar Fisika Dasar', 'Robert Dawney Jr', 'MCU', '2018', 210, 13),
+(1, 10, 1, 'BUKU-00001', 'Pengantar Fisika Dasar', 'Robert Dawney Jr', 'MCU', '2018', 210, 12),
 (2, 5, 2, 'BUKU-00002', 'Pengantar Filsafat', 'dr. Strange', 'MCU', '2016', 314, 21);
 
 -- --------------------------------------------------------
@@ -79,7 +79,7 @@ INSERT INTO `buku` (`id_buku`, `id_jenis_buku`, `id_kategori_buku`, `kode_buku`,
 --
 
 CREATE TABLE `denda` (
-  `id_denda` int(2) NOT NULL,
+  `id_transaksi` int(2) NOT NULL,
   `id_buku` int(2) NOT NULL,
   `id_siswa` int(2) NOT NULL,
   `tgl_kembali` date NOT NULL,
@@ -92,11 +92,21 @@ CREATE TABLE `denda` (
 -- Dumping data for table `denda`
 --
 
-INSERT INTO `denda` (`id_denda`, `id_buku`, `id_siswa`, `tgl_kembali`, `tgl_dikembalikan`, `telat`, `denda`) VALUES
-(2, 1, 2, '2022-06-15', '2022-06-14', -1, 0),
-(3, 1, 2, '2022-06-10', '2022-06-14', 4, 2000),
-(4, 1, 5, '2022-06-10', '2022-06-14', 4, 2000),
-(5, 1, 2, '2022-06-08', '2022-06-14', 6, 3000);
+INSERT INTO `denda` (`id_transaksi`, `id_buku`, `id_siswa`, `tgl_kembali`, `tgl_dikembalikan`, `telat`, `denda`) VALUES
+(1, 1, 1, '2022-06-10', '2022-06-14', 4, 2000),
+(2, 1, 1, '2022-06-05', '2022-06-14', 9, 4500),
+(3, 1, 1, '2022-06-10', '2022-06-14', 4, 2000),
+(4, 1, 1, '2022-06-12', '2022-06-14', 2, 1000),
+(5, 2, 2, '2022-06-15', '2022-06-14', 0, 0),
+(6, 1, 1, '2022-06-05', '2022-06-14', 9, 4500),
+(7, 2, 2, '2022-06-15', '2022-06-14', 0, 0),
+(8, 1, 5, '2022-06-17', '2022-06-14', 0, 0),
+(9, 2, 2, '2022-06-15', '2022-06-14', 0, 0),
+(10, 1, 1, '2022-06-19', '2022-06-14', 0, 0),
+(11, 2, 1, '2022-06-10', '2022-06-14', 4, 0),
+(12, 1, 1, '2022-06-10', '2022-06-14', 4, 2000),
+(13, 2, 2, '2022-06-12', '2022-06-14', 2, 1000),
+(14, 2, 5, '2022-06-16', '2022-06-14', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -196,28 +206,39 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `kode_pinjam`, `id_buku`, `id_siswa`, `tgl_pinjam`, `tgl_kembali`, `tgl_dikembalikan`, `status`, `qt_pinjam`, `telat`, `denda`) VALUES
-(1, 'PJ-0001', 1, 2, '2022-06-14', '2022-06-19', '0000-00-00', 'dipinjam', 1, 0, 0),
-(2, 'PJ-0002', 1, 2, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(3, 'PJ-0003', 1, 5, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(1, 'PJ-0001', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(2, 'PJ-0002', 1, 1, '2022-06-01', '2022-06-05', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(3, 'PJ-0003', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
 (4, 'PJ-0004', 1, 1, '2022-06-07', '2022-06-12', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(5, 'PJ-0005', 1, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(6, 'PJ-0006', 1, 2, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(7, 'PJ-0007', 1, 5, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(8, 'PJ-0008', 1, 2, '2022-06-03', '2022-06-08', '2022-06-14', 'dikembalikan', 0, 0, 0);
+(5, 'PJ-0005', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(6, 'PJ-0006', 1, 1, '2022-06-01', '2022-06-05', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(7, 'PJ-0007', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(8, 'PJ-0008', 1, 5, '2022-06-12', '2022-06-17', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(9, 'PJ-0009', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(10, 'PJ-0010', 1, 1, '2022-06-14', '2022-06-19', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(11, 'PJ-0011', 2, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(12, 'PJ-0012', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(13, 'PJ-0013', 2, 2, '2022-06-07', '2022-06-12', '2022-06-14', 'dikembalikan', 0, 0, 0),
+(14, 'PJ-0014', 2, 5, '2022-06-11', '2022-06-16', '2022-06-14', 'dikembalikan', 0, 0, 0);
 
 --
 -- Triggers `transaksi`
 --
 DELIMITER $$
 CREATE TRIGGER `denda` AFTER UPDATE ON `transaksi` FOR EACH ROW BEGIN
-	UPDATE denda SET denda = denda + ( 500 * telat)
-    WHERE id_buku = NEW.id_buku && id_siswa = NEW.id_siswa && tgl_kembali = tgl_kembali;
+	IF NEW.tgl_dikembalikan > NEW.tgl_kembali THEN
+    	UPDATE denda SET denda = denda + (500 * telat)
+    	WHERE id_transaksi = NEW.id_transaksi;
+    ELSEIF NEW.tgl_dikembalikan <= NEW.tgl_kembali THEN
+    	UPDATE denda SET denda = 0
+    	WHERE id_transaksi = NEW.id_transaksi;
+    END IF;
 END
 $$
 DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `kembali` AFTER UPDATE ON `transaksi` FOR EACH ROW BEGIN
-	UPDATE buku SET qt =(qt + old.qt_pinjam) - NEW.qt_pinjam
+	UPDATE buku SET qt = (qt + OLD.qt_pinjam) - NEW.qt_pinjam
     WHERE id_buku = NEW.id_buku;
 END
 $$
@@ -231,10 +252,15 @@ $$
 DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `telat` AFTER UPDATE ON `transaksi` FOR EACH ROW BEGIN
-	UPDATE denda SET tgl_dikembalikan = NEW.tgl_dikembalikan WHERE id_buku = NEW.id_buku && id_siswa = NEW.id_siswa && tgl_kembali = tgl_kembali;
+	UPDATE denda SET tgl_dikembalikan = NEW.tgl_dikembalikan WHERE id_transaksi = NEW.id_transaksi;
     
-    UPDATE denda SET telat = datediff(NEW.tgl_dikembalikan, tgl_kembali)
-    WHERE id_buku = NEW.id_buku && id_siswa = NEW.id_siswa && tgl_kembali = tgl_kembali;
+    IF NEW.tgl_dikembalikan > NEW.tgl_kembali THEN
+    	UPDATE denda SET telat = datediff(NEW.tgl_dikembalikan,tgl_kembali)
+		WHERE id_transaksi = NEW.id_transaksi;
+    ELSEIF NEW.tgl_dikembalikan <= NEW.tgl_kembali THEN
+    	UPDATE denda SET telat = 0
+		WHERE id_transaksi = NEW.id_transaksi;
+    END IF;
 END
 $$
 DELIMITER ;
@@ -259,7 +285,7 @@ ALTER TABLE `buku`
 -- Indexes for table `denda`
 --
 ALTER TABLE `denda`
-  ADD PRIMARY KEY (`id_denda`);
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indexes for table `jenis_buku`
@@ -305,7 +331,7 @@ ALTER TABLE `buku`
 -- AUTO_INCREMENT for table `denda`
 --
 ALTER TABLE `denda`
-  MODIFY `id_denda` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_transaksi` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `jenis_buku`
@@ -329,7 +355,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_transaksi` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
