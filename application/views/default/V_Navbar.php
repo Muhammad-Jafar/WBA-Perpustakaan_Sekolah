@@ -2,18 +2,18 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 
         <?php if ( $this->session->userdata('user_type') != 'admin') : ?>
-          <a class="navbar-brand brand-logo" href="<?=base_url('katalog');?>">
-            <img src="<?=assets_url('avatar-logo.PNG', false);?>" alt="logo" style="width: 33px;" />
+          <a class="navbar-brand brand-logo" href="<?=base_url('katalog');?>" style="width: 40px; background:black;" >
+            <img src="<?=assets_url('logo.PNG', false);?>" alt="logo" style="width: 40px; background:black;" />
           </a>
           <a class="navbar-brand brand-logo-mini" href="<?=base_url('katalog');?>">
-            <img src="<?=assets_url('avatar-logo.PNG', false);?>" alt="logo" style="width: 27px;" />
+            <img src="<?=assets_url('logo.PNG', false);?>" alt="logo" style="width: 27px;" />
           </a>
         <?php elseif  ( $this->session->userdata('user_type') == 'admin' || $this->session->userdata('user_type') == 'kepsek') :?>
           <a class="navbar-brand brand-logo" href="<?=base_url('dashboard');?>">
-            <img src="<?=assets_url('avatar-logo.PNG', false);?>" alt="logo" style="width: 33px;" />
+            <img src="<?=assets_url('logo.PNG', false);?>" alt="logo" style="width: 40px;" />
           </a>
           <a class="navbar-brand brand-logo-mini" href="<?=base_url('dashboard');?>">
-            <img src="<?=assets_url('avatar-logo.PNG', false);?>" alt="logo" style="width: 27px;" />
+            <img src="<?=assets_url('logo.PNG', false);?>" alt="logo" style="width: 27px;" />
           </a>
           <?php endif; ?>
       </div>

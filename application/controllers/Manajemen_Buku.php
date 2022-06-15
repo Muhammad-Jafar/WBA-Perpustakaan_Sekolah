@@ -106,16 +106,12 @@ class Manajemen_Buku extends CI_Controller {
 
 					$this->form_validation->set_rules('id_jenis_buku', 'jenis buku', 'required');
 					$this->form_validation->set_rules('id_kategori_buku', 'kategori buku', 'required');
-					$this->form_validation->set_rules('kode_buku', 'kode buku', 'required|max_length[10]', 
-														array('required' => 'Kode buku harus diisi',
-															  'max_length' => 'Penulisan kode buku salah'));
-					$this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|is_unique[jenis_buku.jenis_buku]',
+					$this->form_validation->set_rules('kode_buku', 'kode buku', 'required', array('required' => 'Kode buku harus diisi'));
+					$this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|is_unique[buku.judul_buku]',
 													 	array( 'required' => 'Data tidak boleh kosong !',
 														 	   'is_unique'=> 'Judul sudah ada' ));
-					$this->form_validation->set_rules('pengarang', 'pengarang buku', 'required', 
-														array('required' => 'Pengarang / penulis harus diisi'));
-					$this->form_validation->set_rules('penerbit', 'penerbit buku', 'required', 
-														array('required' => 'Penerbit harus diisi'));
+					$this->form_validation->set_rules('pengarang', 'pengarang buku', 'required', array('required' => 'Pengarang / penulis harus diisi'));
+					$this->form_validation->set_rules('penerbit', 'penerbit buku', 'required', array('required' => 'Penerbit harus diisi'));
 					$this->form_validation->set_rules('tahun_terbit', 'tahun terbit buku', 'required|max_length[4]', 
 														array('required' => 'Tahun terbit harus diisi',
 															  'max_length' => 'Penulisan tahun terbit salah'));

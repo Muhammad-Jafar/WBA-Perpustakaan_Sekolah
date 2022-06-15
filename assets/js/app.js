@@ -277,7 +277,7 @@ function laporan_index() {
                 data: 'status'
             },
             {
-                title: "Denda (Rp.)",
+                title: "Denda",
                 data: 'denda'
             }
         ]
@@ -313,8 +313,8 @@ function administrator_index() {
             $('td', row).eq(0).html(index + 1);
             if (data ['id_admin']) {
                 var id = data['id_admin'], html = '';
-                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/edit' + id + '\';" class="btn btn-warning mr-2 title="Edit data" > EDIT DATA </button>';
-                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/delete' + id + '\';" class="btn btn-danger btn-icons btn-rounded title="Edit data" > <i class="mdi mdi-delete"> </i> </button>';
+                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/edit/' + id + '\';" class="btn btn-warning mr-2 title="Edit data" > EDIT DATA </button>';
+                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/delete/' + id + '\';" class="btn btn-danger btn-icons btn-rounded title="Edit data" > <i class="mdi mdi-delete"> </i> </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
