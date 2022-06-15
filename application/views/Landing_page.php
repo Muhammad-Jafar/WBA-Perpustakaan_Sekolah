@@ -7,10 +7,7 @@
   <meta name="description" content="Sistem Informasi Perpustakaan" />
   <meta name="author" content="Jafar 131" />
   <title>Sistem Informasi Perpustakaan</title>
-  <link rel="stylesheet" href="<?=assets_url('vendors/iconfonts/mdi/css/materialdesignicons.min.css');?>">
-  <link rel="stylesheet" href="<?=assets_url('vendors/iconfonts/puse-icons-feather/feather.css');?>">
-  <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.base.css');?>">
-  <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.addons.css');?>">
+
   <link rel="stylesheet" href="<?=assets_url('css/style.css', false);?>">
   <link rel="shortcut icon" href="<?=assets_url('images/favicon.png');?>" />
 </head>
@@ -60,11 +57,7 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="<?=assets_url('vendors/js/vendor.bundle.base.js');?>"></script>
-  <script type="text/javascript" src="<?=assets_url('vendors/js/vendor.bundle.addons.js');?>"></script>
-  <script type="text/javascript" src="<?=assets_url('js/off-canvas.js');?>"></script>
-  <script type="text/javascript" src="<?=assets_url('js/misc.js');?>"></script>
-
+  <script type="text/javascript" src="<?=assets_url('js/sb-admin-2.min.js');?>"></script>
 </body>
 
 </html>

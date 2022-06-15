@@ -20,12 +20,13 @@ class M_Peminjaman extends CI_Model {
 
     public function data_peminjaman() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
-								 t.id_siswa, t.id_buku, t.status, t.denda,
+								 t.id_siswa, t.id_buku, t.status, 
                                  s.nama_siswa,
-                                 b.judul_buku')
+                                 b.judul_buku, d.denda')
                       ->from ('transaksi as t')
                       ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
+					  ->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
 					  ->where('status', 'dipinjam')
                       ->get();
         return $q->result();

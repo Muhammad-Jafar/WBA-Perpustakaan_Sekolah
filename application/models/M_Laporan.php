@@ -5,7 +5,7 @@ class M_Laporan extends CI_Model {
 
     public function tabel_laporan() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
-                                t.id_siswa, t.id_buku, t.denda, t.tgl_dikembalikan, t.status,
+                                t.id_siswa, t.id_buku, t.tgl_dikembalikan, t.status,
                                 s.nama_siswa,
                                 b.judul_buku,
 								d.denda')
