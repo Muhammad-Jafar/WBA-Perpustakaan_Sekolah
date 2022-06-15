@@ -13,7 +13,7 @@
   <link rel="shortcut icon" href="<?=assets_url('images/favicon.png');?>" />
 </head>
 
-<body>
+<body class="bg-gradient-primary">
 <div class="container">
   <!-- Outer Row -->
   <div class="row justify-content-center mt-5">
