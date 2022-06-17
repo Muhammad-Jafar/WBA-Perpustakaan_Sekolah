@@ -24,7 +24,7 @@
           <div class="p-5">
             <div class="text-center">
               <img src="<?=assets_url('logo.png', false);?>" width="80">
-                <h1 class="h4 text-gray-900 mb-4 mt-3 ">ADMIN PERPUSTAKAAN</h1>
+                <h1 class="h4 text-gray-700 mb-4 mt-3 font-weight-bold">PERPUSTAKAAN SMAUT</h1>
                 <p>Silahkan masukan username dan password</p>
             </div>
                   

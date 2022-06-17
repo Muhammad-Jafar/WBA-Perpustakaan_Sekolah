@@ -4,6 +4,7 @@
   <script src="<?=assets_url('js/misc.js');?>"></script>  
 
   <script src="<?=assets_url('js/app.js', false);?>"></script>
+  <script src="<?=assets_url('js/jquery-ui.js');?>"></script>
   <script src="<?=assets_url('vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
   <script src="<?=assets_url('vendor/jquery-easing/jquery.easing.min.js');?>"></script>
   <script src="<?=assets_url('js/sb-admin-2.min.js');?>"></script>

@@ -19,7 +19,7 @@ class Manajemen_Buku extends CI_Controller {
 	}
 
 	public function index() {
-		redirect( base_url('dashboard') );
+		redirect( base_url('manajemen_buku') );
 	}
 
 	public function data_buku() {
@@ -65,7 +65,7 @@ class Manajemen_Buku extends CI_Controller {
 	//FUNGSI MENAMBAH DATA
 	public function add_new() {
 		if ( empty( $this->uri->segment('3'))) {
-			redirect (base_url() );
+			redirect (base_url('dashboard') );
 		}
 		$name = $this->uri->segment('3');
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 04:43 PM
+-- Generation Time: Jun 15, 2022 at 06:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -41,9 +41,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `level_user`, `nama_admin`, `username`, `password`, `avatar`) VALUES
-(1, 'admin', 'Abu', 'admin', '12345', 'avatar.png'),
-(2, 'admin', 'Pengelola', 'admin2', '12345', 'avatar1.png'),
-(3, 'kepsek', 'Kepala Sekolah', 'kepsek', '12345', 'avatar2.png');
+(3, 'kepsek', 'Kepala Sekolah', 'kepsek', '12345', 'avatar2.png'),
+(4, 'admin', 'Inisialku', 'superadmin', '827ccb0eea8a706c4c34a16891f84e7b', 'avatar.png'),
+(5, 'admin', 'Novi', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'avatar.png');
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,9 @@ CREATE TABLE `buku` (
 
 INSERT INTO `buku` (`id_buku`, `id_jenis_buku`, `id_kategori_buku`, `kode_buku`, `judul_buku`, `pengarang`, `penerbit`, `tahun_terbit`, `jumlah_halaman`, `qt`) VALUES
 (1, 10, 1, 'BUKU-00001', 'Pengantar Fisika Dasar', 'Robert Dawney Jr', 'MCU', '2018', 210, 12),
-(2, 5, 2, 'BUKU-00002', 'Pengantar Filsafat', 'dr. Strange', 'MCU', '2016', 314, 21);
+(2, 5, 2, 'BUKU-00002', 'Pengantar Filsafat', 'dr. Strange', 'MCU', '2016', 314, 21),
+(3, 5, 2, 'BUKU-00003', 'Filsafat Islam', 'Anonymous', 'Gramedia', '2015', 215, 15),
+(4, 1, 1, 'BUKU-00004', 'Kimia Dasar untuk kelas X', 'Robert Dawney Jr', 'Gramedia', '2018', 260, 12);
 
 -- --------------------------------------------------------
 
@@ -196,30 +198,28 @@ CREATE TABLE `transaksi` (
   `tgl_kembali` date NOT NULL,
   `tgl_dikembalikan` date NOT NULL,
   `status` enum('dipinjam','dikembalikan') NOT NULL,
-  `qt_pinjam` int(4) NOT NULL,
-  `telat` int(3) NOT NULL,
-  `denda` int(12) NOT NULL
+  `qt_pinjam` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `kode_pinjam`, `id_buku`, `id_siswa`, `tgl_pinjam`, `tgl_kembali`, `tgl_dikembalikan`, `status`, `qt_pinjam`, `telat`, `denda`) VALUES
-(1, 'PJ-0001', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(2, 'PJ-0002', 1, 1, '2022-06-01', '2022-06-05', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(3, 'PJ-0003', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(4, 'PJ-0004', 1, 1, '2022-06-07', '2022-06-12', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(5, 'PJ-0005', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(6, 'PJ-0006', 1, 1, '2022-06-01', '2022-06-05', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(7, 'PJ-0007', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(8, 'PJ-0008', 1, 5, '2022-06-12', '2022-06-17', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(9, 'PJ-0009', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(10, 'PJ-0010', 1, 1, '2022-06-14', '2022-06-19', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(11, 'PJ-0011', 2, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(12, 'PJ-0012', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(13, 'PJ-0013', 2, 2, '2022-06-07', '2022-06-12', '2022-06-14', 'dikembalikan', 0, 0, 0),
-(14, 'PJ-0014', 2, 5, '2022-06-11', '2022-06-16', '2022-06-14', 'dikembalikan', 0, 0, 0);
+INSERT INTO `transaksi` (`id_transaksi`, `kode_pinjam`, `id_buku`, `id_siswa`, `tgl_pinjam`, `tgl_kembali`, `tgl_dikembalikan`, `status`, `qt_pinjam`) VALUES
+(1, 'PJ-0001', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0),
+(2, 'PJ-0002', 1, 1, '2022-06-01', '2022-06-05', '2022-06-14', 'dikembalikan', 0),
+(3, 'PJ-0003', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0),
+(4, 'PJ-0004', 1, 1, '2022-06-07', '2022-06-12', '2022-06-14', 'dikembalikan', 0),
+(5, 'PJ-0005', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0),
+(6, 'PJ-0006', 1, 1, '2022-06-01', '2022-06-05', '2022-06-14', 'dikembalikan', 0),
+(7, 'PJ-0007', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0),
+(8, 'PJ-0008', 1, 5, '2022-06-12', '2022-06-17', '2022-06-14', 'dikembalikan', 0),
+(9, 'PJ-0009', 2, 2, '2022-06-10', '2022-06-15', '2022-06-14', 'dikembalikan', 0),
+(10, 'PJ-0010', 1, 1, '2022-06-14', '2022-06-19', '2022-06-14', 'dikembalikan', 0),
+(11, 'PJ-0011', 2, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0),
+(12, 'PJ-0012', 1, 1, '2022-06-05', '2022-06-10', '2022-06-14', 'dikembalikan', 0),
+(13, 'PJ-0013', 2, 2, '2022-06-07', '2022-06-12', '2022-06-14', 'dikembalikan', 0),
+(14, 'PJ-0014', 2, 5, '2022-06-11', '2022-06-16', '2022-06-14', 'dikembalikan', 0);
 
 --
 -- Triggers `transaksi`
@@ -279,13 +279,17 @@ ALTER TABLE `admin`
 -- Indexes for table `buku`
 --
 ALTER TABLE `buku`
-  ADD PRIMARY KEY (`id_buku`);
+  ADD PRIMARY KEY (`id_buku`),
+  ADD KEY `id_jenis_buku` (`id_jenis_buku`,`id_kategori_buku`),
+  ADD KEY `id_kategori_buku` (`id_kategori_buku`);
 
 --
 -- Indexes for table `denda`
 --
 ALTER TABLE `denda`
-  ADD PRIMARY KEY (`id_transaksi`);
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_buku` (`id_buku`,`id_siswa`),
+  ADD KEY `id_siswa` (`id_siswa`);
 
 --
 -- Indexes for table `jenis_buku`
@@ -309,7 +313,9 @@ ALTER TABLE `siswa`
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_buku` (`id_buku`,`id_siswa`),
+  ADD KEY `id_siswa` (`id_siswa`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -319,13 +325,13 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_admin` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_buku` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `denda`
@@ -356,6 +362,32 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `transaksi`
   MODIFY `id_transaksi` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `buku`
+--
+ALTER TABLE `buku`
+  ADD CONSTRAINT `buku_ibfk_1` FOREIGN KEY (`id_jenis_buku`) REFERENCES `jenis_buku` (`id_jenis_buku`),
+  ADD CONSTRAINT `buku_ibfk_2` FOREIGN KEY (`id_kategori_buku`) REFERENCES `kategori_buku` (`id_kategori_buku`);
+
+--
+-- Constraints for table `denda`
+--
+ALTER TABLE `denda`
+  ADD CONSTRAINT `denda_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`),
+  ADD CONSTRAINT `denda_ibfk_2` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`),
+  ADD CONSTRAINT `denda_ibfk_3` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`);
+
+--
+-- Constraints for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`),
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

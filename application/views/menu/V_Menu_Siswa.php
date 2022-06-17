@@ -12,6 +12,12 @@
           <span class="menu-title">Katalog buku</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="<?=base_url('auth');?>">
+        <i class="menu-icon mdi mdi-book-open"></i>
+          <span class="menu-title">Login sebagai admin</span>
+      </a>
+    </li>
   </ul>
 </nav>
 <div class="main-panel">

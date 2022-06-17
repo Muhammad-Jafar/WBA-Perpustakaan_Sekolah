@@ -10,7 +10,7 @@ class M_Laporan extends CI_Model {
                                 b.judul_buku,
 								d.denda')
         ->from ('transaksi as t')
-        ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
+        ->join ('anggota as s', 's.id_siswa = t.id_siswa', 'LEFT')
         ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 		->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
         ->get();
@@ -22,40 +22,25 @@ class M_Laporan extends CI_Model {
 		foreach ($json as $key => $value) {
 			$value->no=$i;
 
-			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
 			$tgl_sekarang = new DateTime();
-			$tgl_dikembalikan = new DateTime( $value->tgl_dikembalikan);
-			$kembalikan = $tgl_dikembalikan->diff($tgl_kembali)->format("%a");
-			$total_denda = $kembalikan * 500;
-
-			if ( $value->status == 'dikembalikan' && $tgl_dikembalikan <= $tgl_kembali ) {
-				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
-			} elseif ($value->status == 'dikembalikan' && $tgl_dikembalikan > $tgl_kembali) {
-				$value->denda ="Telat <b style = 'color: red;font-size:15px;'>".$kembalikan."</b> Hari <br>
-				<span class='badge badge-danger'style=font-size:13px;> Denda Rp.".$total_denda;
-			} elseif ($value->status == 'dipinjam') {
-				$value->denda = "<span class='badge badge-success' style=font-size:13px; >Tidak kena denda</span>";
-			}
-
-			switch ($value->denda) {
-				case 'dikembalikan':
-					$label = 'success';
-				break;
-				case 'telat':
-					$label = 'danger';
-				break;
-			};
-
 			$value->tgl_pinjam = date_format( date_create($value->tgl_pinjam), 'd-m-Y');
 			$value->tgl_kembali = date_format( date_create($value->tgl_kembali), 'd-m-Y');
 			$value->tgl_dikembalikan = date_format( date_create($value->tgl_dikembalikan), 'd-m-Y');
 			
-            if ($value->tgl_kembali > $tgl_sekarang && $value->status == 'dipinjam') {
-                $value->tgl_dikembalikan = "<span class='badge badge-danger' style=font-size:13px; >Belum dikembalikan</span>";
+			// status pinjam
+            if ($value->status == 'dipinjam' && $value->tgl_kembali > $tgl_sekarang) {
+                $value->tgl_dikembalikan = "<span class='badge badge-danger' style= 'font-size:14px; font-weight:normal; '>Belum dikembalikan</span>";
             } 
-            else if ($value->tgl_kembali <= $tgl_sekarang && $value->status == 'dipinjam') {
-                    $value->tgl_dikembalikan = "<span class='badge badge-warning' style=font-size:13px; >Masih dipinjam</span>";
+            else if ( $value->status == 'dipinjam' && $value->tgl_kembali <= $tgl_sekarang ) {
+                    $value->tgl_dikembalikan = "<span class='badge badge-warning' style= 'font-size:14px; font-weight:normal; '>Masih dipinjam</span>";
             }
+
+			$denda = $value->denda;
+			if ($denda <= 0) {
+				$value->denda = "<span class='badge badge-success' style= 'font-size:14px; font-weight:normal;'>Rp." . $denda;
+			} else {
+				$value->denda = "<span class='badge badge-danger' style= 'font-size:14px; font-weight:normal;'>Rp.".$denda;
+			}
 
 			$new_arr[]=$value;
 			$i++;

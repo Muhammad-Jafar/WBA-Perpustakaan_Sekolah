@@ -11,9 +11,6 @@ class Katalog extends CI_Controller {
 		$this->m_katalog = $this->M_Katalog;
 		if ( $this->session->userdata('user_type') == 'siswa') {
 			$this->user_type = 'Siswa';
-			is_siswa(function () {
-				redirect( base_url('katalog') );
-			});
 		}
 	}
 

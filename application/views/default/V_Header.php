@@ -6,10 +6,10 @@
   <meta name="author" content="Jafar 131" />
 
   <title><?=$title_page;?> - Sistem Informasi Perpustakaan</title>
-  <!-- <link rel="stylesheet" href="<?=assets_url('vendors/iconfonts/mdi/css/materialdesignicons.min.css');?>">
+  <link rel="stylesheet" href="<?=assets_url('vendors/iconfonts/mdi/css/materialdesignicons.min.css');?>">
   <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.base.css');?>">
   <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.addons.css');?>">
-  <link rel="stylesheet" href="<?=assets_url('vendors/datatables/datatables.min.css');?>"> -->
+  <!-- <link rel="stylesheet" href="<?=assets_url('vendors/datatables/datatables.min.css');?>"> -->
 
 
   <link rel="stylesheet" href="<?=assets_url('css/style.css', false);?>">

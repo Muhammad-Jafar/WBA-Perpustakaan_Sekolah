@@ -35,10 +35,17 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('data_siswa');?>">
+            <a class="nav-link" data-toggle="collapse" href="#ui-dm" aria-expanded="false" aria-controls="ui-dm">
               <i class="menu-icon mdi mdi-account"></i>
-              <span class="menu-title">Manajemen Data Siswa</span>
+              <span class="menu-title">Data Anggota</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-dm">
+              <ul class="nav flex-column sub-menu">
+                <?=generate_navlink($path_page, 'anggota/siswa', 'Data Siswa');?>
+                <?=generate_navlink($path_page, 'anggota/guru', 'Data Guru');?>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('peminjaman');?>">

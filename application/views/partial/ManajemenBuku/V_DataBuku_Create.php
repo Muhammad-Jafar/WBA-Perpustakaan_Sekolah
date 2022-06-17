@@ -2,7 +2,7 @@
     <div class="content-wrapper">
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
-          <div class="card">
+          <div class="card shadow">
             <div class="card-body">
               <h3 class="card-title"><?=$title_page;?></h3>
               <?php if($this->session->flashdata('msg_alert')) { ?>
@@ -116,7 +116,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
-                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left"> Kembali</button>
+                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left" type="button" onclick="javascript:top.location.href='<?=base_url("manajemen_buku/data_buku"); ?>';"> Kembali</button>
                       <button type="submit" class="btn btn-success mr-2">Tambah data</button>
                       <button class="btn btn-light" type="reset">Hapus</button>
                     </div>

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Peminjaman extends CI_Model {
 
 	public function list_peminjam() {
-		$q = $this->db->select('*')->get('siswa');
+		$q = $this->db->select('*')->get('anggota');
 		return $q->result();
 	}
 
@@ -24,7 +24,7 @@ class M_Peminjaman extends CI_Model {
                                  s.nama_siswa,
                                  b.judul_buku, d.denda')
                       ->from ('transaksi as t')
-                      ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
+                      ->join ('anggota as s', 's.id_siswa = t.id_siswa', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 					  ->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
 					  ->where('status', 'dipinjam')
@@ -70,7 +70,7 @@ class M_Peminjaman extends CI_Model {
         $this->db->like('nama_siswa', $nama_siswa , 'both');
         $this->db->order_by('nama_siswa', 'ASC');
         $this->db->limit(10);
-		return $this->db->get('siswa')->result();
+		return $this->db->get('anggota')->result();
     }
 
 	function search_judul_buku($judul_buku) {

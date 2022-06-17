@@ -95,7 +95,7 @@ function klasifikasi_buku_index() {
 function data_siswa_index() {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'data_siswa/data_siswa_ajax',
+            url: base_url + 'anggota/data_siswa_ajax',
         },
         columns: [{
                 title: "No.",
@@ -106,7 +106,7 @@ function data_siswa_index() {
                 data: 'nama_siswa'
             },
             {
-                title: "Nomor Induk Siswa",
+                title: "NIS",
                 data: 'nis'
             },
             {
@@ -126,8 +126,50 @@ function data_siswa_index() {
             if (data['id_siswa']) {
                 var id = data['id_siswa'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_siswa/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Edit data" ><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_siswa/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger" title="Hapus data" ><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/siswa/' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Edit data" ><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/siswa/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger" title="Hapus data" ><i class="mdi mdi-delete"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
+function data_guru_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'anggota/data_guru_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Nama Guru",
+                data: 'nama_guru'
+            },
+            {
+                title: "NIPD",
+                data: 'nipd'
+            },
+            {
+                title: "Kelas Mengajar",
+                data: 'kelas_ajar'
+            },
+            {
+                title: "Jurusan Mengajar",
+                data: 'jurusan_ajar'
+            },
+            {
+                title: "Pilihan",
+                data: 'id_guru'
+            }],
+        createdRow: function(row, data, index) {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_guru']) {
+                var id = data['id_guru'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/guru/' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Edit data" ><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/guru/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger" title="Hapus data" ><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -228,8 +270,8 @@ function pengembalian_index() {
                 data: 'tgl_dikembalikan'
             },
             {
-                title: "Lama Pinjam",
-                data: 'lama_pinjam'
+                title: "telat Pinjam",
+                data: 'telat'
             },
             {
                 title: "Denda",
@@ -363,8 +405,11 @@ $(document).ready(function()
         case (window.location.href.indexOf('/manajemen_buku/jenis_buku') != -1):
             klasifikasi_buku_index();
             break;
-        case (window.location.href.indexOf('/data_siswa') != -1):
+        case (window.location.href.indexOf('/anggota/siswa') != -1):
             data_siswa_index();
+            break;
+        case (window.location.href.indexOf('/anggota/guru') != -1):
+            data_guru_index();
             break;
         case (window.location.href.indexOf('/peminjaman') != -1):
             peminjaman_index();
