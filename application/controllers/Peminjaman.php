@@ -19,13 +19,31 @@ class Peminjaman extends CI_Controller {
     }
 
     public function index() {
-        $data = generate_page('Data Peminjaman', 'peminjaman', 'Admin');
-		$data_content['title_page'] = 'Data Peminjaman Buku';
-		$data['content'] = $this->load->view('partial/Peminjaman/V_Peminjaman_Read', $data_content, true);
-		$this->load->view('V_Dashboard', $data);
+        redirect( base_url('dashboard'));
     }
 
-    public function data_peminjaman_ajax() {
+	public function siswa() {
+		$data = generate_page('Data Peminjaman Siswa', 'peminjaman/siswa', 'Admin');
+		$data_content['title_page'] = 'Data Peminjaman Buku';
+		$data['content'] = $this->load->view('partial/Peminjaman/V_PeminjamanSiswa_Read', $data_content, true);
+		$this->load->view('V_Dashboard', $data);
+	}
+
+    public function peminjaman_siswa_ajax() {
+		json_dump(function() {
+			$result= $this->m_peminjaman->data_pinjam_list_ajax ( $this->m_peminjaman->data_peminjaman() );
+			return array('data' => $result);
+		});
+	}
+
+	public function guru() {
+		$data = generate_page('Data Peminjaman Guru', 'peminjaman/guru', 'Admin');
+		$data_content['title_page'] = 'Data Peminjaman Buku';
+		$data['content'] = $this->load->view('partial/Peminjaman/V_PeminjamanGuru_Read', $data_content, true);
+		$this->load->view('V_Dashboard', $data);
+	}
+
+    public function peminjaman_guru_ajax() {
 		json_dump(function() {
 			$result= $this->m_peminjaman->data_pinjam_list_ajax ( $this->m_peminjaman->data_peminjaman() );
 			return array('data' => $result);
@@ -82,7 +100,7 @@ class Peminjaman extends CI_Controller {
 
 		$data = generate_page ('Data Peminjaman Buku Perpustakaan', 'peminjaman/add_new', 'Admin');
 		$data_content['title_page'] = 'Tambah peminjaman buku';
-        $data_content['list_siswa'] = $this->m_peminjaman->list_peminjam();
+        $data_content['list_peminjam'] = $this->m_peminjaman->list_peminjam();
         $data_content['list_buku'] = $this->m_peminjaman->list_buku();
 		$data_content['buat_kode'] = $this->m_peminjaman->buatkodepinjam();
 		$data['content'] = $this->load->view('partial/Peminjaman/V_Peminjaman_Create', $data_content, true);

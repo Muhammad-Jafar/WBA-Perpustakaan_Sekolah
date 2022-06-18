@@ -4,7 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Peminjaman extends CI_Model {
 
 	public function list_peminjam() {
-		$q = $this->db->select('*')->get('anggota');
+		$q = $this->db->select('ka.kategori_anggota, 
+							    g.id_guru, g.nama_guru,
+								s.id_siswa, s.nama_siswa')
+					->from ('kategori_anggota as ka')
+					->join ('guru as g', 'g.id_kategori_anggota = ka.id_kategori_anggota', 'LEFT')
+					->join ('siswa as s', 's.id_kategori_anggota = ka.id_kategori_anggota', 'LEFT')
+					->get();
 		return $q->result();
 	}
 
@@ -21,10 +27,14 @@ class M_Peminjaman extends CI_Model {
     public function data_peminjaman() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
 								 t.id_siswa, t.id_buku, t.status, 
+								 ka.kategori_anggota,
                                  s.nama_siswa,
+								 g.nama_guru,
                                  b.judul_buku, d.denda')
                       ->from ('transaksi as t')
-                      ->join ('anggota as s', 's.id_siswa = t.id_siswa', 'LEFT')
+                      ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
+					  ->join ('guru as g', 'g.id_guru = t.id_guru', 'LEFT')
+					  ->join ('kategori_anggota as ka','ka.id_kategori_anggota = g.id_kategori_anggota && ka.id_kategori_anggota = s.id_kategori_anggota', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 					  ->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
 					  ->where('status', 'dipinjam')
@@ -70,7 +80,14 @@ class M_Peminjaman extends CI_Model {
         $this->db->like('nama_siswa', $nama_siswa , 'both');
         $this->db->order_by('nama_siswa', 'ASC');
         $this->db->limit(10);
-		return $this->db->get('anggota')->result();
+		return $this->db->get('siswa')->result();
+    }
+
+	function search_nama_guru($nama_guru) {
+        $this->db->like('nama_guru', $nama_guru , 'both');
+        $this->db->order_by('nama_guru', 'ASC');
+        $this->db->limit(10);
+		return $this->db->get('guru')->result();
     }
 
 	function search_judul_buku($judul_buku) {

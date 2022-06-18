@@ -1,96 +1,74 @@
 
-    <div class="content-wrapper ">
-      <div class="row d-flex- justify-content-center p-2">
+  <div class="content-wrapper ">
+    <div class="row d-flex- justify-content-center p-2">
         
       <!-- CARD PERTAMA -->
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card border-left-dark shadow">
-            <div class="card-body p-3">
-              <div class="clearfix">
-                <div class="float-left">
-                  <i class="mdi mdi-book-open-variant text-dark icon-lg"></i>
-                </div>
-                <div class="float-right">
-                  <p class="text-lg font-weight-bold text-dark text-uppercase">Anggota Perpustakaan</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0"><?=$jumlah_anggota;?> </h3>
-                  </div>
-                </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-m font-weight-bold text-primary text-uppercase mb-1"> Anggota Perpustakaan </div>
+                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"> <?=$jumlah_anggota;?> </div> -->
               </div>
-              <p class="text-muted mt-3 mb-0 float-right">
-                <i class="fas fa-industry fa text-gray-600"></i> Total seluruh anggota perpustakaan
-              </p>
+              <div class="col-auto">
+                <i class="fas fa-users fa-2x text-gray-600"></i>
+              </div>
             </div>
           </div>
         </div>
-
-        <!-- CARD KEDUA -->
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card border-left-danger shadow">
-            <div class="card-body p-3">
-              <div class="clearfix">
-                <div class="float-left">
-                  <i class="mdi mdi-book-open-variant text-danger icon-lg"></i>
-                </div>
-                <div class="float-right">
-                  <p class="text-lg font-weight-bold text-danger text-uppercase">Buku Perpustakaan</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0"><?=$jumlah_buku;?> </h3>
-                  </div>
-                </div>
+      </div>
+      
+      <!-- CARD KEDUA -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-m font-weight-bold text-danger text-uppercase mb-1"> Buku Perpustakaan </div>
+                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"> <?=$jumlah_buku;?> </div> -->
               </div>
-              <p class="text-muted mt-3 mb-0 float-right">
-              <i class="fas fa-industry fa text-gray-600"></i> Total seluruh buku
-              </p>
+              <div class="col-auto">
+                <i class="fas fa-book fa-2x text-gray-600"></i>
+              </div>
             </div>
           </div>
         </div>
-
-        <!-- CARD KETIGA -->
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card border-left-warning shadow">
-            <div class="card-body p-3">
-              <div class="clearfix">
-                <div class="float-left">
-                  <i class="mdi mdi-book-plus text-warning icon-lg"></i>
-                </div>
-                <div class="float-right">
-                  <p class="text-lg font-weight-bold text-warning text-uppercase">Total Buku dipinjam</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0">
-                      <?=$buku_dipinjam;?></h3>
-                  </div>
-                </div>
+      </div>
+       
+      <!-- CARD KETIGA -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-m font-weight-bold text-primary text-uppercase mb-1"> Total Buku dipinjam </div>
+                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"> <?=$buku_dipinjam;?> </div> -->
               </div>
-              <p class="text-muted mt-3 mb-0 float-right">
-                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah buku yang dipinjam
-              </p>
+              <div class="col-auto">
+                <i class="fas fa-book-reader fa-2x text-gray-600"></i>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- CARD KEEMPAT -->
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card border-left-success shadow">
-            <div class="card-body p-3">
-              <div class="clearfix">
-                <div class="float-left">
-                  <i class="mdi mdi-book-minus text-success icon-lg"></i>
-                </div>
-                <div class="float-right">
-                  <p class="text-lg font-weight-bold text-success text-uppercase">Total Buku dikembalikan</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0">
-                      <?=$buku_dikembalikan;?></h3>
-                  </div>
-                </div>
+      <!-- CARD KEEMPAT -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-m font-weight-bold text-success text-uppercase mb-1"> Total Buku dikembalikan </div>
+                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"> <?=$buku_dikembalikan;?> </div> -->
               </div>
-              <p class="text-muted mt-3 mb-0  float-right">
-                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Jumlah buku yang dikembalikan
-              </p>
+              <div class="col-auto">
+                <i class="fas fa-book-open fa-2x text-gray-600"></i>
+              </div>
             </div>
           </div>
         </div>
-
+      </div>
+      
     </div>
   </div>

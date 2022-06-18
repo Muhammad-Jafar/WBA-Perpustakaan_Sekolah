@@ -53,8 +53,8 @@ function list_buku_index() {
             if (data['id_buku']) {
                 var id = data['id_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/data_buku/' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Edit data" ><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/data_buku/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger" title="Hapus data" ><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/data_buku/' + id + '\';" class="btn btn-icons btn-warning " title="Edit data" > <i class="fas fa-edit"></i> </button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/data_buku/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data" > <i class="fas fa-trash"></i> </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -84,8 +84,8 @@ function klasifikasi_buku_index() {
             if (data['id_jenis_buku']) {
                 var id = data['id_jenis_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/jenis_buku/' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Edit data"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/jenis_buku/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger" title="Hapus data"><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/jenis_buku/' + id + '\';" class="btn btn-warning btn-icons" title="Edit data"> <i class="fas fa-edit"></i> </button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/jenis_buku/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data">  <i class="fas fa-trash"></i> </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -126,8 +126,8 @@ function data_siswa_index() {
             if (data['id_siswa']) {
                 var id = data['id_siswa'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/siswa/' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Edit data" ><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/siswa/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger" title="Hapus data" ><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/siswa/' + id + '\';" class="btn btn-warning btn-icons " title="Edit data" > <i class="fas fa-edit"></i> </button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/siswa/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data" > <i class="fas fa-trash"></i> </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -168,8 +168,8 @@ function data_guru_index() {
             if (data['id_guru']) {
                 var id = data['id_guru'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/guru/' + id + '\';" class="btn btn-warning btn-icons btn-rounded" title="Edit data" ><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/guru/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger" title="Hapus data" ><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/guru/' + id + '\';" class="btn btn-warning btn-icons" title="Edit data" > <i class="fas fa-edit"></i> </button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/guru/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data" > <i class="fas fa-trash"></i> </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -229,7 +229,7 @@ function peminjaman_index() {
                 // type = data['id_pengembalian'],
                     id = data['id_transaksi'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success mdi mdi-arrow-right-thick title="Kembalikan buku""> KEMBALIKAN</button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success title="Kembalikan buku" "> <i class="fas fa-arrow-right"></i> KEMBALIKAN</button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -355,8 +355,8 @@ function administrator_index() {
             $('td', row).eq(0).html(index + 1);
             if (data ['id_admin']) {
                 var id = data['id_admin'], html = '';
-                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/edit/' + id + '\';" class="btn btn-warning mr-2 title="Edit data" > EDIT DATA </button>';
-                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/delete/' + id + '\';" class="btn btn-danger btn-icons btn-rounded title="Edit data" > <i class="mdi mdi-delete"> </i> </button>';
+                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/edit/' + id + '\';" class="btn btn-warning mr-2 title="Edit data" > <i class="fas fa-edit"></i> EDIT </button>';
+                html+= '<button type="button" onClick="javascript:top.location.href=\'' + base_url + 'administrator/delete/' + id + '\';" class="btn btn-danger btn-icons title="Edit data" > <i class="fas fa-trash"></i>  </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
