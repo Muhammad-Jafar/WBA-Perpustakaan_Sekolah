@@ -15,21 +15,22 @@
               <?php endif; ?>
 
               <?=form_open('anggota/add_new/guru', array('method'=>'post'));?>
+              <input type="hidden" name="kategori_anggota" value="guru">
 
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Guru</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nama_guru" class="form-control" placeholder="Contoh: Muhammad Jafar"/>
+                        <input type="text" name="nama_anggota" class="form-control" placeholder="Contoh: Muhammad Jafar"/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">NIPD</label>
+                      <label class="col-sm-3 col-form-label">NIP</label>
                       <div class="col-sm-9">
-                        <input type="number" name="nipd" class="form-control" placeholder="NIPD"/>
+                        <input type="number" name="nomor_induk" class="form-control" placeholder="Nomor Induk Pegawai"/>
                       </div>
                     </div>
                   </div>
@@ -40,7 +41,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Kelas Mengajar</label>
                       <div class="col-sm-9">
-                        <select name="kelas_ajar" class="form-control">
+                        <select name="kelas" class="form-control">
                           <option disabled selected>Pilih Kelas</option>
                           <option value="X">X</option>
                           <option value="XI">XI</option>
@@ -53,7 +54,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Jurusan Mengajar</label>
                       <div class="col-sm-9">
-                        <select name="jurusan_ajar" class="form-control">
+                        <select name="jurusan" class="form-control">
                           <option disabled selected>Pilih Jurusan</option>
                           <option value="IPA">IPA</option>
                           <option value="IPS">IPS</option>

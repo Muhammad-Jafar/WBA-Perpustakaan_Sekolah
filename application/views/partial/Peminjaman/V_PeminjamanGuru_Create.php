@@ -21,7 +21,7 @@
                 </div>
               <?php endif; ?>
 
-              <?=form_open('peminjaman/add_new/', array('method'=>'post'));?>
+              <?=form_open('peminjaman/add_new/guru', array('method'=>'post'));?>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
@@ -39,8 +39,8 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Peminjam</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id='namasiswa' name="nama_siswa" placeholder="Cari nama siswa">
-                        <input type="hidden" class="form-control" id='idsiswa' name="id_siswa">
+                        <input type="text" class="form-control" id='namaguru' name="nama_guru" placeholder="Cari nama guru">
+                        <input type="hidden" class="form-control" id='idguru' name="id_guru">
                       </div>
                     </div>
                   </div>
@@ -77,7 +77,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
-                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left" type="button" onclick="javascript:top.location.href='<?=base_url("peminjaman"); ?>';"> Kembali</button>
+                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left" type="button" onclick="javascript:top.location.href='<?=base_url("peminjaman/guru"); ?>';"> Kembali</button>
                       <button type="submit" class="btn btn-success mr-2">Tambah</button>
                       <button class="btn btn-light" type="reset">Hapus</button>
                     </div>

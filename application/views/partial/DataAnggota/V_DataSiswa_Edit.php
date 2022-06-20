@@ -11,23 +11,23 @@
                 <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
-              <?=form_open('anggota/edit/siswa/' . $data_siswa->id_siswa, array('method'=>'post'));?>
-                <input type="hidden" name="id_siswa" value="<?=$data_siswa->id_siswa;?>">
+              <?=form_open('anggota/edit/siswa/' . $data_siswa->id_anggota, array('method'=>'post'));?>
+                <input type="hidden" name="id_anggota" value="<?=$data_siswa->id_anggota;?>">
 
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Siswa</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nama_siswa" value="<?=$data_siswa->nama_siswa;?>" class="form-control"/>
+                        <input type="text" name="nama_anggota" value="<?=$data_siswa->nama_anggota;?>" class="form-control"/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">NIS</label>
+                      <label class="col-sm-3 col-form-label">NIPD</label>
                       <div class="col-sm-9">
-                        <input type="number" name="nis" value="<?=$data_siswa->nis;?>" class="form-control"/>
+                        <input type="number" name="nomor_induk" value="<?=$data_siswa->nomor_induk;?>" class="form-control"/>
                       </div>
                     </div>
                   </div>

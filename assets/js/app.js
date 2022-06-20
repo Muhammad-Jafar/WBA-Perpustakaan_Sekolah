@@ -103,11 +103,11 @@ function data_siswa_index() {
             },
             {
                 title: "Nama Siswa",
-                data: 'nama_siswa'
+                data: 'nama_anggota'
             },
             {
-                title: "NIS",
-                data: 'nis'
+                title: "NIPD",
+                data: 'nomor_induk'
             },
             {
                 title: "Kelas",
@@ -119,12 +119,12 @@ function data_siswa_index() {
             },
             {
                 title: "Pilihan",
-                data: 'id_siswa'
+                data: 'id_anggota'
             }],
         createdRow: function(row, data, index) {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_siswa']) {
-                var id = data['id_siswa'],
+            if (data['id_anggota']) {
+                var id = data['id_anggota'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/siswa/' + id + '\';" class="btn btn-warning btn-icons " title="Edit data" > <i class="fas fa-edit"></i> </button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/siswa/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data" > <i class="fas fa-trash"></i> </button>';
@@ -145,28 +145,28 @@ function data_guru_index() {
             },
             {
                 title: "Nama Guru",
-                data: 'nama_guru'
+                data: 'nama_anggota'
             },
             {
-                title: "NIPD",
-                data: 'nipd'
+                title: "NIP",
+                data: 'nomor_induk'
             },
             {
                 title: "Kelas Mengajar",
-                data: 'kelas_ajar'
+                data: 'kelas'
             },
             {
                 title: "Jurusan Mengajar",
-                data: 'jurusan_ajar'
+                data: 'jurusan'
             },
             {
                 title: "Pilihan",
-                data: 'id_guru'
+                data: 'id_anggota'
             }],
         createdRow: function(row, data, index) {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_guru']) {
-                var id = data['id_guru'],
+            if (data['id_anggota']) {
+                var id = data['id_anggota'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/edit/guru/' + id + '\';" class="btn btn-warning btn-icons" title="Edit data" > <i class="fas fa-edit"></i> </button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'anggota/delete/guru/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data" > <i class="fas fa-trash"></i> </button>';
@@ -176,10 +176,10 @@ function data_guru_index() {
     });
 }
 
-function peminjaman_index() {
+function peminjaman_siswa_index() {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'peminjaman/data_peminjaman_ajax',
+            url: base_url + 'peminjaman/peminjaman_siswa_ajax',
         },
         columns: [{
                 title: "No.",
@@ -192,6 +192,66 @@ function peminjaman_index() {
             {
                 title: "Nama Peminjam",
                 data: 'nama_siswa'
+            },
+            {
+                title: "Judul Buku",
+                data: 'judul_buku'
+            },
+            {
+                title: "Tanggal Pinjam",
+                data: 'tgl_pinjam'
+            },
+            {
+                title: "Tanggal Kembali",
+                data: 'tgl_kembali'
+            },
+            {
+                title: "Lama Pinjam",
+                data: 'lama_pinjam'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            },
+            {
+                title: "Denda",
+                data: 'denda'
+            },
+            {
+                title: "Pilihan",
+                data: 'id_transaksi'
+            }
+        ],
+        createdRow: function(row, data, index) {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_transaksi']) {
+                var 
+                // type = data['id_pengembalian'],
+                    id = data['id_transaksi'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success title="Kembalikan buku" "> <i class="fas fa-arrow-right"></i> KEMBALIKAN</button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
+function peminjaman_guru_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'peminjaman/peminjaman_guru_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Kode Pinjam",
+                data: 'kode_pinjam'
+            },
+            {
+                title: "Nama Peminjam",
+                data: 'nama_guru'
             },
             {
                 title: "Judul Buku",
@@ -411,8 +471,11 @@ $(document).ready(function()
         case (window.location.href.indexOf('/anggota/guru') != -1):
             data_guru_index();
             break;
-        case (window.location.href.indexOf('/peminjaman') != -1):
-            peminjaman_index();
+        case (window.location.href.indexOf('/peminjaman/siswa') != -1):
+            peminjaman_siswa_index();
+            break;
+        case (window.location.href.indexOf('/peminjaman/guru') != -1):
+            peminjaman_guru_index();
             break;
         case (window.location.href.indexOf('/pengembalian') != -1):
             pengembalian_index()

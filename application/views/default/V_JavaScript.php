@@ -11,7 +11,7 @@
   <script src="<?=assets_url('js/jquery-ui.js');?>"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="<?=assets_url('vendor/jquery/jquery.min.js');?>"></script>
+  <!-- <script src="<?=assets_url('vendor/jquery/jquery.min.js');?>"></script> // jquery ini bentrok sama jquery-ui --> 
   <script src="<?=assets_url('vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 
   <!-- Core plugin JavaScript-->
@@ -25,7 +25,7 @@
 
   <script src="<?=assets_url('vendor/datatables/jquery.dataTables.min.js');?>"></script>
   <script src="<?=assets_url('vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
+  <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  -->
 
   <script type="text/javascript"> // pencarian auto complete nama siswa
         $(document).ready(function() {
@@ -38,6 +38,18 @@
             });
         });
   </script>
+
+  <script type="text/javascript"> // pencarian auto complete nama siswa
+          $(document).ready(function() {
+              $( "#namaguru" ).autocomplete({
+                source: "<?php echo site_url('peminjaman/get_nama_guru/?');?>",
+                select: function(event, ui) {
+                  $('[name="nama_guru"]').val(ui.item.value);
+                  $('[name="id_guru"]').val(ui.item.nama_guru);
+                }
+              });
+          });
+    </script>
 
   <script type="text/javascript"> // pencarian auto complete judul buku
         $(document).ready(function() {

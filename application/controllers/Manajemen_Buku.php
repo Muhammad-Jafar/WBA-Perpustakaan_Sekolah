@@ -95,7 +95,7 @@ class Manajemen_Buku extends CI_Controller {
 			case 'data_buku' : 
 				if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 					$id_jenis_buku = $this->security->xss_clean( $this->input->post('id_jenis_buku'));
-					$id_kategori_buku = $this->security->xss_clean( $this->input->post('id_kategori_buku'));
+					$kategori_buku = $this->security->xss_clean( $this->input->post('kategori_buku'));
 					$kode_buku = $this->security->xss_clean( $this->input->post('kode_buku'));
 					$judul_buku = $this->security->xss_clean( $this->input->post('judul_buku'));
 					$pengarang = $this->security->xss_clean( $this->input->post('pengarang'));
@@ -105,7 +105,7 @@ class Manajemen_Buku extends CI_Controller {
 					$qt = $this->security->xss_clean( $this->input->post('qt'));
 
 					$this->form_validation->set_rules('id_jenis_buku', 'jenis buku', 'required');
-					$this->form_validation->set_rules('id_kategori_buku', 'kategori buku', 'required');
+					$this->form_validation->set_rules('kategori_buku', 'kategori buku', 'required');
 					$this->form_validation->set_rules('kode_buku', 'kode buku', 'required', array('required' => 'Kode buku harus diisi'));
 					$this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|is_unique[buku.judul_buku]',
 													 	array( 'required' => 'Data tidak boleh kosong !',
@@ -127,7 +127,7 @@ class Manajemen_Buku extends CI_Controller {
 						redirect(base_url('manajemen_buku/add_new/'. $name));
 					}
 
-					$this->m_manajemenbuku->data_buku_add_new( $id_jenis_buku, $id_kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
+					$this->m_manajemenbuku->data_buku_add_new( $id_jenis_buku, $kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 															   $tahun_terbit, $jumlah_halaman, $qt );
 					redirect(base_url('manajemen_buku/'. $name));
 				}
@@ -135,7 +135,6 @@ class Manajemen_Buku extends CI_Controller {
 				$data = generate_page ('Tambah data buku', 'manajemen_buku/add_new/data_buku', 'Admin');
 				$data_content['title_page'] = 'Tambah data buku';
 				$data_content['kode_buku'] = $this->m_manajemenbuku->kodebuku();
-				$data_content['kategori_buku'] = $this->m_manajemenbuku->kategori_buku();
 				$data_content['klasifikasi_buku'] = $this->m_manajemenbuku->klasifikasi_buku();
 				$data['content'] = $this->load->view('partial/ManajemenBuku/V_DataBuku_Create', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
@@ -218,7 +217,7 @@ class Manajemen_Buku extends CI_Controller {
 				if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 					$id = $this->security->xss_clean( $this->input->post('id_buku'));
 					$id_jenis_buku = $this->security->xss_clean( $this->input->post('id_jenis_buku'));
-					$id_kategori_buku = $this->security->xss_clean( $this->input->post('id_kategori_buku'));
+					$kategori_buku = $this->security->xss_clean( $this->input->post('kategori_buku'));
 					$kode_buku = $this->security->xss_clean( $this->input->post('kode_buku'));
 					$judul_buku = $this->security->xss_clean( $this->input->post('judul_buku'));
 					$pengarang = $this->security->xss_clean( $this->input->post('pengarang'));
@@ -229,7 +228,7 @@ class Manajemen_Buku extends CI_Controller {
 
 					$this->form_validation->set_rules('id_buku', 'ID buku', 'required');
 					$this->form_validation->set_rules('id_jenis_buku', 'jenis buku', 'required');
-					$this->form_validation->set_rules('id_kategori_buku', 'kategori buku', 'required');
+					$this->form_validation->set_rules('kategori_buku', 'kategori buku', 'required');
 					$this->form_validation->set_rules('kode_buku', 'kode buku', 'required|max_length[10]', 
 														array('required' => 'Kode buku harus diisi',
 															  'max_length' => 'Penulisan kode buku salah'));
@@ -255,7 +254,7 @@ class Manajemen_Buku extends CI_Controller {
 						redirect(base_url('manajemen_buku/edit/'. $name . '/' . $id) );
 					}
 
-					$this->m_manajemenbuku->data_buku_update( $id, $id_jenis_buku, $id_kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
+					$this->m_manajemenbuku->data_buku_update( $id, $id_jenis_buku, $kategori_buku, $kode_buku, $judul_buku, $pengarang, $penerbit,
 															   $tahun_terbit, $jumlah_halaman, $qt );
 					redirect(base_url('manajemen_buku/'. $name));
 				}
@@ -263,7 +262,6 @@ class Manajemen_Buku extends CI_Controller {
 				$data = generate_page ('Ubah data buku', 'manajemen_buku/edit/' . $name . '/' . $id, 'Admin');
 				$data_content['title_page'] = 'Ubah data buku';
 				$data_content['data_buku'] = $this->m_manajemenbuku->get_data_buku($id);
-				$data_content['kategori_buku'] = $this->m_manajemenbuku->kategori_buku();
 				$data_content['jenis_buku'] = $this->m_manajemenbuku->klasifikasi_buku();
 				$data['content'] = $this->load->view('partial/ManajemenBuku/V_DataBuku_Edit', $data_content, true);
 				$this->load->view('V_Dashboard', $data);

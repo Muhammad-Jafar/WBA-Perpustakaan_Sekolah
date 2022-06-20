@@ -15,8 +15,8 @@
             <?php endif; ?>
 
             <div class="card-tools">
-              <div class="input-group" style="width:270px;">
-                <button type="button" onclick="javascript:top.location.href='<?=base_url("/peminjaman/add_new/guru");?>';" class="btn btn-block btn-success"><i class="mdi mdi-plus"></i>Tambah Data Peminjaman</button>
+              <div class="input-group">
+                <button type="button" onclick="javascript:top.location.href='<?=base_url("/peminjaman/add_new/guru");?>';" class="btn btn-block btn-success col-md-2"><i class="fas fa-plus"></i>Tambah Data Peminjaman</button>
               </div>
             </div>
 

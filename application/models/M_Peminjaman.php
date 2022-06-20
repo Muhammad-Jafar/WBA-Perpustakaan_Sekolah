@@ -3,13 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Peminjaman extends CI_Model {
 
-	public function list_peminjam() {
+	public function list_peminjam_siswa() {
 		$q = $this->db->select('ka.kategori_anggota, 
-							    g.id_guru, g.nama_guru,
 								s.id_siswa, s.nama_siswa')
 					->from ('kategori_anggota as ka')
-					->join ('guru as g', 'g.id_kategori_anggota = ka.id_kategori_anggota', 'LEFT')
 					->join ('siswa as s', 's.id_kategori_anggota = ka.id_kategori_anggota', 'LEFT')
+					->get();
+		return $q->result();
+	}
+
+	public function list_peminjam_guru() {
+		$q = $this->db->select('ka.kategori_anggota, 
+							    g.id_guru, g.nama_guru')
+					->from ('kategori_anggota as ka')
+					->join ('guru as g', 'g.id_kategori_anggota = ka.id_kategori_anggota', 'LEFT')
 					->get();
 		return $q->result();
 	}
@@ -24,20 +31,32 @@ class M_Peminjaman extends CI_Model {
 		return $q->result();
 	}
 
-    public function data_peminjaman() {
+    public function data_peminjaman_siswa() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
 								 t.id_siswa, t.id_buku, t.status, 
-								 ka.kategori_anggota,
                                  s.nama_siswa,
-								 g.nama_guru,
                                  b.judul_buku, d.denda')
                       ->from ('transaksi as t')
                       ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
-					  ->join ('guru as g', 'g.id_guru = t.id_guru', 'LEFT')
-					  ->join ('kategori_anggota as ka','ka.id_kategori_anggota = g.id_kategori_anggota && ka.id_kategori_anggota = s.id_kategori_anggota', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 					  ->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
-					  ->where('status', 'dipinjam')
+					  ->where('t.status', 'dipinjam')
+					  ->where('t.id_siswa !=', '0')
+                      ->get();
+        return $q->result();
+    }
+
+	public function data_peminjaman_guru() {
+        $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
+								 t.id_guru, t.id_buku, t.status, 
+								 g.nama_guru,
+                                 b.judul_buku, d.denda')
+                      ->from ('transaksi as t')
+					  ->join ('guru as g', 'g.id_guru = t.id_guru', 'LEFT')
+                      ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
+					  ->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
+					  ->where('t.status', 'dipinjam')
+					  ->where('t.id_guru !=', '0')
                       ->get();
         return $q->result();
     }
@@ -50,6 +69,8 @@ class M_Peminjaman extends CI_Model {
 				case 'dipinjam':
 					$label = 'warning';
 				break;
+				case 'dikembalikan':
+					$label = 'success';
 			};
 
 			$tgl_kembali = new DateTime( $value->tgl_kembali); // hitung hari telat kembalikan
@@ -97,7 +118,7 @@ class M_Peminjaman extends CI_Model {
         return $this->db->get('buku')->result();
     }
 
-	public function peminjaman_add_new( $id_siswa, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali) {
+	public function peminjaman_add_new_siswa( $id_siswa, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali) {
 		$d_t_d = array( 'id_siswa'   	=> $id_siswa,
 						'id_buku' 	 	=> $id_buku,
 						'kode_pinjam'	=> $kode_pinjam,
@@ -109,8 +130,28 @@ class M_Peminjaman extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Transaksi peminjam baru berhasil ditambahkan');
 	}
 
-	public function minstok( $id_siswa,  $id_buku, $tgl_kembali ) {
+	public function minstok_siswa( $id_siswa,  $id_buku, $tgl_kembali ) {
 		$d_t_d = array( 'id_siswa'   	=> $id_siswa,
+						'id_buku' 	 	=> $id_buku,
+						'tgl_kembali'	=> $tgl_kembali );
+		
+		$this->db->insert('denda', $d_t_d);
+	}
+
+	public function peminjaman_add_new_guru( $id_guru, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali) {
+		$d_t_d = array( 'id_guru'   	=> $id_guru,
+						'id_buku' 	 	=> $id_buku,
+						'kode_pinjam'	=> $kode_pinjam,
+						'qt_pinjam'		=> $qt_pinjam,
+						'tgl_pinjam' 	=> $tgl_pinjam,
+						'tgl_kembali' 	=> $tgl_kembali );
+		
+		$this->db->insert('transaksi', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Transaksi peminjam baru berhasil ditambahkan');
+	}
+
+	public function minstok_guru( $id_guru,  $id_buku, $tgl_kembali ) {
+		$d_t_d = array( 'id_guru'   	=> $id_guru,
 						'id_buku' 	 	=> $id_buku,
 						'tgl_kembali'	=> $tgl_kembali );
 		

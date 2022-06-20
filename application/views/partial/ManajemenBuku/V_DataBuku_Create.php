@@ -32,11 +32,10 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Kategori Buku</label>
                       <div class="col-sm-5">
-                        <select name="id_kategori_buku" class="form-control">
+                        <select name="kategori_buku" class="form-control">
                             <option disabled selected>Pilih kategori Buku</option>
-                              <?php foreach($kategori_buku as $kb) { ?>
-                                <option value="<?=$kb->id_kategori_buku;?>"> <?=$kb->kategori_buku;?></option>
-                              <?php } ?>
+                            <option value="Teks-pelajaran">Buku teks pelajaran</option>
+                            <option value="Non Teks-pelajaran">Buku non teks pelajaran</option>
                         </select>
                       </div>
                     </div>

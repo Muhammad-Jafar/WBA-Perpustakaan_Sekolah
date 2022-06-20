@@ -7,7 +7,6 @@
   <meta name="author" content="Jafar 131" />
 
   <title><?=$title_page;?> - Sistem Informasi Perpustakaan</title>
-  <!-- <link rel="stylesheet" href="<?=assets_url('vendors/iconfonts/mdi/css/materialdesignicons.min.css');?>"> -->
   <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.base.css');?>">
   <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.addons.css');?>">
 
@@ -32,7 +31,7 @@
   
   
   <!-- CUSTOM FONT & SELECT2 UI -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/> -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css"> -->
   
 </head>

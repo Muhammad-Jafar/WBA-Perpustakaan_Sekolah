@@ -14,21 +14,22 @@
               <?php endif; ?>
 
               <?=form_open('anggota/add_new/siswa', array('method'=>'post'));?>
+              <input type="hidden" name="kategori_anggota" value="siswa">
 
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Siswa</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nama_siswa" class="form-control" placeholder="Contoh: Muhammad Jafar"/>
+                        <input type="text" name="nama_anggota" class="form-control" placeholder="Contoh: Muhammad Jafar"/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">NIS</label>
+                      <label class="col-sm-3 col-form-label">NIPD</label>
                       <div class="col-sm-9">
-                        <input type="number" name="nis" class="form-control" placeholder="Nomor Induk Sekolah"/>
+                        <input type="number" name="nomor_induk" class="form-control" placeholder="Nomor Induk Sekolah"/>
                       </div>
                     </div>
                   </div>

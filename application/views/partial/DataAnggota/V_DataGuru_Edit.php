@@ -11,23 +11,23 @@
                 <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
-              <?=form_open('anggota/edit/guru/' . $data_guru->id_guru, array('method'=>'post'));?>
-                <input type="hidden" name="id_guru" value="<?= $data_guru->id_guru; ?>">
+              <?=form_open('anggota/edit/guru/' . $data_guru->id_anggota, array('method'=>'post'));?>
+                <input type="hidden" name="id_anggota" value="<?= $data_guru->id_anggota; ?>">
 
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Guru</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nama_guru" value="<?= $data_guru->nama_guru; ?>" class="form-control"/>
+                        <input type="text" name="nama_anggota" value="<?= $data_guru->nama_anggota; ?>" class="form-control"/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">NIPD</label>
+                      <label class="col-sm-3 col-form-label">NIP</label>
                       <div class="col-sm-9">
-                        <input type="number" name="nipd" value="<?= $data_guru->nipd; ?>" class="form-control"/>
+                        <input type="number" name="nomor_induk" value="<?= $data_guru->nomor_induk; ?>" class="form-control"/>
                       </div>
                     </div>
                   </div>
@@ -38,11 +38,11 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Kelas Mengajar</label>
                       <div class="col-sm-9">
-                        <select name="kelas_ajar" class="form-control">
+                        <select name="kelas" class="form-control">
                           <option disabled selected>Pilih Kelas</option>
-                          <option value="X" <?=( ($data_guru->kelas_ajar == 'X') ? 'selected' : '');?>>X</option>
-                          <option value="XI" <?=( ($data_guru->kelas_ajar == 'XI') ? 'selected' : '');?>>XI</option>
-                          <option value="XII" <?=( ($data_guru->kelas_ajar == 'XII') ? 'selected' : '');?>>XII</option>
+                          <option value="X" <?=( ($data_guru->kelas == 'X') ? 'selected' : '');?>>X</option>
+                          <option value="XI" <?=( ($data_guru->kelas == 'XI') ? 'selected' : '');?>>XI</option>
+                          <option value="XII" <?=( ($data_guru->kelas == 'XII') ? 'selected' : '');?>>XII</option>
                         </select>
                       </div>
                     </div>
@@ -51,10 +51,10 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Jurusan Mengajar</label>
                       <div class="col-sm-9">
-                        <select name="jurusan_ajar" class="form-control">
+                        <select name="jurusan" class="form-control">
                           <option disabled selected>Pilih Kelas</option>
-                          <option value="IPA" <?=( ($data_guru->jurusan_ajar == 'IPA') ? 'selected' : '');?>>IPA</option>
-                          <option value="IPS" <?=( ($data_guru->jurusan_ajar == 'IPS') ? 'selected' : '');?>>IPS</option>
+                          <option value="IPA" <?=( ($data_guru->jurusan == 'IPA') ? 'selected' : '');?>>IPA</option>
+                          <option value="IPS" <?=( ($data_guru->jurusan == 'IPS') ? 'selected' : '');?>>IPS</option>
                         </select>
                       </div>
                     </div>
