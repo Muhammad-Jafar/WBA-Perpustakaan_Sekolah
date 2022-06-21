@@ -124,9 +124,7 @@
               <th>Jenis Buku</th>
               <th>Judul Buku</th>
               <th>Nama Peminjam</th>
-              <th>NIS</th>
-              <th>Kelas</th>
-              <th>Jurusan</th>
+              <th>NIPD</th>
               <th>Tanggal Pinjam</th>
               <th>Tanggal Kembali</th>
               <th>Status</th>
@@ -140,10 +138,8 @@
                 <td><?php echo $tp->kategori_buku; ?></td>
                 <td><?php echo $tp->jenis_buku; ?></td>
                 <td><?php echo $tp->judul_buku; ?></td>
-                <td><?php echo $tp->nama_siswa; ?></td>
-                <td><?php echo $tp->nis; ?></td>
-                <td><?php echo $tp->kelas; ?></td>
-                <td><?php echo $tp->jurusan; ?></td>
+                <td><?php echo $tp->nama_anggota; ?></td>
+                <td><?php echo $tp->nomor_induk; ?></td>
                 <td><?php echo $tp->tgl_pinjam; ?></td>
                 <td><?php echo $tp->tgl_kembali; ?></td>
                 <td><?php echo $tp->status; ?></td>
@@ -162,9 +158,7 @@
               <th>Jenis Buku</th>
               <th>Judul Buku</th>
               <th>Nama Peminjam</th>
-              <th>NIS</th>
-              <th>Kelas</th>
-              <th>Jurusan</th>
+              <th>NIP</th>
               <th>Tanggal Pinjam</th>
               <th>Tanggal Kembali</th>
               <th>Status</th>
@@ -178,10 +172,8 @@
                 <td><?php echo $ntp->kategori_buku; ?></td>
                 <td><?php echo $ntp->jenis_buku; ?></td>
                 <td><?php echo $ntp->judul_buku; ?></td>
-                <td><?php echo $ntp->nama_siswa; ?></td>
-                <td><?php echo $ntp->nis; ?></td>
-                <td><?php echo $ntp->kelas; ?></td>
-                <td><?php echo $ntp->jurusan; ?></td>
+                <td><?php echo $ntp->nama_anggota; ?></td>
+                <td><?php echo $ntp->nomor_induk; ?></td>
                 <td><?php echo $ntp->tgl_pinjam; ?></td>
                 <td><?php echo $ntp->tgl_kembali; ?></td>
                 <td><?php echo $ntp->status; ?></td>

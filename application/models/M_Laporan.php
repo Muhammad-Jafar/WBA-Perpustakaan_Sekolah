@@ -5,12 +5,12 @@ class M_Laporan extends CI_Model {
 
     public function tabel_laporan() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
-                                t.id_siswa, t.id_buku, t.tgl_dikembalikan, t.status,
-                                s.nama_siswa,
+                                t.id_anggota, t.id_buku, t.tgl_dikembalikan, t.status,
+                                a.nama_anggota, a.kategori_anggota,
                                 b.judul_buku,
 								d.denda')
         ->from ('transaksi as t')
-        ->join ('anggota as s', 's.id_siswa = t.id_siswa', 'LEFT')
+        ->join ('anggota as a', 'a.id_anggota = t.id_anggota', 'LEFT')
         ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 		->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
         ->get();
@@ -50,37 +50,33 @@ class M_Laporan extends CI_Model {
 
 	// BAGIAN CETAK LAPORAN DAN EKSPOR KE EXCEL
 	public function pinjam_buku_tp() {
-        $q = $this->db->select('t.tgl_pinjam, t.tgl_kembali, t.id_siswa, t.id_buku, t.status,
-                                s.nama_siswa, s.nis, s.kelas, s.jurusan,
-								b.judul_buku,
+        $q = $this->db->select('t.tgl_pinjam, t.tgl_kembali, t.id_anggota, t.id_buku, t.status,
+                                a.nama_anggota, a.nomor_induk, a.kategori_anggota,
+								b.judul_buku, b.kategori_buku,
                                 jb.jenis_buku,
-								kb.kategori_buku,
 								d.telat, d.denda')
         ->from ('transaksi as t')
-        ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
+        ->join ('anggota as a', 'a.id_anggota = t.id_anggota', 'LEFT')
         ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 		->join ('jenis_buku as jb', 'jb.id_jenis_buku = b.id_jenis_buku', 'LEFT')
-		->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
 		->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
-		->where ('kb.kategori_buku', 'Teks-pelajaran')
+		->where ('b.kategori_buku', 'Teks-pelajaran')
         ->get();
         return $q->result();
     }
 
 	public function pinjam_buku_ntp() {
-        $q = $this->db->select('t.tgl_pinjam, t.tgl_kembali, t.id_siswa, t.id_buku, t.status,
-                                s.nama_siswa, s.nis, s.kelas, s.jurusan,
-								b.judul_buku,
-                                jb.jenis_buku,
-								kb.kategori_buku,
+        $q = $this->db->select('t.tgl_pinjam, t.tgl_kembali, t.id_anggota, t.id_buku, t.status,
+								a.nama_anggota, a.nomor_induk, a.kategori_anggota,
+								b.judul_buku, b.kategori_buku,
+								jb.jenis_buku,
 								d.telat, d.denda')
         ->from ('transaksi as t')
-        ->join ('siswa as s', 's.id_siswa = t.id_siswa', 'LEFT')
+		->join ('anggota as a', 'a.id_anggota = t.id_anggota', 'LEFT')
         ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 		->join ('jenis_buku as jb', 'jb.id_jenis_buku = b.id_jenis_buku', 'LEFT')
-		->join ('kategori_buku as kb', 'kb.id_kategori_buku = b.id_kategori_buku', 'LEFT')
 		->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
-		->where ('kb.kategori_buku', 'Non Teks-pelajaran')
+		->where ('b.kategori_buku', 'Non Teks-pelajaran')
         ->get();
         return $q->result();
     }

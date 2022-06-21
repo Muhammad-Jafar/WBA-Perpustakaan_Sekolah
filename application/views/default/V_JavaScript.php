@@ -25,27 +25,27 @@
 
   <script src="<?=assets_url('vendor/datatables/jquery.dataTables.min.js');?>"></script>
   <script src="<?=assets_url('vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  -->
+
 
   <script type="text/javascript"> // pencarian auto complete nama siswa
         $(document).ready(function() {
             $( "#namasiswa" ).autocomplete({
               source: "<?php echo site_url('peminjaman/get_nama_siswa/?');?>",
               select: function(event, ui) {
-                $('[name="nama_siswa"]').val(ui.item.value);
-                $('[name="id_siswa"]').val(ui.item.nama_siswa);
+                $('[name="nama_anggota"]').val(ui.item.value);
+                $('[name="id_anggota"]').val(ui.item.nama_anggota);
               }
             });
         });
   </script>
 
-  <script type="text/javascript"> // pencarian auto complete nama siswa
+  <script type="text/javascript"> // pencarian auto complete nama guru
           $(document).ready(function() {
               $( "#namaguru" ).autocomplete({
                 source: "<?php echo site_url('peminjaman/get_nama_guru/?');?>",
                 select: function(event, ui) {
-                  $('[name="nama_guru"]').val(ui.item.value);
-                  $('[name="id_guru"]').val(ui.item.nama_guru);
+                  $('[name="nama_anggota"]').val(ui.item.value);
+                  $('[name="id_anggota"]').val(ui.item.nama_anggota);
                 }
               });
           });
@@ -58,7 +58,6 @@
               select: function(event, ui) {
                 $('[name="judul_buku"]').val(ui.item.value);
                 $('[name="id_buku"]').val(ui.item.judul_buku);
-                $('[name="id_kategori_buku"]').val(ui.item.kategori_buku);
               }
             });
         });

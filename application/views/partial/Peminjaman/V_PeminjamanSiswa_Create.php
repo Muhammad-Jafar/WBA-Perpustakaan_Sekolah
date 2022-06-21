@@ -39,8 +39,8 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Peminjam</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id='namasiswa' name="nama_siswa" placeholder="Cari nama siswa">
-                        <input type="hidden" class="form-control" id='idsiswa' name="id_siswa">
+                        <input type="text" class="form-control" id='namasiswa' name="nama_anggota" placeholder="Cari nama siswa">
+                        <input type="hidden" class="form-control" id='idsiswa' name="id_anggota">
                       </div>
                     </div>
                   </div>
@@ -60,7 +60,6 @@
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="judulbuku" name="judul_buku" placeholder="Cari judul buku">
                         <input type="hidden" class="form-control" id="idbuku" name="id_buku">
-                        <input type="hidden" class="form-control" id="idkategoribuku" name="id_kategori_buku">
                       </div>
                     </div>
                   </div>

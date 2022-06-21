@@ -55,7 +55,7 @@ class Peminjaman extends CI_Controller {
             $result = $this->m_peminjaman->search_nama_siswa($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-				$arr_result[] = array ( 'nama_siswa' => $row->id_siswa, 'label' => $row->nama_siswa );
+				$arr_result[] = array ( 'nama_anggota' => $row->id_anggota, 'label' => $row->nama_anggota );
                 echo json_encode($arr_result);
             }
         }
@@ -66,7 +66,7 @@ class Peminjaman extends CI_Controller {
             $result = $this->m_peminjaman->search_nama_guru($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-				$arr_result[] = array ( 'nama_guru' => $row->id_guru, 'label' => $row->nama_guru );
+				$arr_result[] = array ( 'nama_anggota' => $row->id_anggota, 'label' => $row->nama_anggota );
                 echo json_encode($arr_result);
             }
         }
@@ -77,7 +77,7 @@ class Peminjaman extends CI_Controller {
             $result = $this->m_peminjaman->search_judul_buku($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-                $arr_result[] = array ( 'judul_buku' => $row->id_buku, 'label' => $row->judul_buku, 'kategori_buku'=> $row->id_kategori_buku);
+                $arr_result[] = array ( 'judul_buku' => $row->id_buku, 'label' => $row->judul_buku);
                 echo json_encode($arr_result);
             }
         }
@@ -92,14 +92,14 @@ class Peminjaman extends CI_Controller {
 		switch ($name) {
 			case 'siswa' :
 				if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
-					$id_siswa = $this->security->xss_clean( $this->input->post('id_siswa'));
+					$id_anggota = $this->security->xss_clean( $this->input->post('id_anggota'));
 					$kode_pinjam = $this->security->xss_clean( $this->input->post('kode_pinjam'));
 					$id_buku = $this->security->xss_clean( $this->input->post('id_buku'));
 					$qt_pinjam = $this->security->xss_clean( $this->input->post('qt_pinjam'));
 					$tgl_pinjam = $this->security->xss_clean( $this->input->post('tgl_pinjam'));
 					$tgl_kembali = $this->security->xss_clean( $this->input->post('tgl_kembali'));
 		
-					$this->form_validation->set_rules('id_siswa', 'ID siswa', 'required', array( 'required' => 'Nama siswa harus diisi'));
+					$this->form_validation->set_rules('id_anggota', 'ID anggota', 'required', array( 'required' => 'Nama anggota harus diisi'));
 					$this->form_validation->set_rules('kode_pinjam', 'Kode pinjam', 'required', array( 'required' => 'Kode pinjam harus diisi'));
 					$this->form_validation->set_rules('qt_pinjam', 'jumlah pinjam', 'required', array( 'required' => 'jumlah pinjam harus diisi'));
 					$this->form_validation->set_rules('id_buku', 'judul buku', 'required', array('required' => 'Judul buku tidak boleh kosong !'));
@@ -111,8 +111,8 @@ class Peminjaman extends CI_Controller {
 						redirect(base_url('peminjaman/add_new/siswa'));
 					}
 		
-					$this->m_peminjaman->peminjaman_add_new_siswa( $id_siswa, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali);
-					$this->m_peminjaman->minstok_siswa($id_siswa, $id_buku, $tgl_kembali );
+					$this->m_peminjaman->peminjaman_add_new( $id_anggota, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali);
+					$this->m_peminjaman->minstok($id_anggota, $id_buku, $tgl_kembali );
 					redirect(base_url('peminjaman/siswa'));
 				}
 		
@@ -127,14 +127,14 @@ class Peminjaman extends CI_Controller {
 
 			case 'guru' :
 				if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
-					$id_guru = $this->security->xss_clean( $this->input->post('id_guru'));
+					$id_anggota = $this->security->xss_clean( $this->input->post('id_anggota'));
 					$kode_pinjam = $this->security->xss_clean( $this->input->post('kode_pinjam'));
 					$id_buku = $this->security->xss_clean( $this->input->post('id_buku'));
 					$qt_pinjam = $this->security->xss_clean( $this->input->post('qt_pinjam'));
 					$tgl_pinjam = $this->security->xss_clean( $this->input->post('tgl_pinjam'));
 					$tgl_kembali = $this->security->xss_clean( $this->input->post('tgl_kembali'));
 		
-					$this->form_validation->set_rules('id_guru', 'ID guru', 'required', array( 'required' => 'Nama guru harus diisi'));
+					$this->form_validation->set_rules('id_anggota', 'ID anggota', 'required', array( 'required' => 'Nama anggota harus diisi'));
 					$this->form_validation->set_rules('kode_pinjam', 'Kode pinjam', 'required', array( 'required' => 'Kode pinjam harus diisi'));
 					$this->form_validation->set_rules('qt_pinjam', 'jumlah pinjam', 'required', array( 'required' => 'jumlah pinjam harus diisi'));
 					$this->form_validation->set_rules('id_buku', 'judul buku', 'required', array('required' => 'Judul buku tidak boleh kosong !'));
@@ -146,8 +146,8 @@ class Peminjaman extends CI_Controller {
 						redirect(base_url('peminjaman/add_new/guru'));
 					}
 		
-					$this->m_peminjaman->peminjaman_add_new_guru( $id_guru, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali);
-					$this->m_peminjaman->minstok_guru($id_guru, $id_buku, $tgl_kembali );
+					$this->m_peminjaman->peminjaman_add_new( $id_anggota, $kode_pinjam, $id_buku, $qt_pinjam, $tgl_pinjam, $tgl_kembali);
+					$this->m_peminjaman->minstok($id_anggota, $id_buku, $tgl_kembali );
 					redirect(base_url('peminjaman/guru'));
 				}
 		
@@ -162,9 +162,15 @@ class Peminjaman extends CI_Controller {
 		}
     }
 
-    public function kembalikan($id_transaksi ) {
+    public function kembalikan_siswa($id_transaksi ) {
 		$this->m_peminjaman->kembalikan_buku($id_transaksi);
 		$this->session->set_flashdata('msg_alert', 'Peminjaman telah selesai');
-		redirect( base_url('peminjaman') );
+		redirect( base_url('peminjaman/siswa') );
+	}
+
+	public function kembalikan_guru($id_transaksi ) {
+		$this->m_peminjaman->kembalikan_buku($id_transaksi);
+		$this->session->set_flashdata('msg_alert', 'Peminjaman telah selesai');
+		redirect( base_url('peminjaman/guru') );
 	}
 }

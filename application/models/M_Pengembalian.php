@@ -5,11 +5,11 @@ class M_Pengembalian extends CI_Model {
 
     public function data_pengembalian() {
         $q = $this->db->select(' t.id_transaksi, t.kode_pinjam, t.tgl_pinjam, t.tgl_kembali, 
-								 t.id_siswa, t.id_buku, t.status, t.tgl_dikembalikan,
-                                 s.nama_siswa,
+								 t.id_anggota, t.id_buku, t.status, t.tgl_dikembalikan,
+                                 a.nama_anggota, a.kategori_anggota,
                                  b.judul_buku, d.denda, d.telat')
                       ->from ('transaksi as t')
-                      ->join ('anggota as s', 's.id_siswa = t.id_siswa', 'LEFT')
+                      ->join ('anggota as a', 'a.id_anggota = t.id_anggota', 'LEFT')
                       ->join ('buku as b', 'b.id_buku = t.id_buku', 'LEFT')
 					  ->join ('denda as d', 'd.id_transaksi = t.id_transaksi', 'LEFT')
 					  ->where('status', 'dikembalikan')

@@ -28,9 +28,9 @@ class Dashboard extends CI_Controller {
 				$data = generate_page('Dashboard', 'dashboard', 'Kepsek');
 				$data_content['jumlah_admin'] = $this->m_dashboard->jumlah_admin();
 				$data_content['jumlah_buku'] = $this->m_dashboard->jumlah_buku();
-				$data_content['jumlah_anggota'] = $this->m_dashboard->jumlah_anggota();
-				$data_content['buku_dipinjam'] = $this->m_dashboard->total_buku_dipinjam();
-				$data_content['buku_dikembalikan'] = $this->m_dashboard->total_buku_dikembalikan();
+				// $data_content['jumlah_anggota'] = $this->m_dashboard->jumlah_anggota();
+				// $data_content['buku_dipinjam'] = $this->m_dashboard->total_buku_dipinjam();
+				// $data_content['buku_dikembalikan'] = $this->m_dashboard->total_buku_dikembalikan();
 				$data['content'] = $this->load->view('partial/Dashboard/Kepsek', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 			break;

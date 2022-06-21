@@ -18,7 +18,7 @@
       <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
         <div class="row w-100">
           <div class="col-lg-6 mx-auto">
-            <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card border-0 shadow-lg my-5">
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">

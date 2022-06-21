@@ -191,7 +191,7 @@ function peminjaman_siswa_index() {
             },
             {
                 title: "Nama Peminjam",
-                data: 'nama_siswa'
+                data: 'nama_anggota'
             },
             {
                 title: "Judul Buku",
@@ -229,7 +229,7 @@ function peminjaman_siswa_index() {
                 // type = data['id_pengembalian'],
                     id = data['id_transaksi'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success title="Kembalikan buku" "> <i class="fas fa-arrow-right"></i> KEMBALIKAN</button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan_siswa/' + id + '\';" class="btn btn-success title="Kembalikan buku" "> <i class="fas fa-arrow-right"></i> KEMBALIKAN</button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -251,7 +251,7 @@ function peminjaman_guru_index() {
             },
             {
                 title: "Nama Peminjam",
-                data: 'nama_guru'
+                data: 'nama_anggota'
             },
             {
                 title: "Judul Buku",
@@ -289,7 +289,7 @@ function peminjaman_guru_index() {
                 // type = data['id_pengembalian'],
                     id = data['id_transaksi'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan/' + id + '\';" class="btn btn-success title="Kembalikan buku" "> <i class="fas fa-arrow-right"></i> KEMBALIKAN</button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'peminjaman/kembalikan_guru/' + id + '\';" class="btn btn-success title="Kembalikan buku" "> <i class="fas fa-arrow-right"></i> KEMBALIKAN</button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -310,8 +310,12 @@ function pengembalian_index() {
                 data: 'kode_pinjam'
             },
             {
+                title: "Kategori peminjam",
+                data: 'kategori_anggota'
+            },
+            {
                 title: "Nama Peminjam",
-                data: 'nama_siswa'
+                data: 'nama_anggota'
             },
             {
                 title: "Judul Buku",
@@ -355,8 +359,12 @@ function laporan_index() {
                 data: 'kode_pinjam'
             },
             {
+                title: "Kategori Peminjam",
+                data: 'kategori_anggota'
+            },
+            {
                 title: "Nama Peminjam",
-                data: 'nama_siswa'
+                data: 'nama_anggota'
             },
             {
                 title: "Judul Buku",
