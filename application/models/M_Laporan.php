@@ -17,6 +17,23 @@ class M_Laporan extends CI_Model {
         return $q->result();
     }
 
+    public function tabel_cetak_sk() {
+		$q = $this->db->select(' bp.id_laporan, bp.kode_sk, bp.id_anggota, bp.tgl_terbit,
+                                 a.nama_anggota, a.nomor_induk, a.kelas, a.jurusan' )
+                                 ->from ('sk_bp as bp')
+                                 ->join ('anggota as a', 'a.id_anggota = bp.id_anggota', 'LEFT')
+                                 ->get();
+		return $q->result();
+	}
+
+    public function get_data_skbp($id) {
+        $q = $this->db->select('*')->from('sk_bp as sk')->join('anggota as a', 'a.id_anggota = sk.id_anggota', 'LEFT')->where('id_laporan', $id)->limit(1)->get();
+        if ( $q->num_rows() < 1 ) {
+            redirect( base_url('laporan/buat_sk') );
+        }
+        return $q->row();
+    }
+
     public function laporan_list_ajax($json) {
 		$new_arr=array();$i=1;
 		foreach ($json as $key => $value) {
@@ -80,4 +97,44 @@ class M_Laporan extends CI_Model {
         ->get();
         return $q->result();
     }
+
+	//buat kode SK bebas pustaka otomatis generate
+	function KodeSK() {
+        $this->db->select('RIGHT(sk_bp.kode_sk,4) as kodesk', false);
+        $this->db->order_by("kodesk", "DESC");
+        $this->db->limit(1);
+        $query = $this->db->get('sk_bp');
+
+        // CEK JIKA DATA ADA
+        if( $query->num_rows() <> 0 ) {
+            $data  = $query->row();
+            $kode  = intval($data->kodesk) + 1;
+        } 
+		else { $kode  = 1; }
+
+        $lastKode = str_pad($kode, 4, "0", STR_PAD_LEFT);
+        $tahun    = date("Y");
+        $SK       = "SK";
+		$BP		  = "Bebas Pustaka";
+        $newKode  = $SK."/".$BP."/".$tahun."/".$lastKode;
+
+        return $newKode;
+   }
+
+   //fungsi auto show data by search char with ajax
+	function search_nama_siswa($nama_anggota) {
+        $this->db->like('nama_anggota', $nama_anggota , 'both');
+		$this->db->where('kategori_anggota', 'siswa');
+        $this->db->order_by('nama_anggota', 'ASC');
+        $this->db->limit(10);
+		return $this->db->get('anggota')->result();
+    }
+
+	public function buat_sk( $id_anggota, $kode_sk ) {
+		$d_t_d = array( 'kode_sk' 	=> $kode_sk, 
+						'id_anggota' => $id_anggota );	
+		$this->db->insert('sk_bp', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Berhasil membuat SK Bebas Pustaka');
+	}
+
 }

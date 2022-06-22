@@ -63,6 +63,21 @@
         });
   </script>
 
+<script type="text/javascript"> // pencarian auto complete nama siswa
+        $(document).ready(function() {
+            $( "#sksiswa" ).autocomplete({
+              source: "<?php echo site_url('laporan/get_nama_siswa/?');?>",
+              select: function(event, ui) {
+                $('[name="nama_anggota"]').val(ui.item.id_anggota);
+                $('[name="id_anggota"]').val(ui.item.id_anggota);
+                $('[name="nomor_induk"]').val(ui.item.nomor_induk);
+                $('[name="kelas"]').val(ui.item.kelas);
+                $('[name="jurusan"]').val(ui.item.jurusan);
+              }
+            });
+        });
+  </script>
+
   <script type="text/javascript"> //show tabel
     base_url='<?=base_url();?>';
     $.ajaxSetup({

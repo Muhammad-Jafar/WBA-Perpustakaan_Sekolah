@@ -85,8 +85,7 @@
 
 </style>
 </head>
-<div class="no-print" style="margin:0 0 20px;text-align:center; font-size:1rem;"><a href="javascript:history.go(-1);" style="font-weight:bold">&laquo; KEMBALI</a>   | atau |   <a href="javascript:window.print();" style="font-weight:bold">PRINT</a></div>
-
+<div class="no-print" style="margin:0 0 20px;text-align:center; font-size:1rem;"><a href="javascript:histyle="font-weight:bold">&laquo; KEMBALI</a>   | atau |   <a href="javascript:window.print();" style="font-weight:bold">PRINT</a></div>
 <body onload="window.print();">
   <div class="page-portrait-center">
     <div id="header">

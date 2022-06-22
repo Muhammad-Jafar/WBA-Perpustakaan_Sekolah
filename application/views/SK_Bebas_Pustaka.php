@@ -39,8 +39,8 @@
   <tr> 
     <td> 
       <div align="center">
-        <b class="kop-surat">PT. Fadilus Media</b><br>
-        Gandaria Office Tower 8 Lt.20 Unit B-C, Gandaria City
+        <b class="kop-surat">PERPUSTAKAAN SMAN 1 UTAN</b><br>
+        Utan, Sumbawa Nusa Tenggara Barat
       </div>
       <hr size="2" align="center" width="100%" color="#000000"/>
     </td>
@@ -48,8 +48,7 @@
   <tr> 
     <td> 
       <div align="center" class="title"><b>SURAT 
-        KETERANGAN</b><br>
-      <font class="eng"><i>To Whom It May Concern</i></font>
+        KETERANGAN BEBAS PUSTAKA</b><br>
       </div>
     </td>
   </tr>
@@ -57,7 +56,7 @@
     <td>&nbsp;<br></td>
   </tr>
   <tr>
-    <td style="text-align: right;">Jakarta, <?=date("d M Y");?></td>
+    <td style="text-align: right;">Sumbawa, <?=date("d M Y");?></td>
   </tr>
   <tr> 
     <td>&nbsp;<br></td>
@@ -67,12 +66,12 @@
       <td>
       <table width="100%" border="0" cellspacing="1" cellpadding="1">
         <tr> 
-          <td width="13%">Nomor / <font class="eng">Number</font></td>
-          <td width="70%">: <?=$type_id;?>/0<?=$id;?>/BAAK-Sket/<?=date('Y');?></td>
+          <td width="13%">Nomor</td>
+          <td width="70%">: <?= $data->kode_sk; ?> </td>
         </tr>
         <tr> 
-          <td width="13%">Hal / <font class="eng">Case</font></td>
-          <td width="70%">: Izin</td>
+          <td width="13%">Hal</td>
+          <td width="70%">: Pernyataan Bebas Peminjaman Buku Perpustakaan</td>
         </tr>
       </table>
     </td>
@@ -81,30 +80,12 @@
   <tr> 
     <td>&nbsp;<br></td>
   </tr>
-  <tr>
-    <div align="left">
-      <td> 
-        Kepada Yth, 
-        <br>
-        <font class="eng">Dear,</font>
-        <br>
-        Kepala BAAK 
-        <br>
-        <font class="eng">Head of BAAK</font>
-        <br>
-        Di Tempat 
-        <br>
-        <font class="eng">In place</font>
-      </td>
-    </div>
-  </tr>
   <tr> 
     <td>&nbsp;<br>
     </td>
   </tr>
   <tr>
     <td>Yang bertanda tangan dibawah ini :<br>
-        <font class="eng">This is to certify that:</font>
     </td>
   </tr>
   <tr> 
@@ -113,33 +94,23 @@
 		    <tr><td>&nbsp;</td></tr>
         <tr> 
           <td width="1%">&nbsp;</td>
-          <td width="29%">N a m a / <font class="eng">Name</font></td>
-          <td width="70%">:&nbsp; <b> <?=strtoupper($data->nama);?> </b> </td>
+          <td width="29%">Nama</td>
+          <td width="70%">:&nbsp; <b> <?=strtoupper($data->nama_anggota);?> </b> </td>
         </tr>
         <tr> 
           <td width="1%">&nbsp;</td>
-          <td width="29%">Nomor Induk Pegawai / <font class="eng">Employee ID Number</font></td>
-          <td width="70%">:&nbsp; <?=$data->nip;?> </td>
-        </tr>
-		    <tr> 
-          <td width="12%">&nbsp;</td>
-          <td width="25%">Tempat, Tanggal Lahir  / <font class="eng">Date of Birth</font></td>
-          <td width="60%">:&nbsp;  <?=$tempat_lahir;?>, <?=$tanggal_lahir;?>               </td>
+          <td width="29%">Nomor Induk Pegawai</td>
+          <td width="70%">:&nbsp; <?=$data->nomor_induk;?> </td>
         </tr>
         <tr> 
           <td width="1%">&nbsp;</td>
-          <td width="29%">Posisi / <font class="eng">Position</font></td>
-          <td width="70%">:&nbsp;  <?=$data->nama_jabatan;?> </td>
+          <td width="29%">Kelas</td>
+          <td width="70%">:&nbsp;  <?=$data->kelas;?> </td>
         </tr>
         <tr> 
           <td width="1%">&nbsp;</td>
-          <td width="29%">Bidang / <font class="eng">Department</font></font></td>
-          <td width="70%">:&nbsp; <?=$data->nama_bidang;?></td>
-        </tr>
-        <tr>
-          <td width="1%">&nbsp;</td>
-          <td width="29%">Alamat / <font class="eng">Address</font></td>
-          <td width="70%" valign="top">:&nbsp; <?=$data->alamat;?></td>
+          <td width="29%">Jurusan</td>
+          <td width="70%">:&nbsp; <?=$data->jurusan;?></td>
         </tr>
       </table>
     </td>
@@ -148,14 +119,15 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Bermaksud untuk mengajukan izin <?=$nama_izin;?> di <?=$data->tempat;?> selama <?=$selama;?> terhitung mulai tanggal <?=$tglawal;?> sampai dengan <?=$tglakhir;?>.<br>
+    <td>Berdasarkan peraturan Kepala sekolah Nomor. 12 Tahun 2002 tentang persyaratan pengambilan ijazah pasal 1 ayat 2 yang berunyi bahwa siswa harus mengembalikan buku dan melunasi denda sebelum bisa mengambil ijazah disekolah. <br>
+        Maka Dengan ini, siswa yang namanya tercantum pada data diatas dinyatakan <b>TELAH BEBAS DARI PEMINJAMAN BUKU </b> dan / atau <b>TELAH MELUNASI DENDA TELAT PEMINJAMAN BUKU</b>.<br>
     </td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Demikian surat izin <?=$type;?> ini dibuat agar dapat dipergunakan sebagaimana mestinya, atas perhatian dan kebijaksanaannya saya ucapkan banyak terima kasih.</td>
+    <td>Demikian surat keterangan ini dibuat agar dapat dipergunakan sebagaimana mestinya, atas perhatian dan kebijaksanaannya saya ucapkan banyak terima kasih.</td>
   </tr>
   <tr>
     <td>&nbsp;<br><br><br></td>
@@ -163,33 +135,33 @@
   <tr> 
     <td>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr> 
-          <td width="45%">Disetujui oleh,<br><font class="eng">Approved by,</font></td>
-          <td width="45%">Pemohon,<br><font class="eng">Applicant,</font></td>
+        <tr align="center"> 
+          <td width="45%">Kepala Perpustakaan SMAN 1 UTAN<br></td>
+          <td width="45%">Pemohon,<br></td>
         </tr>
-        <tr>
-          <td width="45%"><br><p class="signature">Ka. BAAK</p></td>
+        <tr align="center">
+          <td width="45%"><br><p class="signature">Kepala Perpustakaan</p></td>
 
           <td width="45%"><br><br><br><br><br><br></td>
         </tr>
-        <tr> 
+        <tr align="center"> 
           <td width="45%"></td>
           <td width="45%"></td>
         </tr>
-        <tr>
-          <td width="45%" align="left"><p style="text-align: center;"><br></p><hr size="1" align="left" width="90%" color="#000000"></td>
-          <td width="45%" align="left"><p style="text-align: center;"><?=$data->nama;?></p><hr size="1" align="left" width="90%" color="#000000"></td>
+        <tr align="center">
+          <td width="35%" align="center"><p style="text-align: center;"><br></p><hr size="1" align="center" width="60%" color="#000000"></td>
+          <td width="35%" align="center"><p style="text-align: center;"> <?= $data->nama_anggota; ?> </p><hr size="1" align="center" width="40%" color="#000000"></td>
         </tr>
-        <tr>
-          <td width="45%">Kepala BAAK<br><font class="eng">Head of BAAK</font></td>
-          <td width="45%">NIP / <font class="eng">Employee ID Number</font>: <?=$data->nip;?></td>
+        <tr align="center">
+          <td width="45%">NIP. 1321131232131<br></td>
+          <td width="45%">NIPD. <?= $data->nomor_induk; ?> </td>
 		    </tr>
       </table>
     </td>
   </tr>
   <tr>
     <?php if(!$dl) { ?>
-    <td><div class="no-print" style="margin:0 0 20px;text-align:center;"><a href="javascript:history.go(-1);">&laquo; kembali</a> | <a href="javascript:window.print();">print</a></div></td>
+    <td><div class="no-print" style="margin:0 0 20px;text-align:center;"><a href="javascript:history.go(-1);" style="font-weight:bold">&laquo; KEMBALI</a> | atau | <a href="javascript:window.print();" style="font-weight:bold" >PRINT</a></div></td>
     <?php } ?>
   </tr>
 </table>

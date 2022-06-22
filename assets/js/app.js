@@ -345,6 +345,56 @@ function pengembalian_index() {
     });
 }
 
+function list_SKBP_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/list_skbp_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Kode SK",
+                data: 'kode_sk'
+            },
+            {
+                title: "Tanggal terbit",
+                data: 'tgl_terbit'
+            },
+            {
+                title: "Nama Pemohon",
+                data: 'nama_anggota'
+            },
+            {
+                title: "NIPD",
+                data: 'nomor_induk'
+            },
+            {
+                title: "Kelas",
+                data: 'kelas'
+            },
+            {
+                title: "Jurusan",
+                data: 'jurusan'
+            },
+            {
+                title: "Pilihan",
+                data: 'id_laporan'
+            }
+        ],
+        createdRow: function(row, data, index) {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_laporan']) {
+                var id = data['id_laporan'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'laporan/print/' + id + '\';" class="btn btn-success title="Kembalikan buku" "> <i class="fas fa-print"></i> CETAK</button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
 function laporan_index() {
     $('table.data').DataTable({
         ajax: {
@@ -486,10 +536,13 @@ $(document).ready(function()
             peminjaman_guru_index();
             break;
         case (window.location.href.indexOf('/pengembalian') != -1):
-            pengembalian_index()
+            pengembalian_index();
+            break;
+        case (window.location.href.indexOf('/laporan/buat_sk') != -1):
+            list_SKBP_index();
             break;
         case (window.location.href.indexOf('/laporan') != -1):
-            laporan_index()
+            laporan_index();
             break;
         case (window.location.href.indexOf('/administrator') != -1):
             administrator_index();
@@ -497,5 +550,6 @@ $(document).ready(function()
         case (window.location.href.indexOf('/katalog') != -1):
             katalog_buku_index();
             break;
+       
     }
 });

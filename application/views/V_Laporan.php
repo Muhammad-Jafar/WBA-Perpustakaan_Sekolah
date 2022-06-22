@@ -13,7 +13,8 @@
                 </div>
               </div>
             <?php endif; ?>
-
+            
+            <?php if ($this->session->user_type == 'admin') : ?>
             <div class="row col-md-6">
                 <div class="card-tools pr-3">
                   <div class="input-group">
@@ -22,11 +23,13 @@
                 </div>
                 <div class="card-tools">
                   <div class="input-group">
-                    <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/sk_bebas_pustaka");?>';" class="btn btn-block btn-warning"><i class="mdi mdi-file"></i>Buat SK Bebas Pustaka</button>
+                    <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/buat_sk");?>';" class="btn btn-block btn-warning"><i class="mdi mdi-file"></i>Buat SK Bebas Pustaka</button>
                   </div>
                 </div>
             </div>
-           
+            <?php else : ?>
+              
+            <?php endif; ?>
             <div class="table-responsive">
               <p>
                 <table class="data table table-striped" cellspacing="0" width="100%"></table>

@@ -5,8 +5,7 @@ class Laporan extends CI_Controller {
 
 	private $m_laporan;
 
-	function __construct() 
-	{
+	function __construct() {
 		parent::__construct();
 		$this->load->model('M_Laporan');
 		$this->m_laporan = $this->M_Laporan;
@@ -22,11 +21,23 @@ class Laporan extends CI_Controller {
 	}
 
 	public function index() {
-
 		$data = generate_page('Data Laporan', 'laporan', $this->user_type);
 		$data_content['title_page'] = 'Laporan Perpustakaan';
 		$data['content'] = $this->load->view('V_Laporan', $data_content, true);
 		$this->load->view('V_Dashboard', $data);
+	}
+
+	public function list_skbp_ajax() {
+		json_dump(function() {
+			$result= $this->m_laporan->tabel_cetak_sk();
+			$new_arr=array();$i=1;
+			foreach ($result as $key => $value) {
+				$value->no=$i;
+				$new_arr[]=$value;
+				$i++;
+			}
+			return array('data' => $new_arr);
+		});
 	}
 
 	public function laporan_ajax() {
@@ -36,39 +47,70 @@ class Laporan extends CI_Controller {
 		});
 	}
 
-
-	public function sk_laporan(){
-		$data = array('title' 		=> 'Data Laporan Perpustakaan',
-					'teks_pelajaran'=> $this->m_laporan-> pinjam_buku_tp(),
-					'non_teks_pelajaran'=> $this->m_laporan-> pinjam_buku_ntp() );
+	//fungsi cetak laporan dalam bentuk tabel
+	public function sk_laporan() {
+		$data = array('title' 			  => 'Data Laporan Perpustakaan',
+					  'teks_pelajaran'	  => $this->m_laporan-> pinjam_buku_tp(),
+					  'non_teks_pelajaran'=> $this->m_laporan-> pinjam_buku_ntp() );
 
 		$this->load->view('SK_Laporan', $data);
 	}
 
-	public function sk_bebas_pustaka() {
+	function get_nama_siswa(){
+        if (isset($_GET['term'])) {
+            $result = $this->m_laporan->search_nama_siswa($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+				$arr_result[] = array ( 'label' => $row->nama_anggota,
+										'id_anggota' => $row->id_anggota,
+										'nomor_induk' => $row->nomor_induk,
+										'kelas' => $row->kelas, 
+										'jurusan' => $row->jurusan );
+                echo json_encode($arr_result);
+            }
+        }
+    }
+
+	public function buat_sk() { 
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
+			$id_anggota = $this->security->xss_clean( $this->input->post('id_anggota'));
+			$kode_sk = $this->security->xss_clean( $this->input->post('kode_sk'));
+
+			$this->form_validation->set_rules('id_anggota', 'ID anggota', 'required');
+			$this->form_validation->set_rules('kode_sk', 'kode sk', 'required');
+
+			if (!$this-> form_validation->run()) {
+				$this->session->set_flashdata('msg_alert', validation_errors());
+				redirect(base_url('laporan/buat_sk'));
+			}
+
+			$this->m_laporan->buat_sk( $id_anggota, $kode_sk );
+			redirect(base_url('laporan/buat_sk'));
+		}
+
+		$data = generate_page ('Buat SK Bebas Pustaka untuk Anggota Perpustakaan', 'laporan/buat_sk','Admin');
+		$data_content['title_page'] = 'Buat SK Bebas Pustaka';
+		$data_content['kode_sk'] = $this->m_laporan->kodeSK();
+		$data['content'] = $this->load->view('partial/SK/buat_sk', $data_content, true);
+		$this->load->view('V_Dashboard', $data);
+	}
+
+	public function print()
+	{
 		if( empty($this->uri->segment('3'))) {
-			redirect( base_url('/dashboard') );
+			redirect( base_url('laporan/buat_sk') );
 		}
 
 		$id=$this->uri->segment('3');
 		$data['dl'] = false;
 		$data['id'] = $id;
-		$data['user_name'] = $this->session->userdata('user_name');
-		$data['data'] = $this->m_datasiswa->get_data_izin($id);
+		$data['data'] = $this->m_laporan->get_data_skbp($id);
 
-		$data['nama_izin'] = $data['data']->nama_izin;
-		$data['type'] = $data['data']->type;
-		switch ($data['type']) {
-			case 'cuti':
-					$data['type_id'] = '001';
-				break;
-			case 'sekolah':
-					$data['type_id'] = '002';
-				break;
-			case 'seminar':
-					$data['type_id'] = '003';
-				break;
-		}
+		$data['nama_siswa'] = $data['data']->nama_anggota;
+		$data['kode_sk'] = $data['data']->kode_sk;
+		$data['nipd'] = $data['data']->nomor_induk;
+		$data['kelas'] = $data['data']->kelas;
+		$data['jurusan'] = $data['data']->jurusan;
 		if( $_SERVER['REQUEST_METHOD'] == 'GET') {
 			if( isset($_GET['dl']) ) {
 				$data['dl'] = true;
@@ -76,15 +118,7 @@ class Laporan extends CI_Controller {
 				header("Content-Disposition: attachment; filename=SkBAAK-{$data['type_id']}-{$id}.doc");
 			}
 		}
-		
-		$data['tempat_lahir'] = strtoupper($data['data']->tempat_lahir);
-		$data['tanggal_lahir'] = date_format( date_create($data['data']->tanggal_lahir), 'd M Y');
-		$data['alamat'] = $data['data']->alamat;
-		$data['nama'] = explode(' ', $data['data']->nama)[0];
-		$diff  = date_diff( date_create($data['data']->tglawal), date_create($data['data']->tglakhir) );
-		$data['selama'] = $diff->format('%d hari');
-		$data['tglawal'] = date_format( date_create($data['data']->tglawal), 'd M Y');
-		$data['tglakhir'] = date_format( date_create($data['data']->tglakhir), 'd M Y');
-		$this->load->view('Surat_Keterangan_New', $data);
+		$data['tgl_terbit'] = date_format( date_create($data['data']->tgl_terbit), 'd M Y');
+		$this->load->view('SK_Bebas_Pustaka', $data);
 	}
 }

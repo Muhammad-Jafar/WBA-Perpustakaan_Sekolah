@@ -16,7 +16,7 @@
             
             <div class="card-tools">
               <div class="input-group" style="width: 190px;">
-                <button type="button" onclick="javascript:top.location.href='<?=base_url("/anggota/add_new/guru");?>';" class="btn btn-block btn-success"><i class="mdi mdi-account-plus"></i>Tambah Anggota</button>
+                <button type="button" onclick="javascript:top.location.href='<?=base_url("/anggota/add_new/guru");?>';" class="btn btn-block btn-success"><i class="fas fa-plus"></i>Tambah Anggota</button>
               </div>
             </div>
 

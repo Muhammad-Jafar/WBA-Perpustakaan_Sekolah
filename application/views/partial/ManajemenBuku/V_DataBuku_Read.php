@@ -16,7 +16,7 @@
             <?php } ?>
             <div class="card-tools">
                 <div class="input-group" style="width: 170px;">
-                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/manajemen_buku/add_new/data_buku");?>';" class="btn btn-block btn-success"><i class="mdi mdi-library-plus"></i> Tambah Buku</button>
+                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/manajemen_buku/add_new/data_buku");?>';" class="btn btn-block btn-success"><i class="fas fa-plus"></i> Tambah Buku</button>
                 </div>
             </div>
             <div class="table-responsive">
