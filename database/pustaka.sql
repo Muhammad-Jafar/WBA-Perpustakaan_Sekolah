@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2022 at 05:38 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Waktu pembuatan: 29 Jun 2022 pada 15.15
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -37,19 +37,19 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `level_user`, `nama_admin`, `username`, `password`, `avatar`) VALUES
 (11, 'admin', 'Harry Potter', 'admin5', '827ccb0eea8a706c4c34a16891f84e7b', '800px-Gado_gado2.jpg'),
-(12, 'admin', 'Novi', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'AVATAR_ADMIN-84.png'),
-(13, 'admin', 'Inisialku', 'admin2', '827ccb0eea8a706c4c34a16891f84e7b', 'Pokmon-Detective-Pikachu.jpg'),
+(12, 'admin', 'Novi Novita', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'AVATAR_ADMIN-84.png'),
+(13, 'admin', 'Ade Irawansyah', 'admin2', '827ccb0eea8a706c4c34a16891f84e7b', 'Pokmon-Detective-Pikachu.jpg'),
 (14, 'kepsek', 'Kepala Sekolah', 'kepsek', '827ccb0eea8a706c4c34a16891f84e7b', 'AVATAR_ADMIN-85.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anggota`
+-- Struktur dari tabel `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -62,20 +62,49 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `anggota`
+-- Dumping data untuk tabel `anggota`
 --
 
 INSERT INTO `anggota` (`id_anggota`, `kategori_anggota`, `nama_anggota`, `nomor_induk`, `kelas`, `jurusan`) VALUES
-(1, 'siswa', 'Novi Novita', 1801071001, 'XII', 'IPS'),
+(1, 'siswa', 'Adel Kurniansyah', 3478, 'X', 'IPA'),
 (2, 'guru', 'Herman', 1701071002, 'XI', 'IPA'),
 (3, 'guru', 'Saputra deng deng', 1701071003, 'X', 'IPA'),
-(4, 'siswa', 'Abdi', 1801071004, 'X', 'IPA'),
-(5, 'guru', 'Agile', 1701071005, 'XI', 'IPA');
+(4, 'siswa', 'Aidil Saputra', 3882, 'X', 'IPA'),
+(5, 'guru', 'Agile', 1701071005, 'XI', 'IPA'),
+(6, 'siswa', 'Andi Rezy Munadil Athfal', 2893, 'X', 'IPA'),
+(7, 'siswa', 'Apri Atmaja', 2899, 'X', 'IPA'),
+(8, 'siswa', 'Aril Saputra', 3902, 'X', 'IPA'),
+(9, 'siswa', 'Bulan Nurmandani Saputri', 2908, 'X', 'IPA'),
+(10, 'siswa', 'Citra Puspita Loka', 3911, 'X', 'IPA'),
+(11, 'siswa', 'Destita Fuja Reskika', 3913, 'X', 'IPA'),
+(12, 'siswa', 'Feti Afrillia', 3931, 'X', 'IPA'),
+(13, 'siswa', 'Chesza Aura Aryan Viandra K.', 3936, 'X', 'IPA'),
+(14, 'siswa', 'Heldi Irwansyah', 3838, 'X', 'IPA'),
+(15, 'siswa', 'Imam Alfarizi', 3945, 'X', 'IPA'),
+(16, 'siswa', 'Kadek Ari Purbawa', 3956, 'X', 'IPA'),
+(17, 'siswa', 'Mardiana', 3955, 'X', 'IPA'),
+(18, 'siswa', 'Marliana Kartika Wati', 3957, 'X', 'IPA'),
+(19, 'siswa', 'Muhammad Alfan Ibram', 3972, 'X', 'IPA'),
+(20, 'siswa', 'Nazilatuzzaskia Maudy', 3977, 'X', 'IPA'),
+(21, 'siswa', 'Nurul Sri Ramdani', 3990, 'X', 'IPA'),
+(22, 'siswa', 'Rabbani Khalifatul Ardy', 3999, 'X', 'IPA'),
+(23, 'siswa', 'Rina Rianti', 4012, 'X', 'IPA'),
+(24, 'siswa', 'Ryan Saputra', 4020, 'X', 'IPA'),
+(25, 'siswa', 'Sandi Suci Ramdhani', 4025, 'X', 'IPA'),
+(26, 'siswa', 'Sapriadi', 4027, 'X', 'IPA'),
+(27, 'siswa', 'Siska Olivia', 4031, 'X', 'IPA'),
+(28, 'siswa', 'Sri Amalia', 4035, 'X', 'IPA'),
+(29, 'siswa', 'Sri Ulandari', 4036, 'X', 'IPA'),
+(30, 'siswa', 'Tania Assyahra', 4045, 'X', 'IPA'),
+(31, 'siswa', 'Tohri Jazadi', 4049, 'X', 'IPA'),
+(32, 'siswa', 'Wulan Dari', 4054, 'X', 'IPA'),
+(33, 'siswa', 'Yendi Arfani', 4055, 'X', 'IPA'),
+(34, 'siswa', 'Zaki Alfata', 4056, 'X', 'IPA');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buku`
+-- Struktur dari tabel `buku`
 --
 
 CREATE TABLE `buku` (
@@ -92,18 +121,21 @@ CREATE TABLE `buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `buku`
+-- Dumping data untuk tabel `buku`
 --
 
 INSERT INTO `buku` (`id_buku`, `id_jenis_buku`, `kategori_buku`, `kode_buku`, `judul_buku`, `pengarang`, `penerbit`, `tahun_terbit`, `jumlah_halaman`, `qt`) VALUES
-(1, 10, 'Teks-pelajaran', 'BUKU-00002', 'Pengantar Fisika Dasar', 'Robert Dawney Jr', 'Gramedia', '2022', 250, 10),
-(2, 9, 'Non Teks-pelajaran', 'BUKU-00003', 'Filsafat Islam', 'Anonymous', 'Gramedia', '2017', 319, 6),
-(3, 10, 'Non Teks-pelajaran', 'BUKU-00004', 'Materi Gelap dan Anti Materi', 'Robert Dawney Jr', 'Gramedia', '2019', 512, 4);
+(1, 14, 'Teks-pelajaran', 'BUKU-00002', 'Pendidikan Pancasila dan Kewarganegaraan', 'Soemaryoto', 'PT.Gramedia Pustaka ', '2018', 228, 12),
+(2, 5, 'Non Teks-pelajaran', 'BUKU-00003', 'Filsafat Dasar', 'Rahmad wirawan', 'PT.Gramedia', '2017', 319, 6),
+(3, 10, 'Non Teks-pelajaran', 'BUKU-00004', 'Gaya Gravitasi', 'Robert Dawney Jr', 'PT.Gramedia', '2019', 512, 3),
+(5, 5, 'Teks-pelajaran', 'BUKU-00005', 'Prakarya dan kewirausahaan kls XII', 'Hendriana Werdhaningsih, ', 'PT.Gramedia', '2018', 298, 10),
+(6, 13, 'Teks-pelajaran', 'BUKU-00006', 'Pendidikan Jasmani, Olahraga dan Kesehatan', 'Soemaryoto, dkk', 'PT.Gramedia', '2018', 140, 15),
+(7, 5, 'Teks-pelajaran', 'BUKU-00007', 'Sosiologi XII ', 'Muhammad Taufan, dkk', 'PT.Gramedia', '2018', 256, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `denda`
+-- Struktur dari tabel `denda`
 --
 
 CREATE TABLE `denda` (
@@ -117,7 +149,7 @@ CREATE TABLE `denda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `denda`
+-- Dumping data untuk tabel `denda`
 --
 
 INSERT INTO `denda` (`id_transaksi`, `id_buku`, `id_anggota`, `tgl_kembali`, `tgl_dikembalikan`, `telat`, `denda`) VALUES
@@ -131,7 +163,7 @@ INSERT INTO `denda` (`id_transaksi`, `id_buku`, `id_anggota`, `tgl_kembali`, `tg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_buku`
+-- Struktur dari tabel `jenis_buku`
 --
 
 CREATE TABLE `jenis_buku` (
@@ -140,7 +172,7 @@ CREATE TABLE `jenis_buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `jenis_buku`
+-- Dumping data untuk tabel `jenis_buku`
 --
 
 INSERT INTO `jenis_buku` (`id_jenis_buku`, `jenis_buku`) VALUES
@@ -153,12 +185,15 @@ INSERT INTO `jenis_buku` (`id_jenis_buku`, `jenis_buku`) VALUES
 (7, 'Sejarah Indonesia'),
 (9, 'Filsafat Islam'),
 (10, 'Fisika Dasar'),
-(11, 'Budaya');
+(11, 'Budaya'),
+(12, 'Kesenian'),
+(13, 'Olahraga'),
+(14, 'Kewarganegaraan');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sk_bp`
+-- Struktur dari tabel `sk_bp`
 --
 
 CREATE TABLE `sk_bp` (
@@ -170,7 +205,7 @@ CREATE TABLE `sk_bp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `sk_bp`
+-- Dumping data untuk tabel `sk_bp`
 --
 
 INSERT INTO `sk_bp` (`id_laporan`, `kode_sk`, `perihal`, `id_anggota`, `tgl_terbit`) VALUES
@@ -180,7 +215,7 @@ INSERT INTO `sk_bp` (`id_laporan`, `kode_sk`, `perihal`, `id_anggota`, `tgl_terb
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -196,7 +231,7 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `kode_pinjam`, `id_buku`, `id_anggota`, `tgl_pinjam`, `tgl_kembali`, `tgl_dikembalikan`, `status`, `qt_pinjam`) VALUES
@@ -208,7 +243,7 @@ INSERT INTO `transaksi` (`id_transaksi`, `kode_pinjam`, `id_buku`, `id_anggota`,
 (6, 'PJ-0006', 1, 1, '2022-06-05', '2022-06-10', '0000-00-00', 'dipinjam', 1);
 
 --
--- Triggers `transaksi`
+-- Trigger `transaksi`
 --
 DELIMITER $$
 CREATE TRIGGER `denda` AFTER UPDATE ON `transaksi` FOR EACH ROW BEGIN
@@ -256,90 +291,90 @@ DELIMITER ;
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `anggota`
+-- Indeks untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indexes for table `buku`
+-- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`id_buku`),
   ADD KEY `id_jenis_buku` (`id_jenis_buku`) USING BTREE;
 
 --
--- Indexes for table `denda`
+-- Indeks untuk tabel `denda`
 --
 ALTER TABLE `denda`
   ADD PRIMARY KEY (`id_transaksi`);
 
 --
--- Indexes for table `jenis_buku`
+-- Indeks untuk tabel `jenis_buku`
 --
 ALTER TABLE `jenis_buku`
   ADD PRIMARY KEY (`id_jenis_buku`);
 
 --
--- Indexes for table `sk_bp`
+-- Indeks untuk tabel `sk_bp`
 --
 ALTER TABLE `sk_bp`
   ADD PRIMARY KEY (`id_laporan`);
 
 --
--- Indexes for table `transaksi`
+-- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `anggota`
+-- AUTO_INCREMENT untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_anggota` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `buku`
+-- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_buku` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `denda`
+-- AUTO_INCREMENT untuk tabel `denda`
 --
 ALTER TABLE `denda`
   MODIFY `id_transaksi` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `jenis_buku`
+-- AUTO_INCREMENT untuk tabel `jenis_buku`
 --
 ALTER TABLE `jenis_buku`
-  MODIFY `id_jenis_buku` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_jenis_buku` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `sk_bp`
+-- AUTO_INCREMENT untuk tabel `sk_bp`
 --
 ALTER TABLE `sk_bp`
   MODIFY `id_laporan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `transaksi`
+-- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   MODIFY `id_transaksi` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
