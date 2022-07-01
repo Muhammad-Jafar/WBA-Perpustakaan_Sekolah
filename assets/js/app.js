@@ -1,7 +1,7 @@
 function list_buku_index() {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'manajemen_buku/data_buku_ajax',
+            url: base_url + 'buku/data_buku_ajax',
         },
         columns: [{
                 title: "No.",
@@ -53,8 +53,8 @@ function list_buku_index() {
             if (data['id_buku']) {
                 var id = data['id_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/data_buku/' + id + '\';" class="btn btn-icons btn-warning " title="Edit data" > <i class="fas fa-edit"></i> </button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/data_buku/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data" > <i class="fas fa-trash"></i> </button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'buku/edit/data_buku/' + id + '\';" class="btn btn-icons btn-warning " title="Edit data" > <i class="fas fa-edit"></i> </button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'buku/delete/data_buku/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data" > <i class="fas fa-trash"></i> </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -64,7 +64,7 @@ function list_buku_index() {
 function klasifikasi_buku_index() {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'manajemen_buku/jenis_buku_ajax',
+            url: base_url + 'buku/jenis_buku_ajax',
         },
         columns: [{
                 title: "No.",
@@ -84,8 +84,8 @@ function klasifikasi_buku_index() {
             if (data['id_jenis_buku']) {
                 var id = data['id_jenis_buku'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/edit/jenis_buku/' + id + '\';" class="btn btn-warning btn-icons" title="Edit data"> <i class="fas fa-edit"></i> </button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'manajemen_buku/delete/jenis_buku/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data">  <i class="fas fa-trash"></i> </button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'buku/edit/jenis_buku/' + id + '\';" class="btn btn-warning btn-icons" title="Edit data"> <i class="fas fa-edit"></i> </button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'buku/delete/jenis_buku/' + id + '\';" class="btn btn-icons btn-danger" title="Hapus data">  <i class="fas fa-trash"></i> </button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -517,10 +517,10 @@ $(document).ready(function()
 {
     switch (true) 
     {
-        case (window.location.href.indexOf('/manajemen_buku/data_buku') != -1):
+        case (window.location.href.indexOf('/buku/data_buku') != -1):
             list_buku_index();
             break;
-        case (window.location.href.indexOf('/manajemen_buku/jenis_buku') != -1):
+        case (window.location.href.indexOf('/buku/jenis_buku') != -1):
             klasifikasi_buku_index();
             break;
         case (window.location.href.indexOf('/anggota/siswa') != -1):
@@ -538,7 +538,7 @@ $(document).ready(function()
         case (window.location.href.indexOf('/pengembalian') != -1):
             pengembalian_index();
             break;
-        case (window.location.href.indexOf('/laporan/buat_sk') != -1):
+        case (window.location.href.indexOf('/laporan/sk') != -1):
             list_SKBP_index();
             break;
         case (window.location.href.indexOf('/laporan') != -1):

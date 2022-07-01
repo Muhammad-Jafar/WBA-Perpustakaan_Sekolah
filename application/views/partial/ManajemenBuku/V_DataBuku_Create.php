@@ -14,7 +14,7 @@
               </div>
 
               <?php } ?>
-              <?=form_open_multipart('manajemen_buku/add_new/data_buku', array('method'=>'post'));?>
+              <?=form_open_multipart('buku/add_new/data_buku', array('method'=>'post'));?>
 
                 <div class="row">
                   <div class="col-md-6">
@@ -115,7 +115,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
-                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left" type="button" onclick="javascript:top.location.href='<?=base_url("manajemen_buku/data_buku"); ?>';"> Kembali</button>
+                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left" type="button" onclick="javascript:top.location.href='<?=base_url("buku/data_buku"); ?>';"> Kembali</button>
                       <button type="submit" class="btn btn-success mr-2">Tambah data</button>
                       <button class="btn btn-light" type="reset">Hapus</button>
                     </div>

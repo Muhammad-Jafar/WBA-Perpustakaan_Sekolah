@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-tools">
                   <div class="input-group">
-                    <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/buat_sk");?>';" class="btn btn-block btn-warning"><i class="mdi mdi-file"></i>Buat SK Bebas Pustaka</button>
+                    <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/sk");?>';" class="btn btn-block btn-warning"><i class="mdi mdi-file"></i>Buat SK Bebas Pustaka</button>
                   </div>
                 </div>
             </div>

@@ -71,7 +71,7 @@ class Laporan extends CI_Controller {
         }
     }
 
-	public function buat_sk() { 
+	public function sk() { 
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 			$id_anggota = $this->security->xss_clean( $this->input->post('id_anggota'));
 			$kode_sk = $this->security->xss_clean( $this->input->post('kode_sk'));
@@ -81,24 +81,24 @@ class Laporan extends CI_Controller {
 
 			if (!$this-> form_validation->run()) {
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect(base_url('laporan/buat_sk'));
+				redirect(base_url('laporan/sk'));
 			}
 
 			$this->m_laporan->buat_sk( $id_anggota, $kode_sk );
-			redirect(base_url('laporan/buat_sk'));
+			redirect(base_url('laporan/sk'));
 		}
 
-		$data = generate_page ('Buat SK Bebas Pustaka untuk Anggota Perpustakaan', 'laporan/buat_sk','Admin');
+		$data = generate_page ('Buat SK Bebas Pustaka untuk Anggota Perpustakaan', 'laporan/sk','Admin');
 		$data_content['title_page'] = 'Buat SK Bebas Pustaka';
 		$data_content['kode_sk'] = $this->m_laporan->kodeSK();
-		$data['content'] = $this->load->view('partial/SK/buat_sk', $data_content, true);
+		$data['content'] = $this->load->view('partial/SK/Buat_Sk', $data_content, true);
 		$this->load->view('V_Dashboard', $data);
 	}
 
 	public function print()
 	{
 		if( empty($this->uri->segment('3'))) {
-			redirect( base_url('laporan/buat_sk') );
+			redirect( base_url('laporan/sk') );
 		}
 
 		$id=$this->uri->segment('3');

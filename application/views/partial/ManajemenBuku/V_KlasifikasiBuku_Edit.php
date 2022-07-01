@@ -14,7 +14,7 @@
               </div>
               
               <?php } ?>
-              <?=form_open('manajemen_buku/edit/jenis_buku/' . $jenis_buku->id_jenis_buku, array('method'=>'post'));?>
+              <?=form_open('buku/edit/jenis_buku/' . $jenis_buku->id_jenis_buku, array('method'=>'post'));?>
                 <input type="hidden" name="id_jenis_buku" value="<?=$jenis_buku->id_jenis_buku;?>">
 
                 <div class="row">
@@ -31,7 +31,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row" style="justify-content:right; margin-right: auto; margin-top: 10px;">
-                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left" type="button" onclick="javascript:top.location.href='<?=base_url("manajemen_buku/data_buku"); ?>';"> Kembali</button>
+                      <button class="btn btn-warning mr-2 mdi mdi-arrow-left" type="button" onclick="javascript:top.location.href='<?=base_url("buku/data_buku"); ?>';"> Kembali</button>
                       <button type="submit" class="btn btn-success mr-2">Perbarui data</button>
                       <button class="btn btn-light" type="reset">Hapus</button>
                     </div>

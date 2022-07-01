@@ -17,7 +17,7 @@
                 </div>
             <?php endif; ?>
             
-            <?=form_open('laporan/buat_sk', array('method'=>'post'));?>
+            <?=form_open('laporan/sk', array('method'=>'post'));?>
 
                   <div class="col-md-12">
                     <div class="form-group row">

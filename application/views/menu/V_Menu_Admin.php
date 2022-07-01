@@ -49,8 +49,8 @@
     <div id="buku" class="collapse" aria-labelledby="dataBuku" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">MANAJEMEN DATA BUKU</h6>
-        <a class="collapse-item text-primary" href=" <?=base_url('manajemen_buku/data_buku');?> ">Data Buku</a>
-        <a class="collapse-item text-primary" href=" <?=base_url('manajemen_buku/jenis_buku');?> ">Klasifikasi Buku</a>
+        <a class="collapse-item text-primary" href=" <?=base_url('buku/data_buku');?> ">Data Buku</a>
+        <a class="collapse-item text-primary" href=" <?=base_url('buku/jenis_buku');?> ">Klasifikasi Buku</a>
       </div>
     </div>
   </li>
